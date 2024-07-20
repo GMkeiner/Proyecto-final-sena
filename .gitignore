@@ -16,5 +16,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-"storage/firebase.json" 
-"storage/firebase.json" 
+/storage/firebase.json
+
