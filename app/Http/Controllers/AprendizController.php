@@ -11,6 +11,7 @@ use App\Http\Requests\AprendizRequest;
  */
 class AprendizController extends Controller
 {
+    private $firebase;
     /**
      * Display a listing of the resource.
      */
@@ -27,8 +28,10 @@ class AprendizController extends Controller
      */
     public function create()
     {
+
         $aprendiz = new Aprendiz();
         return view('aprendiz.create', compact('aprendiz'));
+
     }
 
     /**
@@ -37,7 +40,7 @@ class AprendizController extends Controller
     public function store(AprendizRequest $request)
     {
         print($request);
-        Aprendiz::create($request->validated());
+        // Aprendiz::create($request->validated());
 
         return redirect()->route('aprendiz.index')
             ->with('success', 'Aprendiz created successfully.');
