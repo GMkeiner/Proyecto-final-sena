@@ -13,6 +13,7 @@ use Kreait\Firebase\Contract\Database;
  */
 class AprendizController extends Controller
 {
+    private $firebase;
     /**
      * Display a listing of the resource.
      */
@@ -35,8 +36,10 @@ class AprendizController extends Controller
      */
     public function create()
     {
+
         $aprendiz = new Aprendiz();
         return view('aprendiz.create', compact('aprendiz'));
+
     }
 
     /**
@@ -44,6 +47,11 @@ class AprendizController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
+        print($request);
+        // Aprendiz::create($request->validated());
+>>>>>>> f02d3c3fa59a67208d9c91dfb9d10198588da14f
 
         $data =[
             'nombre' => $request->nombre_completo,
