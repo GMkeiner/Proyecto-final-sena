@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Aprendiz;
 use App\Http\Requests\AprendizRequest;
+use Illuminate\Http\Request;
+use Kreait\Firebase\Contract\Database;
 
 /**
  * Class AprendizController
@@ -11,36 +13,68 @@ use App\Http\Requests\AprendizRequest;
  */
 class AprendizController extends Controller
 {
+    private $firebase;
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $aprendizs = Aprendiz::paginate();
 
-        return view('aprendiz.index', compact('aprendizs'))
-            ->with('i', (request()->input('page', 1) - 1) * $aprendizs->perPage());
+     public $database;
+     public function __construct(){
+        $this->database = \App\Services\FirebaseService::connect();
     }
+
+     public function index()
+     {
+         $aprendizs = Aprendiz::paginate();
+
+         return view('aprendiz.index', compact('aprendizs'))
+             ->with('i', (request()->input('page', 1) - 1) * $aprendizs->perPage());
+     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+
         $aprendiz = new Aprendiz();
         return view('aprendiz.create', compact('aprendiz'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AprendizRequest $request)
+    public function store(Request $request)
     {
+<<<<<<< HEAD
+=======
         print($request);
-        Aprendiz::create($request->validated());
+        // Aprendiz::create($request->validated());
+>>>>>>> f02d3c3fa59a67208d9c91dfb9d10198588da14f
 
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz created successfully.');
+        $data =[
+            'nombre' => $request->nombre_completo,
+            'documento'=> $request->documento,
+            'pregunta1'=> $request->pregunta1,
+            'pregunta2'=> $request->pregunta2,
+            'pregunta3'=> $request->pregunta3,
+            'pregunta4'=> $request->pregunta4,
+            'pregunta5'=> $request->pregunta5,
+            'pregunta6'=> $request->pregunta6,
+            'pregunta7'=> $request->pregunta7
+        ];
+
+        $this->database
+        ->getReference('Encuestas')
+        ->push($data);
+
+                return redirect()->route('aprendiz.index')
+                ->with('success', 'Aprendiz created successfully.');
+
+
+
+
     }
 
     /**
