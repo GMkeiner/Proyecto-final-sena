@@ -11,15 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('asistencias', function (Blueprint $table) {
+        Schema::create('encuestas', function (Blueprint $table) {
             $table->id();
-            $table->boolean('noAsistencias');
-            $table->boolean('noInasistencias');
-            $table->boolean('noExcusas');
-            $table->string('comentario');
-            $table->unsignedBigInteger('aprendiz_id');
-
-            $table->foreign('aprendiz_id')->references('id')->on('aprendizs');
             $table->timestamps();
         });
     }
@@ -29,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('asistencias');
+        Schema::dropIfExists('encuestas');
     }
 };

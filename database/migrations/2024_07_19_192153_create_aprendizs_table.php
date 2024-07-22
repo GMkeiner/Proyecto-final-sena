@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('aprendizs', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre', 100);
+            $table->integer('documento');
+            $table->string('nombre');
             $table->string('apellido');
-            $table->string('correo', 200);
-            $table->bigInteger('Telefono');
+            $table->string('correo');
+            $table->integer('telefono');
             $table->unsignedBigInteger('ficha_id');
-            $table->unsignedBigInteger('nota_id');
-            $table->unsignedBigInteger('asistencia_id');
             $table->timestamps();
+
+            $table->foreign('ficha_id')->references('id')->on('fichas');
+            
         });
     }
 
