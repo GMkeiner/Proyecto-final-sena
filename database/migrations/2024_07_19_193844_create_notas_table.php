@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('notas', function (Blueprint $table) {
+        Schema::create('competencias_notas', function (Blueprint $table) {
             $table->id();
-            $table->integer('nota1');
-            $table->integer('nota2');
-            $table->integer('nota3');
-            $table->integer('promedio');
+            $table->json('competencia1');
+            $table->json('competencia2');
+            $table->json('competencia3');
             $table->unsignedBigInteger('aprendiz_id');
             $table->timestamps();
 
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('notas');
+        Schema::dropIfExists('competencias_notas');
     }
 };
