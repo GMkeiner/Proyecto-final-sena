@@ -21,6 +21,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Route::middleware(Authenticate::class)->group(function(){
     Route::resource('/aprendiz', AprendizController::class);
     Route::resource('/instructores',InstructorController::class);
@@ -29,3 +30,4 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Auth::routes();
+

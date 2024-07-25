@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aprendiz;
-use App\Models\ficha;
+use App\Models\Ficha;
 use Illuminate\Http\Request;
+use Kreait\Firebase\Contract\Database;
+
 
 /**
  * Class AprendizController
@@ -12,21 +14,34 @@ use Illuminate\Http\Request;
  */
 class AprendizController extends Controller
 {
+    private $firebase;
     /**
      * Display a listing of the resource.
      */
+
     public function index()
     {
        $aprendiz=Aprendiz::all();
        return view('aprendiz.index', ['aprendiz' => $aprendiz]);
+
     }
+
+     public function index()
+     {
+         $aprendizs = Aprendiz::paginate();
+
+         return view('aprendiz.index', compact('aprendizs'))
+             ->with('i', (request()->input('page', 1) - 1) * $aprendizs->perPage());
+     }
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+
         return view('aprendiz.create', ['ficha'=>ficha::all()]);
+
     }
 
     /**
@@ -34,6 +49,7 @@ class AprendizController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'documento'=>'required|max:225',
             'nombre'=>'required|max:225',
@@ -53,6 +69,8 @@ class AprendizController extends Controller
         $aprendiz->save();
 
         return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
+
+
     }
 
     /**

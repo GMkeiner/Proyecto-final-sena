@@ -13,6 +13,7 @@
 
         <form action="{{ url('aprendiz') }}" method="post">
 
+
             @csrf
              <div class="md-3 row">
                   <label for="aprendiz" class="col-sm-2 col-form-label">Documento del aprendiz:</label>
@@ -43,6 +44,7 @@
                   <div class="col-sm-5">
                       <input type="number" class="form-control"  name="telefono"  id="telefono" value="{{old('telefono')}}" required>
                   </div>
+
             </div>
             <div class="md-3 row">
                 <label for="ficha_id" class="col-sm-2 col-form-label">Fichas:</label>
