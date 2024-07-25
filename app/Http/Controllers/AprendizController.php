@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aprendiz;
-use App\Http\Requests\AprendizRequest;
+use App\Models\ficha;
+use Illuminate\Http\Request;
 
 /**
  * Class AprendizController
@@ -16,10 +17,8 @@ class AprendizController extends Controller
      */
     public function index()
     {
-        $aprendizs = Aprendiz::paginate();
-
-        return view('aprendiz.index', compact('aprendizs'))
-            ->with('i', (request()->input('page', 1) - 1) * $aprendizs->perPage());
+       $aprendiz=Aprendiz::all();
+       return view('aprendiz.index', ['aprendiz' => $aprendiz]);
     }
 
     /**
@@ -27,30 +26,41 @@ class AprendizController extends Controller
      */
     public function create()
     {
-        $aprendiz = new Aprendiz();
-        return view('aprendiz.create', compact('aprendiz'));
+        return view('aprendiz.create', ['ficha'=>ficha::all()]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AprendizRequest $request)
+    public function store(Request $request)
     {
-        print($request);
-        Aprendiz::create($request->validated());
+        $request->validate([
+            'documento'=>'required|max:225',
+            'nombre'=>'required|max:225',
+            'apellido'=>'required|max:225',
+            'correo'=>'required|max:225',
+            'telefono'=>'required|max:225',
+            'ficha_id'=>'required',
+        ]);
 
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz created successfully.');
+        $aprendiz= new Aprendiz();
+        $aprendiz->documento=$request->input('documento');
+        $aprendiz->nombre=$request->input('nombre');
+        $aprendiz->apellido=$request->input('apellido');
+        $aprendiz->correo=$request->input('correo');
+        $aprendiz->telefono=$request->input('telefono');
+        $aprendiz->ficha_id=$request->input('ficha_id');
+        $aprendiz->save();
+
+        return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show()
     {
-        $aprendiz = Aprendiz::find($id);
-
-        return view('aprendiz.show', compact('aprendiz'));
+        
     }
 
     /**
@@ -60,25 +70,38 @@ class AprendizController extends Controller
     {
         $aprendiz = Aprendiz::find($id);
 
-        return view('aprendiz.edit', compact('aprendiz'));
+        return view('aprendiz.edit',['aprendiz'=>$aprendiz, 'ficha'=>ficha::all()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AprendizRequest $request, Aprendiz $aprendiz)
+    public function update(Request $request,$id)
     {
-        $aprendiz->update($request->validated());
+        $request->validate([
+            'documento'=>'required|max:225',
+            'nombre'=>'required|max:225',
+            'apellido'=>'required|max:225',
+            'correo'=>'required|max:225',
+            'telefono'=>'required|max:225',
+            'ficha_id'=>'required',
+        ]);
 
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz actualizado exitosamente');
+        $aprendiz= Aprendiz::find($id);
+        $aprendiz->documento=$request->input('documento');
+        $aprendiz->nombre=$request->input('nombre');
+        $aprendiz->apellido=$request->input('apellido');
+        $aprendiz->correo=$request->input('correo');
+        $aprendiz->telefono=$request->input('telefono');
+        $aprendiz->ficha_id=$request->input('ficha_id');
+        $aprendiz->save();
+
+        return view("aprendiz.show", ['msg'=>"Se a actualizado"]);
     }
 
     public function destroy($id)
     {
-        Aprendiz::find($id)->delete();
-
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz eliminado exitosamente');
+      Aprendiz::destroy($id);
+      return redirect('aprendiz');
     }
 }
