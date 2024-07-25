@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('encuestas', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('aprendiz_id');
+            $table->string('respuesta1',10);
+            $table->string('respuesta2',10);
+            $table->string('respuesta3',10);
+            $table->string('respuesta4',10);
+            $table->string('respuesta5',10);
+            $table->string('respuesta6',10);
+            $table->string('respuesta7',10);
+            $table->foreign('aprendiz_id')->references('id')->on('aprendizs');
             $table->timestamps();
         });
     }
