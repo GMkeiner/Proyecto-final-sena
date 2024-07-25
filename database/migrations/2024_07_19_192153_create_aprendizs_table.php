@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('aprendizs', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->integer('documento');
             $table->string('nombre');
             $table->string('apellido');
@@ -20,7 +21,8 @@ return new class extends Migration
             $table->string('telefono');
             $table->unsignedBigInteger('ficha_id');
             $table->timestamps();
-
+            
+            $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('ficha_id')->references('id')->on('fichas');
             
         });

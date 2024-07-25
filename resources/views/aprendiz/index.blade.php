@@ -10,8 +10,8 @@
 
 <main>
      <div class="container py-4">
-       <h2>Listado de profesores</h2>
-       <a href="{{url('profesores/create')}}" class="btn btn-primary btn-sm">Nuevo registro</a>
+       <h2>Listado de aprendices</h2>
+       <a href="{{route('aprendiz.create')}}" class="btn btn-primary btn-sm">Nuevo registro</a>
        <table class="table table-light">
         <thead class="thead-light">
             <tr>
