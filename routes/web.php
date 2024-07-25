@@ -1,7 +1,10 @@
 <?php
 use App\Http\Controllers\AprendizController;
+use App\Http\Controllers\CompetenciasController;
+use App\Http\Controllers\InstructorController;
+use App\Http\Controllers\FichasController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +20,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('auth.login');
 });
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('aprendiz', AprendizController::class);
 
+Route::middleware(Authenticate::class)->group(function(){
+    Route::resource('/aprendiz', AprendizController::class);
+    Route::resource('/instructores',InstructorController::class);
+    Route::resource('/competencias',CompetenciasController::class);
+    Route::resource('/fichas',FichasController::class);
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+});
 Auth::routes();
+

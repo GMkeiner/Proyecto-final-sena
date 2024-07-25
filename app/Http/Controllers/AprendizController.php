@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aprendiz;
-use App\Http\Requests\AprendizRequest;
+use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Database;
+
 
 /**
  * Class AprendizController
@@ -18,9 +19,11 @@ class AprendizController extends Controller
      * Display a listing of the resource.
      */
 
-     public $database;
-     public function __construct(){
-        $this->database = \App\Services\FirebaseService::connect();
+    public function index()
+    {
+       $aprendiz=Aprendiz::all();
+       return view('aprendiz.index', ['aprendiz' => $aprendiz]);
+
     }
 
      public function index()
@@ -37,8 +40,7 @@ class AprendizController extends Controller
     public function create()
     {
 
-        $aprendiz = new Aprendiz();
-        return view('aprendiz.create', compact('aprendiz'));
+        return view('aprendiz.create', ['ficha'=>ficha::all()]);
 
     }
 
@@ -47,32 +49,26 @@ class AprendizController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
-=======
-        print($request);
-        // Aprendiz::create($request->validated());
->>>>>>> f02d3c3fa59a67208d9c91dfb9d10198588da14f
 
-        $data =[
-            'nombre' => $request->nombre_completo,
-            'documento'=> $request->documento,
-            'pregunta1'=> $request->pregunta1,
-            'pregunta2'=> $request->pregunta2,
-            'pregunta3'=> $request->pregunta3,
-            'pregunta4'=> $request->pregunta4,
-            'pregunta5'=> $request->pregunta5,
-            'pregunta6'=> $request->pregunta6,
-            'pregunta7'=> $request->pregunta7
-        ];
+        $request->validate([
+            'documento'=>'required|max:225',
+            'nombre'=>'required|max:225',
+            'apellido'=>'required|max:225',
+            'correo'=>'required|max:225',
+            'telefono'=>'required|max:225',
+            'ficha_id'=>'required',
+        ]);
 
-        $this->database
-        ->getReference('Encuestas')
-        ->push($data);
+        $aprendiz= new Aprendiz();
+        $aprendiz->documento=$request->input('documento');
+        $aprendiz->nombre=$request->input('nombre');
+        $aprendiz->apellido=$request->input('apellido');
+        $aprendiz->correo=$request->input('correo');
+        $aprendiz->telefono=$request->input('telefono');
+        $aprendiz->ficha_id=$request->input('ficha_id');
+        $aprendiz->save();
 
-                return redirect()->route('aprendiz.index')
-                ->with('success', 'Aprendiz created successfully.');
-
-
+        return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
 
 
     }
@@ -80,11 +76,9 @@ class AprendizController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show()
     {
-        $aprendiz = Aprendiz::find($id);
-
-        return view('aprendiz.show', compact('aprendiz'));
+        
     }
 
     /**
@@ -94,25 +88,38 @@ class AprendizController extends Controller
     {
         $aprendiz = Aprendiz::find($id);
 
-        return view('aprendiz.edit', compact('aprendiz'));
+        return view('aprendiz.edit',['aprendiz'=>$aprendiz, 'ficha'=>ficha::all()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AprendizRequest $request, Aprendiz $aprendiz)
+    public function update(Request $request,$id)
     {
-        $aprendiz->update($request->validated());
+        $request->validate([
+            'documento'=>'required|max:225',
+            'nombre'=>'required|max:225',
+            'apellido'=>'required|max:225',
+            'correo'=>'required|max:225',
+            'telefono'=>'required|max:225',
+            'ficha_id'=>'required',
+        ]);
 
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz actualizado exitosamente');
+        $aprendiz= Aprendiz::find($id);
+        $aprendiz->documento=$request->input('documento');
+        $aprendiz->nombre=$request->input('nombre');
+        $aprendiz->apellido=$request->input('apellido');
+        $aprendiz->correo=$request->input('correo');
+        $aprendiz->telefono=$request->input('telefono');
+        $aprendiz->ficha_id=$request->input('ficha_id');
+        $aprendiz->save();
+
+        return view("aprendiz.show", ['msg'=>"Se a actualizado"]);
     }
 
     public function destroy($id)
     {
-        Aprendiz::find($id)->delete();
-
-        return redirect()->route('aprendiz.index')
-            ->with('success', 'Aprendiz eliminado exitosamente');
+      Aprendiz::destroy($id);
+      return redirect('aprendiz');
     }
 }
