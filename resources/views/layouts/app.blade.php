@@ -13,13 +13,27 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{asset('assets/styles1.css')}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <header class="main-header">
+            <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
+            </label>
+            <input type="checkbox" name="" id="btn-nav">
+    
+            <nav>
+                <ul class="navigation">
+                    <li><a href="">Asistencias</a></li>
+                    <li><a href="">Aprendices</a></li>
+                    <li><a href="">Notas</a></li>
+                    <li><a href="">Fichas</a></li>
+                </ul>
+            </nav>
+        </header>
+        {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'home') }}
@@ -57,11 +71,6 @@
                               </a>
                         </li>
                         @endrole
-                        <li class="nav-item dropdown">
-                            <a href="{{ route('aprendiz.create') }}" class="nav-link dropdown"  data-placement="left">
-                                {{ __('aprendiz') }}
-                              </a>
-                        </li>
                               
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -84,7 +93,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> --}}
 
         <main class="py-4">
             @yield('content')

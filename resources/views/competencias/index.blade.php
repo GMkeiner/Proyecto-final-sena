@@ -7,37 +7,26 @@
     <title>Document</title>
 </head>
 <body>
-
 <main>
      <div class="container py-4">
        <h2>Listado de profesores</h2>
-       <a href="{{url('profesores/create')}}" class="btn btn-primary btn-sm">Nuevo registro</a>
+       <a href="{{url('competencias/create')}}" class="btn btn-primary btn-sm">Nuevo registro</a>
        <table class="table table-light">
         <thead class="thead-light">
             <tr>
                 <th>#</th>
-                <th>Documento</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Telefono</th>
-                <th>Ficha</th>
                 <th>Accion</th>
                 <th>Accion</th>
             </tr>
         </thead>
         <tbody>
-             @foreach ($aprendiz as $aprendices)
+            @foreach ($competencia as $competencias)
             <tr>
-                <td>{{ $aprendices->id}}</td>
-                <td>{{ $aprendices->documento}}</td>
-                <td>{{ $aprendices->nombre}}</td>
-                <td>{{ $aprendices->apellido}}</td>
-                <td>{{ $aprendices->correo}}</td>
-                <td>{{ $aprendices->telefono}}</td>
-                <td>{{ $aprendices->ficha->noFicha}}</td>
-                <td><a href="{{url('aprendiz/'.$aprendices->id.'/edit')}}" class="btn btn-warning btn-sn">Editar</a></td>
-                <td><form action="{{ url('aprendices/'.$aprendices->id)}}" method="post">
+                <td>{{ $competencias->id}}</td>
+                <td>{{ $competencias->nombre}}</td>
+                <td><a href="{{url('competencias/'.$competencias->id.'/edit')}}" class="btn btn-warning btn-sn">Editar</a></td>
+                <td><form action="{{ url('competencias/'.$competencias->id)}}" method="post">
                     {{ method_field("DELETE") }}
                     @csrf
                     <button type="submit" onclick="return confirm('¿Esta usted seguro de querer borrar estos datos?')"
@@ -52,5 +41,7 @@
 
 
 </main>
+
+
 </body>
 </html>

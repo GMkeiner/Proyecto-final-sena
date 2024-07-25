@@ -7,14 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-<main>
-    <div class="container py-4">
-       <h2>{{ $msg }}</h2>
-
-       <a href="{{ url('aprendiz') }}" class="btn btn-secondary">Regresar</a>
-     </div>
-
-</main>
-
+    <main>
+        <div class="container py-4">
+           <h2>{{ $msg }}</h2>
+    
+           <a href="{{ url('instructores') }}" class="btn btn-secondary">Regresar</a>
+         </div>
+    
+    </main>
 </body>
 </html>
