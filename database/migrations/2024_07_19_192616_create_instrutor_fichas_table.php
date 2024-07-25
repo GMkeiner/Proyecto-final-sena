@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreign('ficha_id')->references('id')->on('fichas');
-            $table->foreign('instructor_id')->references('id')->on('instructores');
+            $table->foreign('instructor_id')->references('id')->on('instructors');
         });
     }
 
