@@ -9,15 +9,17 @@ class Aprendiz extends Model
 {
     
 
-    protected $perPage = 20;
+    protected $fillable = [
+        'documento',
+        'nombre',
+        'apellido',
+        'correo',
+        'telefono',
+        'ficha_id',
+    ];
 
-    /**
-     * Attributes that should be mass-assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['nombre_completo','documento', 'pregunta1', 'pregunta2', 'pregunta3', 'pregunta4', 'pregunta5', 'pregunta6', 'pregunta7'];
-
-
+    public function ficha(){
+        return $this->belongsTo(Ficha::class);
+    }
 
 }

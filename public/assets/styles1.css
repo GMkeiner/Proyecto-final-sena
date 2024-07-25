@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root{
+    --main-color:#fff;
+}
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+} */
+
+body{
+    overflow: hidden;
+}
+
+.main-header{
+    background-color: #39A900;
+    margin-top: -20px;
+    margin-left: -20px;
+    width: 110%;
+    height: 5rem;
+}
+nav{
+    position: absolute;
+    margin-top: 10px;
+    /* left: 0;
+    top: 0; */
+    width: 200px;
+    top: 50px;
+    height: calc(100vh - 50px);
+    /* background: #2d6653; */
+    background-color: #39A900;
+    transform: translateX(-100%);
+    transition: .4s ease;
+}
+.content {
+    margin-left: 200px; /* Añade un margen a la izquierda igual al ancho del nav */
+    padding: 20px; /* Añade relleno al contenido para separarlo del borde */
+}
+/* nav:hover{
+    background-color: #00324D;
+} */
+.navigation li{
+    font-family: "Work Sans", sans-serif;
+    list-style: none;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+}
+.navigation a{
+    color: var(--main-color);
+    display: block;
+    line-height: 3.5;
+    padding: 0 10px;
+    text-decoration: none;
+    transition: .4s ease;
+}
+.navigation a:hover{
+    transform: translateX(10%);
+}
+#btn-nav{
+    display: none;
+}
+#btn-nav:checked ~ nav{
+    transform: translateX(0);
+}
+.btn-nav{
+    color: var(--main-color);
+    font-size: 30px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+    padding: 6.5px 15px;
+    transition: .2s ease;
+    background: rgba(0,0,0,.1);
+}
+.btn-nav:hover{
+    background: rgba(0, 0, 0,.3);
+}
