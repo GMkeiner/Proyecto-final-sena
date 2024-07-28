@@ -6,7 +6,7 @@ use App\Models\Aprendiz;
 use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Database;
-
+use App\Models\User;
 
 /**
  * Class AprendizController
@@ -21,18 +21,12 @@ class AprendizController extends Controller
 
     public function index()
     {
-       $aprendiz=Aprendiz::all();
-       return view('aprendiz.index', ['aprendiz' => $aprendiz]);
+        $aprendiz=Aprendiz::all();
+        return view('aprendiz.index', ['aprendiz' => $aprendiz]);
 
     }
 
-     public function index()
-     {
-         $aprendizs = Aprendiz::paginate();
 
-         return view('aprendiz.index', compact('aprendizs'))
-             ->with('i', (request()->input('page', 1) - 1) * $aprendizs->perPage());
-     }
 
     /**
      * Show the form for creating a new resource.
@@ -59,15 +53,24 @@ class AprendizController extends Controller
             'ficha_id'=>'required',
         ]);
 
-        $aprendiz= new Aprendiz();
-        $aprendiz->documento=$request->input('documento');
-        $aprendiz->nombre=$request->input('nombre');
-        $aprendiz->apellido=$request->input('apellido');
-        $aprendiz->correo=$request->input('correo');
-        $aprendiz->telefono=$request->input('telefono');
-        $aprendiz->ficha_id=$request->input('ficha_id');
-        $aprendiz->save();
+        $userAprendiz = User::create([
+            'name' => $request->nombre,
+            'email' => $request->correo,
+            'password' => $request->documento
+        ]);
+        $userAprendiz->assignRole(3);
+        $userAprendiz->save();
 
+        Aprendiz::create([
+            'documento' => $request->documento,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono,
+            'ficha_id' => $request->ficha_id,
+            'user_id' => $userAprendiz->id
+        ])->save();
+        
         return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
 
 

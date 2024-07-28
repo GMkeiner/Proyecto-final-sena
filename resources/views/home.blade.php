@@ -17,7 +17,10 @@
                     {{ __('You are logged in!') }}
                     <h1> Bienvenidos </h1>
                     @role('Admin')
-                    <h1> Eres admin </h1> 
+                    <h1> Eres admin </h1>
+                    @endrole
+                    @role('Aprendiz')
+                    <h1> Eres aprendiz </h1>
                     @endrole
                 </div>
             </div>      
