@@ -34,7 +34,7 @@ class AsistenciasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(asistencia $asistencia)
+    public function show( $asistencia)
     {
         //
     }
@@ -42,7 +42,7 @@ class AsistenciasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(asistencia $asistencia)
+    public function edit( $asistencia)
     {
         //
     }
@@ -50,7 +50,7 @@ class AsistenciasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, asistencia $asistencia)
+    public function update(Request $request,  $asistencia)
     {
         //
     }
@@ -58,7 +58,7 @@ class AsistenciasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(asistencia $asistencia)
+    public function destroy( $asistencia)
     {
         //
     }

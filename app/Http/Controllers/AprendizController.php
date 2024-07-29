@@ -70,7 +70,7 @@ class AprendizController extends Controller
             'ficha_id' => $request->ficha_id,
             'user_id' => $userAprendiz->id
         ])->save();
-        
+
         return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
 
 
@@ -81,7 +81,7 @@ class AprendizController extends Controller
      */
     public function show()
     {
-        
+
     }
 
     /**
