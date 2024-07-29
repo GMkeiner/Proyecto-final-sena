@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\instructor;
+use App\Models\Instructores;
 use Illuminate\Http\Request;
 
 class InstructorController extends Controller
@@ -13,7 +13,7 @@ class InstructorController extends Controller
     public function index()
     {
         //
-        $instructor = instructor::all();
+        $instructor = Instructores::all();
         return view('instructores.index', ['intructor' => $instructor]);
     }
 
@@ -40,7 +40,7 @@ class InstructorController extends Controller
             'telefono' => 'required|max:225',
         ]);
 
-        $instructor = new instructor();
+        $instructor = new Instructores();
         $instructor->documento=$request->input('documento');
         $instructor->nombre=$request->input('nombre');
         $instructor->apellido=$request->input('apellido');
@@ -53,7 +53,7 @@ class InstructorController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(instructor $instructor)
+    public function show(Instructores $instructor)
     {
         //
     }
@@ -64,7 +64,7 @@ class InstructorController extends Controller
     public function edit($id)
     {
         //
-        $instructor=instructor::find($id);
+        $instructor=Instructores::find($id);
         return view('instructores.edit', ['instructor'=>$instructor]);
     }
 
@@ -82,7 +82,7 @@ class InstructorController extends Controller
             'telefono' => 'required|max:225',
         ]);
 
-        $instructor = instructor::find($id);
+        $instructor = Instructores::find($id);
         $instructor->documento=$request->input('documento');
         $instructor->nombre=$request->input('nombre');
         $instructor->apellido=$request->input('apellido');
@@ -99,7 +99,7 @@ class InstructorController extends Controller
     public function destroy($id)
     {
         //
-        instructor::destroy($id);
+        Instructores::destroy($id);
         return redirect('instructores');
     }
 }

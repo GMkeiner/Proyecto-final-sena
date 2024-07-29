@@ -58,10 +58,10 @@ class CompetenciasController extends Controller
     public function edit($id)
     {
         //
-        $competencia=competencia::find($id);    
+        $competencia=competencia::find($id);
         return view('competencias.edit', ['competencia'=>$competencia]);
 
-        
+
     }
 
     /**
@@ -79,7 +79,7 @@ class CompetenciasController extends Controller
         $competencia->save();
 
         return view("competencias.message",['msg'=>"Se ha actualizado la competencia de forma exitosa"]);
-        
+
     }
 
     /**
@@ -89,6 +89,6 @@ class CompetenciasController extends Controller
     {
         //
         competencia::destroy($id);
-        return redirect('Competencia');
+        return redirect('competencias');
     }
 }

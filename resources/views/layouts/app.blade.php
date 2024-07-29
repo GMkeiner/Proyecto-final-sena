@@ -23,13 +23,14 @@
             <label for="btn-nav" class="btn-nav"><i class="fas fa-bars"></i>
             </label>
             <input type="checkbox" name="" id="btn-nav">
-    
+
             <nav>
                 <ul class="navigation">
                     <li><a href="">Asistencias</a></li>
                     <li><a href="{{route('aprendiz.index')}}">Aprendices</a></li>
-                    <li><a href="">Notas</a></li>
+                    <li><a href="{{route('competencias.index')}}">Competencias</a></li>
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>
+                    <li><a href="{{route('instructores.index')}}">Instructores</a></li>
                 </ul>
             </nav>
         </header>
@@ -71,13 +72,13 @@
                               </a>
                         </li>
                         @endrole
-                              
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
                            --}}
-                                
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -87,8 +88,8 @@
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
-                                
-                            
+
+
 
         <main class="py-4">
             @yield('content')

@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,7 @@
 <body>
 <main>
      <div class="container py-4">
-       <h2>Listado de profesores</h2>
+       <h2>Listado de Competencias</h2>
        <a href="{{url('competencias/create')}}" class="btn btn-primary btn-sm">Nuevo registro</a>
        <table class="table table-light">
         <thead class="thead-light">
@@ -45,3 +48,4 @@
 
 </body>
 </html>
+@endsection

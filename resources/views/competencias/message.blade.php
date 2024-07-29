@@ -1,3 +1,6 @@
+@extends('layouts.app')
+
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +13,12 @@
     <main>
         <div class="container py-4">
            <h2>{{ $msg }}</h2>
-    
+
            <a href="{{ url('competencias') }}" class="btn btn-secondary">Regresar</a>
          </div>
-    
+
     </main>
-    
+
 </body>
 </html>
+@endsection
