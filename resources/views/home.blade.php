@@ -22,6 +22,9 @@
                     @role('Aprendiz')
                     <h1> Eres aprendiz </h1>
                     @endrole
+                    @role('Instructor')
+                    <h1>Eres un instructor</h1>
+                    @endrole
                 </div>
             </div>      
         </div>

@@ -13,7 +13,7 @@
     <div class="container py-4">
         <h2>Registrar Ficha</h2>
 
-        <form action="{{ url('fichas') }}" method="post">
+        <form action="{{ route('fichas.store') }}" method="post">
 
             @csrf
             <div class="md-3 row">
@@ -21,7 +21,7 @@
                 <div class="col-sm-5">
                     <input type="text" class="form-control"  name="noFicha"  id="noFicha" value="{{old('noFicha')}}" required>
                 </div>
-            <a href="{{ url('fichas') }}"  class="btn btn-secondary">Regresar</a>
+            <a href="{{ route('fichas.index') }}"  class="btn btn-secondary">Regresar</a>
             <button type="sumit" class="btn btn-success">Guardar</button>
             </div>
     </form>

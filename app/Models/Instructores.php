@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Instructores extends Model
 {
     use HasFactory;
+    protected $table = 'instructors';
     protected $fillable =[
         'documento',
         'nombre',

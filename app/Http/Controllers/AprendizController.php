@@ -7,6 +7,7 @@ use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Database;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class AprendizController
@@ -56,7 +57,7 @@ class AprendizController extends Controller
         $userAprendiz = User::create([
             'name' => $request->nombre,
             'email' => $request->correo,
-            'password' => $request->documento
+            'password' => Hash::make($request->documento)
         ]);
         $userAprendiz->assignRole(3);
         $userAprendiz->save();
@@ -109,20 +110,24 @@ class AprendizController extends Controller
         ]);
 
         $aprendiz= Aprendiz::find($id);
-        $aprendiz->documento=$request->input('documento');
-        $aprendiz->nombre=$request->input('nombre');
-        $aprendiz->apellido=$request->input('apellido');
-        $aprendiz->correo=$request->input('correo');
-        $aprendiz->telefono=$request->input('telefono');
-        $aprendiz->ficha_id=$request->input('ficha_id');
-        $aprendiz->save();
+        $aprendiz->update([
+            'documento' => $request->documento,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono,
+            'ficha_id' => $request->ficha_id
+        ]);
+        if($aprendiz->wasChanged('nombre')){
+            User::find($aprendiz->user_id)->update([ 'name'=> $aprendiz->nombre]);
+        }
 
         return view("aprendiz.show", ['msg'=>"Se a actualizado"]);
     }
 
     public function destroy($id)
     {
-      Aprendiz::destroy($id);
-      return redirect('aprendiz');
+        Aprendiz::destroy($id);
+        return redirect('aprendiz');
     }
 }
