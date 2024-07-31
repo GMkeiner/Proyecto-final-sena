@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ficha;
+use App\Models\Ficha;
 use Illuminate\Http\Request;
 
 class FichasController extends Controller
@@ -13,7 +13,7 @@ class FichasController extends Controller
     public function index()
     {
         //
-        $ficha=ficha::all();
+        $ficha=Ficha::all();
         return view('fichas.index',['ficha'=>$ficha]);
     }
 
@@ -23,7 +23,7 @@ class FichasController extends Controller
     public function create()
     {
         //
-        return view('fichas.create',['fichas'=>ficha::all()]);
+        return view('fichas.create',['fichas'=>Ficha::all()]);
     }
 
     /**
@@ -36,9 +36,7 @@ class FichasController extends Controller
             'noFicha'=> 'required|max:255',
         ]);
 
-        $ficha= new ficha();
-        $ficha->noFicha=$request->input('noFicha');
-        $ficha->save();
+        Ficha::insert(['noFicha'=>$request->noFicha]);
 
         return view("fichas.message",['msg'=>"Con total perfeccion se ha agregado una ficha"]);
     }
@@ -58,7 +56,7 @@ class FichasController extends Controller
     public function edit($id)
     {
         //
-        $ficha=ficha::find($id);    
+        $ficha=Ficha::find($id);    
         return view('fichas.edit', ['ficha'=>$ficha]);
     }
 
@@ -72,9 +70,8 @@ class FichasController extends Controller
         'noFicha'=>'required|max:255',
         ]);
 
-        $ficha= ficha::find($id);
-        $ficha->noFicha=$request->input('noFicha');
-        $ficha->save();
+        $ficha= Ficha::find($id);
+        $ficha->update(['noFicha'=>$request->noFicha]);
 
         return view("fichas.message", ['msg'=>"Se ha registrado la actualizacion"]);
     }
@@ -85,7 +82,7 @@ class FichasController extends Controller
     public function destroy($id)
     {
         //
-        ficha::destroy($id);
+        Ficha::destroy($id);
         return redirect('fichas');
     }
 }

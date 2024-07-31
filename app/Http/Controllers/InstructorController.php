@@ -35,7 +35,7 @@ class InstructorController extends Controller
     {
         //
         $request->validate([
-            'documento' => 'required|max:225',
+            'documento' => 'required|max:225|min:8',
             'nombre' => 'required|max:225',
             'apellido' => 'required|max:225',
             'correo' => 'required|max:225',
@@ -45,8 +45,8 @@ class InstructorController extends Controller
         $userProfesor = User::create([
             'name' => $request->nombre,
             'email' => $request->correo,
-            'password' => Hash::make($request->documento
-        )]);
+            'password' => Hash::make($request->documento)
+        ]);
         $userProfesor->assignRole(2);
 
         Instructores::insert([
@@ -93,12 +93,17 @@ class InstructorController extends Controller
         ]);
 
         $instructor = Instructores::find($id);
-        $instructor->documento=$request->input('documento');
-        $instructor->nombre=$request->input('nombre');
-        $instructor->apellido=$request->input('apellido');
-        $instructor->correo=$request->input('correo');
-        $instructor->telefono=$request->input('telefono');
-        $instructor->save();
+        $instructor->update([
+            'documento' => $request->documento,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono
+        ]);
+
+        if($instructor->wasChanged('nombre')){
+            User::find($instructor->user_id)->update([ 'name'=> $instructor->nombre]);
+        }
         return view('instructores.menssage',['msg'=>"Registro editado satisfactoriamente"]);
 
     }
