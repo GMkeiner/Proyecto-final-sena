@@ -7,6 +7,7 @@ use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Kreait\Firebase\Contract\Database;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class AprendizController
@@ -56,7 +57,7 @@ class AprendizController extends Controller
         $userAprendiz = User::create([
             'name' => $request->nombre,
             'email' => $request->correo,
-            'password' => $request->documento
+            'password' => Hash::make($request->documento)
         ]);
         $userAprendiz->assignRole(3);
         $userAprendiz->save();
@@ -122,7 +123,7 @@ class AprendizController extends Controller
 
     public function destroy($id)
     {
-      Aprendiz::destroy($id);
-      return redirect('aprendiz');
+        Aprendiz::destroy($id);
+        return redirect('aprendiz');
     }
 }

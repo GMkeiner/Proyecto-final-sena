@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Instructores;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class InstructorController extends Controller
 {
@@ -40,13 +42,21 @@ class InstructorController extends Controller
             'telefono' => 'required|max:225',
         ]);
 
-        $instructor = new Instructores();
-        $instructor->documento=$request->input('documento');
-        $instructor->nombre=$request->input('nombre');
-        $instructor->apellido=$request->input('apellido');
-        $instructor->correo=$request->input('correo');
-        $instructor->telefono=$request->input('telefono');
-        $instructor->save();
+        $userProfesor = User::create([
+            'name' => $request->nombre,
+            'email' => $request->correo,
+            'password' => Hash::make($request->documento
+        )]);
+        $userProfesor->assignRole(2);
+
+        Instructores::insert([
+            'documento' => $request->documento,
+            'nombre' => $request->nombre,
+            'apellido' => $request->apellido,
+            'correo' => $request->correo,
+            'telefono' => $request->telefono,
+            'user_id' => $userProfesor->id
+        ]);
         return view('instructores.menssage',['msg'=>"Registro Guardado satisfactoriamente"]);
     }
 
