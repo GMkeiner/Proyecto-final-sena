@@ -1,15 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
+
     <div class="container py-4">
         <h2>Registrar Ficha</h2>
 
@@ -17,9 +9,18 @@
 
             @csrf
             <div class="md-3 row">
-                <label for="nombre" class="col-sm-2 col-form-label">Numero de ficha:</label>
                 <div class="col-sm-5">
+                    <label for="nombre" class="col-sm-4 col-form-label">Numero de ficha:</label>
                     <input type="text" class="form-control"  name="noFicha"  id="noFicha" value="{{old('noFicha')}}" required>
+                </div>
+                <div class="col-sm-5">
+                    <label for="instructor_id" class="col-sm-2 col-form-label">Instructor:</label>
+                    <select name="instructor_id" class="form-select form-select-sm" >
+                        <option selected disabled>Selecciona...</option>
+                        @foreach ($instructores as $instructor)
+                            <option value="{{$instructor->id}}">{{$instructor->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
             <a href="{{ route('fichas.index') }}"  class="btn btn-secondary">Regresar</a>
             <button type="sumit" class="btn btn-success">Guardar</button>
@@ -27,6 +28,4 @@
     </form>
     </div>
 
-</body>
-</html>
 @endsection

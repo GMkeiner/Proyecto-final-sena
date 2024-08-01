@@ -26,6 +26,7 @@
 
             <nav>
                 <ul class="navigation">
+                    <li><a href="{{route('home')}}">Inicio</a></li>
                     <li><a href="">Asistencias</a></li>
                     <li><a href="{{route('aprendiz.index')}}">Aprendices</a></li>
                     <li><a href="{{route('competencias.index')}}">Competencias</a></li>
