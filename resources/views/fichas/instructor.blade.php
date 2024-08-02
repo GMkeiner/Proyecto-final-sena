@@ -1,4 +1,4 @@
-<div class="modal fade" id="instructor" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="instructor{{$fichas->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,20 +13,10 @@
                     <select name="instructor_id" class="form-select" required>
                         <option selected disabled>Seleccione</option>
                             @foreach ($instructores as $instructor)
-                                @if (in_array($instructor,$fichas->instructor))
-                                    @continue
-                                @else
-                                    <option selected disabled>{{$instructor->nombre}}</option>
+                                @if(!in_array($instructor->id,$fichas->instructor->pluck('id')->toArray()))
+                                    <option value="{{$instructor->id}}">{{$instructor->nombre}} {{$instructor->apellido}}</option>
                                 @endif
-                                {{-- @foreach ($fichas->instructor as $instructorFicha)
-                                    @if ($instructor->id == $instructorFicha->id)
-                                        @continue
-                                    @else
-                                        <option selected disabled>{{$instructor->nombre}}</option>
-                                    @endif
-                                @endforeach --}}
                             @endforeach
-                        
                     </select>
                 </form>
             </div>

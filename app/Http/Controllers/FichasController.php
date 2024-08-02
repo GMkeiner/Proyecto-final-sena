@@ -16,23 +16,6 @@ class FichasController extends Controller
         //
         $fichas=Ficha::with('instructor')->get();
         $instructores = Instructores::all(['id','nombre','apellido']);
-        // $instructoresFiltered=$instructores->filter(function (Instructores $instructor)use($fichas){
-        //     foreach($fichas as $ficha){
-        //         foreach($ficha->instructor as $instructorFicha){
-        //             if($instructorFicha->id !== $instructor->id){
-        //                 return false;
-                        
-        //             }else{
-        //                 return $instructor;
-        //             }
-        //         }
-        //     }
-        // });
-        // foreach($fichas as $ficha){
-        //     foreach($ficha->instructor as $instructor){
-        //         $instructoresFiltered
-        //     }
-        // }
         return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructores]);
     }
 
@@ -97,7 +80,9 @@ class FichasController extends Controller
     }
 
     public function updateInstructor(Request $request,$id){
-        // dd($request,$id);
+        $request->validate([
+            'instructor_id' => 'required|integer'
+        ]);
         $ficha = Ficha::find($id);
         $ficha->instructor()->attach($request->instructor_id);
         return redirect('fichas');
@@ -109,7 +94,9 @@ class FichasController extends Controller
     public function destroy($id)
     {
         //
-        Ficha::find($id);
+        $ficha=Ficha::find($id);
+        $ficha->instructor()->detach();
+        $ficha->delete();
         return redirect('fichas');
     }
 }

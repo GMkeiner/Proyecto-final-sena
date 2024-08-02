@@ -31,7 +31,7 @@
                 </td>
                 <td colspan="3">
                     <a href="{{url('fichas/'.$fichas->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#instructor">
+                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#instructor{{$fichas->id}}">
                         Nuevo instructor
                     </button>
                 <form action="{{ url('fichas/'.$fichas->id)}}" method="post">
