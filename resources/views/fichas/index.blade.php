@@ -42,10 +42,11 @@
                     </form>
                 </td>
             </tr>
+            @include('fichas.instructor')
             @endforeach
         </tbody>
         </table>
-        @include('fichas.instructor')
      </div>
-     {{$instructores}}
+     {{-- {{$instructores}} <br>
+     {{$fichas}} --}}
 @endsection

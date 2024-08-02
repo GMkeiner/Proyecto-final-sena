@@ -6,17 +6,33 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('ficha.instructores.new',$fichas->id)}}">
+                <form action="{{route('ficha.instructores.new',$fichas->id)}}" id="newInstructor" method="POST">
                     {{method_field('patch')}}
+                    @csrf
                     <label for="instructor_id">Instructor:</label>
-                    <select name="instructor_id" class="form-select">
+                    <select name="instructor_id" class="form-select" required>
                         <option selected disabled>Seleccione</option>
+                            @foreach ($instructores as $instructor)
+                                @if (in_array($instructor,$fichas->instructor))
+                                    @continue
+                                @else
+                                    <option selected disabled>{{$instructor->nombre}}</option>
+                                @endif
+                                {{-- @foreach ($fichas->instructor as $instructorFicha)
+                                    @if ($instructor->id == $instructorFicha->id)
+                                        @continue
+                                    @else
+                                        <option selected disabled>{{$instructor->nombre}}</option>
+                                    @endif
+                                @endforeach --}}
+                            @endforeach
+                        
                     </select>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="submit" form="newInstructor" class="btn btn-primary">Registrar</button>
             </div>
         </div>
     </div>
