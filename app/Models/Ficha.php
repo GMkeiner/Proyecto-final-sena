@@ -13,6 +13,6 @@ class Ficha extends Model
     ];
     public function instructor(): BelongsToMany
     {
-        return $this->belongsToMany(Instructores::class);
+        return $this->belongsToMany(Instructores::class,'instrutor_fichas','ficha_id','instructor_id');
     }
 }

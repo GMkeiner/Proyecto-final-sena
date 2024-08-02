@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ficha;
+use App\Models\Instructores;
 use Illuminate\Http\Request;
 
 class FichasController extends Controller
@@ -13,8 +14,20 @@ class FichasController extends Controller
     public function index()
     {
         //
-        $ficha=Ficha::all();
-        return view('fichas.index',['ficha'=>$ficha]);
+        $fichas=Ficha::with('instructor')->get();
+        $instructores = Instructores::all();
+        $instructoresFiltered=$instructores->filter(function (Instructores $instructor)use($fichas){
+            foreach($fichas as $ficha){
+                foreach($ficha->instructor as $instructorFicha){
+                    if($instructorFicha->id == $instructor->id){
+                        continue;
+                    }
+                    return $instructor;
+                }
+            }
+        });
+        // dd($instructoresFiltered);
+        return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructoresFiltered]);
     }
 
     /**
@@ -23,7 +36,7 @@ class FichasController extends Controller
     public function create()
     {
         //
-        return view('fichas.create',['fichas'=>Ficha::all()]);
+        return view('fichas.create',['instructores'=>Instructores::all()]);
     }
 
     /**
@@ -31,12 +44,13 @@ class FichasController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $request->validate([
             'noFicha'=> 'required|max:255',
+            'instructor_id' => 'required|integer'
         ]);
 
-        Ficha::insert(['noFicha'=>$request->noFicha]);
+        $ficha = Ficha::create(['noFicha'=>$request->noFicha]);
+        $ficha->instructor()->attach($request->instructor_id);
 
         return view("fichas.message",['msg'=>"Con total perfeccion se ha agregado una ficha"]);
     }
@@ -56,7 +70,7 @@ class FichasController extends Controller
     public function edit($id)
     {
         //
-        $ficha=Ficha::find($id);    
+        $ficha=Ficha::find($id);
         return view('fichas.edit', ['ficha'=>$ficha]);
     }
 
@@ -74,6 +88,10 @@ class FichasController extends Controller
         $ficha->update(['noFicha'=>$request->noFicha]);
 
         return view("fichas.message", ['msg'=>"Se ha registrado la actualizacion"]);
+    }
+
+    public function updateInstructor(Request $request){
+        dd($request);
     }
 
     /**
