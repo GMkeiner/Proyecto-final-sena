@@ -19,6 +19,6 @@ class Instructores extends Model
     ];
     public function ficha(): BelongsToMany
     {
-        return $this->belongsToMany(Ficha::class);
+        return $this->belongsToMany(Ficha::class,'instrutor_fichas','instructor_id');
     }
 }

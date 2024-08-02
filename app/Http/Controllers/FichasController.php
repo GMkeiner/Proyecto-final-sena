@@ -15,19 +15,8 @@ class FichasController extends Controller
     {
         //
         $fichas=Ficha::with('instructor')->get();
-        $instructores = Instructores::all();
-        $instructoresFiltered=$instructores->filter(function (Instructores $instructor)use($fichas){
-            foreach($fichas as $ficha){
-                foreach($ficha->instructor as $instructorFicha){
-                    if($instructorFicha->id == $instructor->id){
-                        continue;
-                    }
-                    return $instructor;
-                }
-            }
-        });
-        // dd($instructoresFiltered);
-        return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructoresFiltered]);
+        $instructores = Instructores::all(['id','nombre','apellido']);
+        return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructores]);
     }
 
     /**
@@ -90,8 +79,13 @@ class FichasController extends Controller
         return view("fichas.message", ['msg'=>"Se ha registrado la actualizacion"]);
     }
 
-    public function updateInstructor(Request $request){
-        dd($request);
+    public function updateInstructor(Request $request,$id){
+        $request->validate([
+            'instructor_id' => 'required|integer'
+        ]);
+        $ficha = Ficha::find($id);
+        $ficha->instructor()->attach($request->instructor_id);
+        return redirect('fichas');
     }
 
     /**
@@ -100,7 +94,9 @@ class FichasController extends Controller
     public function destroy($id)
     {
         //
-        Ficha::destroy($id);
+        $ficha=Ficha::find($id);
+        $ficha->instructor()->detach();
+        $ficha->delete();
         return redirect('fichas');
     }
 }
