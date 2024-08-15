@@ -3,6 +3,7 @@ use App\Http\Controllers\AprendizController;
 use App\Http\Controllers\CompetenciasController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\FichasController;
+use App\Http\Controllers\NotasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 
@@ -27,6 +28,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('/instructores',InstructorController::class);
     Route::resource('/competencias',CompetenciasController::class);
     Route::resource('/fichas',FichasController::class);
+    Route::resource('notas',NotasController::class);
     Route::patch('/fichas/{id}/instructores',[FichasController::class,'updateInstructor'])->name('ficha.instructores.new');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });

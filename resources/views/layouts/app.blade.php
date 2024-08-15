@@ -28,6 +28,7 @@
                 <ul class="navigation">
                     <li><a href="{{route('home')}}">Inicio</a></li>
                     <li><a href="">Asistencias</a></li>
+                    @role('Instructor')<li><a href="{{route('notas.index')}}">Notas</a></li>@endrole
                     <li><a href="{{route('aprendiz.index')}}">Aprendices</a></li>
                     <li><a href="{{route('competencias.index')}}">Competencias</a></li>
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>

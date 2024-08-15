@@ -21,6 +21,13 @@
                             <option value="{{$instructor->id}}">{{$instructor->nombre}}</option>
                         @endforeach
                     </select>
+                    <label for="id_competencia" class="col-sm-2 col-form-label">Competencia: </label>
+                    <select name="id_competencia" id="" class="form-select">
+                        <option selected disabled>Selecciona...</option>
+                        @foreach ($competencias as $competencia)
+                            <option value="{{$competencia->id}}">{{$competencia->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
             <a href="{{ route('fichas.index') }}"  class="btn btn-secondary">Regresar</a>
             <button type="sumit" class="btn btn-success">Guardar</button>

@@ -12,7 +12,7 @@ class NotasController extends Controller
      */
     public function index()
     {
-        //
+        return view('notas.index');
     }
 
     /**
@@ -20,7 +20,7 @@ class NotasController extends Controller
      */
     public function create()
     {
-        //
+        return view('notas.create');
     }
 
     /**
@@ -28,7 +28,7 @@ class NotasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
