@@ -28,7 +28,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('/instructores',InstructorController::class);
     Route::resource('/competencias',CompetenciasController::class);
     Route::resource('/fichas',FichasController::class);
-    Route::resource('notas',NotasController::class);
+    Route::resource('/notas',NotasController::class)->parameters(['notas'=>'fichas']);
     Route::patch('/fichas/{id}/instructores',[FichasController::class,'updateInstructor'])->name('ficha.instructores.new');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });

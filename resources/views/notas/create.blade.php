@@ -16,6 +16,9 @@
                         <option value="{{$competencia->id}}">{{$competencia->nombre}}</option>
                     @endforeach
                 </select>
+                @error('competencia')
+                    {{$message}}
+                @enderror
             </div>
             @foreach ($aprendices as $aprendiz)
             <div class="form-row ">
@@ -44,5 +47,4 @@
         
         <button type="submit" class="btn btn-primary btn-sm col-2">Calcular Definitiva</button>
     </form>
-    {{$competencias->notas}}
 @endsection

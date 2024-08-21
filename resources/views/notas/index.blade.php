@@ -25,17 +25,19 @@
             <th scope="col">Acciones</th>
         </thead>
         <tbody>
-            @foreach ($fichasPersonales->ficha as $fichas)
             <tr>
-                <td>{{$fichas->noFicha}}</td>
-                <td>{{$fichas->notas}}</td>
-                {{-- <td>{{ $instructores->id}}</td>
-                <td>{{ $instructores->documento}}</td>
-                <td>{{ $instructores->nombre}}</td>
-                <td>{{ $instructores->apellido}}</td>
-                <td>{{ $instructores->correo}}</td>
-                <td>{{ $instructores->telefono}}</td>
-                <td><a href="{{url('instructores/'.$instructores->id.'/edit')}}" class="btn btn-warning btn-sn">Editar</a></td>
+                @foreach ($fichasPersonales->ficha as $fichas)
+                    @foreach ($fichas->notas as $competencias)
+                        @if ($competencias->notas->notas == null)
+                            @continue
+                        @endif
+                        <td>{{$fichas->noFicha}}</td>
+                        <td>{{$competencias->nombre}}</td>
+                        <td><a href="{{route('notas.edit',['fichas'=>$fichas->id,'competencia'=>$competencias->id])}}"><img width="48" height="48" src="https://img.icons8.com/fluency-systems-regular/48/preview-pane.png" alt="preview-pane"/></a>
+                        </td>
+                    @endforeach
+                @endforeach
+                {{--
                 <td><form action="{{ url('instructores/'.$instructores->id)}}" method="post">
                     {{ method_field("DELETE") }}
                     @csrf
@@ -44,10 +46,9 @@
                     </form>
                 </td> --}}
             </tr>
-            @endforeach
         </tbody>
         
     </table>
 </div>
-    {{$fichasPersonales->ficha}}
+    {{-- {{$fichasPersonales->ficha}} --}}
 @endsection
