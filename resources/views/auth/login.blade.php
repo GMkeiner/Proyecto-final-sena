@@ -1,67 +1,70 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
-<html>
-<head>
-	<title> AVG</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="{{asset('assets/styles.css')}}">
-</head>
-<body>
-	<header>
-		<img src="img/SENA tic.png" alt="">
-		<h2 class="Logo">Encuesta De Competencias Blandas</h2>  
-		<nav class="navegacion">
-			<a href="#">Inicio</a>
-			<a href="#">Informacion</a>
-			<a href="#">Servicio</a>
-			<a href="#">Contactos</a>
-			<button class="btn">Iniciar Sesion</button>
-		</nav>
-	</header>
+<html lang="en">
 
-<div class="container">
-	<div class="d-flex justify-content-center h-100">
-		<div class="card">
-			<span class="icono-cerrar"><i class="fa-solid fa-xmark"></i></span>
-			<div class="card-header">
-			</div>
-			<div class="card-body">
-				<h2>Iniciar Sesion</h2>
-				<form action="{{route('login')}}" method="POST">
-					@csrf
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-						</div>
-						<input type="text" class="form-control" placeholder="Ingresa tu correo" name="email">
-						
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
-						</div>
-						<input type="password" class="form-control" placeholder="Ingresa tu contraseña" name="password">
-					</div>
-					<div class="row align-items-center remember">
-						<input type="checkbox">¿Olvide mi contraseña
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Ingresar" class="btn float-right login_btn">
-					</div>
-				</form>
-			</div>
-			<div class="card-footer">
-				<div class="d-flex justify-content-center links">
-					¿No Tienes cuenta?<a href="{{route('register')}}">Registrarse</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.css') }}">
+    <link rel="icon" href="{{asset('assets/images/logo_sena.png')}}">
+    <title>ADSO-9</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="forms-container">
+            <div class="signin-signup">
+                <!-- Sign In Form -->
+                <form action="#" class="sign-in-form">
+                    <h2 class="title">Iniciar sesión</h2>
+                    <div class="input-field">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Username" />
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Password" />
+                    </div>
+                    <input type="submit" value="Iniciar sesión" class="btn solid" />
+                    <!-- <p class="social-text">O inicia sesión con redes sociales</p> -->
+                </form>
+
+                <!-- Sign Up Form -->
+                <form action="#" class="sign-up-form">
+                    <img class="sena" src="{{asset('assets/images/Quienes-somos.png')}}" alt="">
+                </form>
+            </div>
+        </div>
+
+        <div class="panels-container">
+            <!-- Left Panel -->
+            <div class="panel left-panel">
+                <div class="content">
+                    <h3>Conoce mas</h3>
+                    <p>
+                        ¡Descubre la mision que tiene el sena para la educacion que presta!                      
+                    </p>
+                    <button class="btn transparent" id="sign-up-btn">Ver mas</button>
+                </div>
+                <img src="{{ asset('https://i.ibb.co/6HXL6q1/Privacy-policy-rafiki.png') }}" class="image" alt="" />
+            </div>
+
+            <!-- Right Panel -->    
+            <div class="panel right-panel">
+                <div class="content">
+                    <h3>¿Eres uno de nuestros valiosos miembros?</h3>
+                    <p>
+                        Gracias por ser parte de nuestra comunidad. Tu presencia enrriquece nuestras experiencias compartidas. ¡Continuemos nuestro viaje juntos! 
+                    </p>
+                    <button class="btn transparent" id="sign-in-btn">Iniciar sesión</button>
+                </div>
+                <img src="https://i.ibb.co/nP8H853/Mobile-login-rafiki.png" class="image" alt="" />
+            </div>
+        </div>
+    
+    </div>
+
+    <script src="{{ asset('assets/js/app.js') }}"></script>
 </body>
+
 </html>
