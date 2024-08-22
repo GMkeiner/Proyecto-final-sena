@@ -15,7 +15,7 @@ class FichasController extends Controller
     public function index()
     {
         //
-        $fichas=Ficha::with(['instructor','notas'])->get();
+        $fichas=Ficha::with(['instructor','competencia'])->get();
         $instructores = Instructores::all(['id','nombre','apellido']);
         
         return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructores]);
@@ -43,7 +43,7 @@ class FichasController extends Controller
 
         $ficha = Ficha::create(['noFicha'=>$request->noFicha]);
         $ficha->instructor()->attach($request->instructor_id);
-        $ficha->notas()->attach($request->id_competencia);
+        $ficha->competencia()->attach($request->id_competencia);
 
         return view("fichas.message",['msg'=>"Con total perfeccion se ha agregado una ficha"]);
     }
@@ -100,6 +100,8 @@ class FichasController extends Controller
         //
         $ficha=Ficha::find($id);
         $ficha->instructor()->detach();
+        // Para cuando se pida borrar las notas
+        // $ficha->competencia()->detach();
         $ficha->delete();
         return redirect('fichas');
     }

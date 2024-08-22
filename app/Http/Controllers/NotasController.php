@@ -15,7 +15,7 @@ class NotasController extends Controller
      */
     public function index()
     {
-        $instructor = Instructores::where('user_id', '=', Auth::user()->id)->with('ficha.notas')->first();
+        $instructor = Instructores::where('user_id', '=', Auth::user()->id)->with('ficha.competencia')->first();
         return view('notas.index', ['fichas' => Ficha::all(), 'fichasPersonales' => $instructor]);
     }
 
@@ -25,7 +25,7 @@ class NotasController extends Controller
     public function create(Request $request)
     {
         $request->validate(['ficha_id' => 'required|integer|min:1']);
-        $aprendices = Ficha::where('id', '=', $request->ficha_id)->with(['aprendices', 'notas'])->first();
+        $aprendices = Ficha::where('id', '=', $request->ficha_id)->with(['aprendices', 'competencia'])->first();
         return view('notas.create', ['aprendices' => $aprendices->aprendices, 'ficha' => $aprendices->id, 'competencias' => $aprendices]);
     }
 

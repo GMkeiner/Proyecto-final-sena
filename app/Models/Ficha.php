@@ -24,7 +24,7 @@ class Ficha extends Model
     {
         return $this->belongsToMany(Instructores::class,'instrutor_fichas','ficha_id','instructor_id');
     }
-    public function notas(): BelongsToMany
+    public function competencia(): BelongsToMany
     {
         return $this->belongsToMany(Competencia::class,'notas','ficha_id','competencia_id')->as('notas')->withPivot('notas')->using(Nota::class);
     }
