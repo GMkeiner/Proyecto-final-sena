@@ -49,6 +49,12 @@
             @endforeach
         </tbody>
         </table>
+        @session('success')
+            {{ $value }}
+        @endsession
+        @session('danger')
+            {{ $value }}
+        @endsession
      </div>
 
 

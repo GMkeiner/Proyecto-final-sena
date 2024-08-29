@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('fichas_competencias', function (Blueprint $table) {
+        Schema::create('notas', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('ficha_id');
             $table->unsignedBigInteger('competencia_id');
+            $table->json('notas')->nullable();
             $table->timestamps();
 
             $table->foreign('ficha_id')->references('id')->on('fichas');
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('fichas_competencias');
+        Schema::dropIfExists('notas');
     }
 };

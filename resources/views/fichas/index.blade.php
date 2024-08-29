@@ -10,9 +10,10 @@
                 <th scope="col">#</th>
                 <th scope="col">Num Fichas</th>
                 <th scope="col">Instructores</th>
+                <th scope="col">Competencias</th>
                 <th scope="col">Accion</th>
-                <th scope="col">.</th>
-                <th scope="col">.</th>
+                <th scope="col">Accion</th>
+                <th scope="col">Accion</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +30,27 @@
                     @endif
                 @endforeach
                 </td>
-                <td colspan="3">
+                <td>@foreach($ficha->flatMap->notas as $competencias)
+                    @if ($loop->last)
+                    {{$competencias->nombre}}.
+                    @else
+                    {{$competencias->nombre}},
+                    @endif
+                @endforeach</td>
+                <td>
                     <a href="{{url('fichas/'.$fichas->id.'/edit')}}" class="btn btn-warning btn-sm">Editar</a>
-                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#instructor{{$fichas->id}}">
-                        Nuevo instructor
-                    </button>
                 <form action="{{ url('fichas/'.$fichas->id)}}" method="post">
                     {{ method_field("DELETE") }}
                     @csrf
                     <button type="submit" onclick="return confirm('¿Esta usted seguro de querer borrar estos datos?')"
                     class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
+                <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#instructor{{$fichas->id}}">
+                    Nuevo instructor
+                </button></td>
+                </td>
+                <td>
+                    <button>Comptenecias</button>
                 </td>
             </tr>
             @include('fichas.instructor')

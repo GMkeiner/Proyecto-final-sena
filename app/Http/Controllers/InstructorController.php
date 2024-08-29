@@ -57,7 +57,7 @@ class InstructorController extends Controller
             'telefono' => $request->telefono,
             'user_id' => $userProfesor->id
         ]);
-        return view('instructores.menssage',['msg'=>"Registro Guardado satisfactoriamente"]);
+        return redirect()->route('instructores.index')->with(['success' => 'Instructor creado exitosamente']);
     }
 
     /**
@@ -111,10 +111,12 @@ class InstructorController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy( Instructores $instructore)
     {
-        //
-        Instructores::destroy($id);
-        return redirect('instructores');
+        // dd($instructore->ficha);
+        $instructore->ficha()->detach();
+        // User::where('id','=',$instructore->user_id)->delete();
+        $instructore->delete();
+        return redirect('instructores')->with(['danger' => 'se ha eliminado exitosamente']);
     }
 }

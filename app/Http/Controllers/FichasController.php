@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ficha;
 use App\Models\Instructores;
+use App\Models\Competencia;
 use Illuminate\Http\Request;
 
 class FichasController extends Controller
@@ -14,8 +15,9 @@ class FichasController extends Controller
     public function index()
     {
         //
-        $fichas=Ficha::with('instructor')->get();
+        $fichas=Ficha::with(['instructor','competencia'])->get();
         $instructores = Instructores::all(['id','nombre','apellido']);
+        
         return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructores]);
     }
 
@@ -24,8 +26,8 @@ class FichasController extends Controller
      */
     public function create()
     {
-        //
-        return view('fichas.create',['instructores'=>Instructores::all()]);
+        $competencias = Competencia::all();
+        return view('fichas.create',['instructores'=>Instructores::all(),'competencias'=>$competencias]);
     }
 
     /**
@@ -35,11 +37,13 @@ class FichasController extends Controller
     {
         $request->validate([
             'noFicha'=> 'required|max:255',
-            'instructor_id' => 'required|integer'
+            'instructor_id' => 'required|integer',
+            'id_competencia' => 'required|integer|min:1'
         ]);
 
         $ficha = Ficha::create(['noFicha'=>$request->noFicha]);
         $ficha->instructor()->attach($request->instructor_id);
+        $ficha->competencia()->attach($request->id_competencia);
 
         return view("fichas.message",['msg'=>"Con total perfeccion se ha agregado una ficha"]);
     }
@@ -96,6 +100,8 @@ class FichasController extends Controller
         //
         $ficha=Ficha::find($id);
         $ficha->instructor()->detach();
+        // Para cuando se pida borrar las notas
+        // $ficha->competencia()->detach();
         $ficha->delete();
         return redirect('fichas');
     }

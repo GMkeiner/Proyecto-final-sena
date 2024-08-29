@@ -13,7 +13,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
-    <link rel="stylesheet" href="{{asset('assets/styles1.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/styles1.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/stylesNotas.css')}}">
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -27,11 +28,14 @@
             <nav>
                 <ul class="navigation">
                     <li><a href="{{route('home')}}">Inicio</a></li>
+                    @role('Admin')
                     <li><a href="">Asistencias</a></li>
                     <li><a href="{{route('aprendiz.index')}}">Aprendices</a></li>
                     <li><a href="{{route('competencias.index')}}">Competencias</a></li>
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>
                     <li><a href="{{route('instructores.index')}}">Instructores</a></li>
+                    @endrole
+                    @role('Instructor')<li><a href="{{route('notas.index')}}">Notas</a></li>@endrole
                     <li><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
