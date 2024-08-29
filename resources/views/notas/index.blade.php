@@ -27,7 +27,7 @@
         <tbody>
             <tr>
                 @foreach ($fichasPersonales->ficha as $fichas)
-                    @foreach ($fichas->notas as $competencias)
+                    @foreach ($fichas->competencia as $competencias)
                         @if ($competencias->notas->notas == null)
                             @continue
                         @endif

@@ -20,11 +20,11 @@
                     <h2 class="title">Iniciar sesión</h2>
                     <div class="input-field">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Username" name="email" />
+                        <input type="text" placeholder="Username" name="email" required/>
                     </div>
                     <div class="input-field">
                         <i class="fas fa-lock"></i>
-                        <input type="password" placeholder="Password" name="password" />
+                        <input type="password" placeholder="Password" name="password" required/>
                     </div>
                     <input type="submit" value="Iniciar sesión" class="btn solid" />
                     <!-- <p class="social-text">O inicia sesión con redes sociales</p> -->

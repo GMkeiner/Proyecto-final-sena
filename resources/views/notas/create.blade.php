@@ -12,7 +12,7 @@
                 <label for="" class="form-label">Competencias</label>
                 <select name="competencia" required>
                     <option selected disabled>Seleccione</option>
-                    @foreach ($competencias->notas as $competencia)
+                    @foreach ($competencias->competencia as $competencia)
                         <option value="{{$competencia->id}}">{{$competencia->nombre}}</option>
                     @endforeach
                 </select>
