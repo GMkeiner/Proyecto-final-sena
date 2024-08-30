@@ -8,9 +8,8 @@
             @csrf
             @method('PATCH')
             <input type="hidden" name="id_competencia" value="{{$notas->competencia_id}}">
-            <input type="hidden" name="instructor" value="{{Auth::user()->id}}">
             {{-- {{$notas}} --}}
-            @foreach (json_decode($notas->notas,true)['notas'] as $aprendiz)
+            @foreach (json_decode($notas->notas,true)['calificación'] as $aprendiz)
             <div class="form-row ">
                 <div class="form-group">
                     <label for="nombreAprendiz">Nombre Aprendiz:</label>

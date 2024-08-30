@@ -16,7 +16,7 @@ class NotasController extends Controller
     public function index()
     {
         $instructor = Instructores::where('user_id', '=', Auth::user()->id)->with('ficha.competencia')->first();
-        return view('notas.index', ['fichas' => Ficha::all(), 'fichasPersonales' => $instructor]);
+        return view('notas.index', ['fichas' => $instructor->ficha, 'fichasPersonales' => $instructor]);
     }
 
     /**
@@ -25,8 +25,9 @@ class NotasController extends Controller
     public function create(Request $request)
     {
         $request->validate(['ficha_id' => 'required|integer|min:1']);
-        $aprendices = Ficha::where('id', '=', $request->ficha_id)->with(['aprendices', 'competencia'])->first();
-        return view('notas.create', ['aprendices' => $aprendices->aprendices, 'ficha' => $aprendices->id, 'competencias' => $aprendices]);
+        $aprendices = Ficha::where('id', '=', $request->ficha_id)->with(['aprendices'])->first();
+        $competencias = Instructores::where('user_id', '=', Auth::user()->id)->with('competencia')->first()->competencia;
+        return view('notas.create', ['aprendices' => $aprendices->aprendices, 'ficha' => $aprendices->id, 'competencias' => $competencias]);
     }
 
     /**
@@ -36,22 +37,22 @@ class NotasController extends Controller
     {
         $request->validate([
             'id_ficha' => 'required|integer',
-            'instructor' => 'required|integer',
             'competencia' => 'required|integer',
             'nombreAprendiz' => 'required|array',
             'nota1' => 'required|array',
             'nota2' => 'required|array',
             'nota3' => 'required|array'
         ]);
-
+        
         foreach ($request->nombreAprendiz as $clave => $nombre) {
             $promedios[$clave] = round(($request->nota1[$clave] + $request->nota2[$clave] + $request->nota3[$clave]) / 3, 2);
             $array[] = ['nombre' => $request->nombreAprendiz[$clave], 'nota1' => $request->nota1[$clave], 'nota2' => $request->nota2[$clave], 'nota3' => $request->nota3[$clave], 'definitiva' => $promedios[$clave]];
         }
-        $nombreInstructor = Instructores::where('user_id', '=', $request->instructor)->first();
-        $notas = Ficha::where('id', '=', $request->id_ficha)->with('notas')->first()->notas->where('id', '=', $request->competencia)->first()->notas;
-        $notas->update(['notas' => ['Instructor' => $nombreInstructor->nombre . ' ' . $nombreInstructor->apellido, 'notas' => $array]]);
-        return redirect()->route('notas.index');
+        $nombreInstructor = Instructores::where('user_id', '=', Auth::user()->id)->first();
+        $ficha = Ficha::find($request->id_ficha);
+        // dd($request, $nombreInstructor, $ficha);
+        $ficha->competencia()->attach($request->competencia,['notas'=>json_encode(['Instructor' => $nombreInstructor->nombre . ' ' . $nombreInstructor->apellido, 'calificación' => $array])]);
+        return redirect()->route('notas.index')->with('success', 'Notas guardadas exitosamente');
     }
 
     /**
@@ -66,8 +67,7 @@ class NotasController extends Controller
      */
     public function edit(Ficha $fichas, Request $request)
     {
-        // $aprendices = $fichas->with(['aprendices'])->first()->aprendices;
-        $notas = $fichas->with('notas')->first()->notas->where('id', '=', $request->competencia)->first()->notas;
+        $notas = $fichas->competencia->where('id', '=', $request->competencia)->first()->notas;
         return view('notas.edit')->with(['notas' => $notas]);
     }
 
@@ -76,14 +76,21 @@ class NotasController extends Controller
      */
     public function update(Request $request, Ficha $fichas)
     {
+        $request->validate([
+            'id_competencia' => 'required|integer',
+            'nombreAprendiz' => 'required|array',
+            'nota1' => 'required|array',
+            'nota2' => 'required|array',
+            'nota3' => 'required|array'
+        ]);
         foreach ($request->nombreAprendiz as $clave => $nombre) {
             $promedios[$clave] = round(($request->nota1[$clave] + $request->nota2[$clave] + $request->nota3[$clave]) / 3, 2);
             $array[] = ['nombre' => $request->nombreAprendiz[$clave], 'nota1' => $request->nota1[$clave], 'nota2' => $request->nota2[$clave], 'nota3' => $request->nota3[$clave], 'definitiva' => $promedios[$clave]];
         }
-        $nombreInstructor = Instructores::where('user_id', '=', $request->instructor)->first();
-        $competencia = $fichas->notas->where('id','=',$request->id_competencia)->first();
-        $competencia->notas->update(['notas' => ['Instructor' => $nombreInstructor->nombre . ' ' . $nombreInstructor->apellido, 'notas' => $array]]);
-        return redirect()->route('notas.index');
+        $nombreInstructor = Instructores::where('user_id', '=', Auth::user()->id)->first();
+        $competencia = $fichas->competencia->where('id','=',$request->id_competencia)->first();
+        $competencia->notas->update(['notas' => ['Instructor' => $nombreInstructor->nombre . ' ' . $nombreInstructor->apellido, 'calificación' => $array]]);
+        return redirect()->route('notas.index')->with('success', 'Notas actualizadas actualizado exitosamente');
     }
 
     /**
@@ -91,8 +98,9 @@ class NotasController extends Controller
      */
     public function destroy(Request $request, Ficha $fichas)
     {
-        // dd($request,$fichas->notas->where('id','=',$request->id_competencia)->first()->notas);
-        $fichas->notas->where('id','=',$request->id_competencia)->first()->notas->update(['notas'=>null]);
-        return redirect()->route('notas.index');
+        dd($request,$fichas->competencia->where('id','=',$request->id_competencia)->first()->notas);
+        // $fichas->notas->where('id','=',$request->id_competencia)->first()->notas->update(['notas'=>null]);
+        $fichas->competencia()->detach($request->id_competencia);
+        return redirect()->route('notas.index')->with('danger', 'Notas eliminadas exitosamente');
     }
 }

@@ -24,6 +24,6 @@ class Instructores extends Model
     }
     public function competencia(): HasMany
     {
-        return $this->hasMany(Instructores::class,'competencia','instructor_id');
+        return $this->hasMany(Competencia::class,'instructor_id');
     }
 }
