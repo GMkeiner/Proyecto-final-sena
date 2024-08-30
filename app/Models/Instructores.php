@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Instructores extends Model
 {
@@ -20,5 +21,9 @@ class Instructores extends Model
     public function ficha(): BelongsToMany
     {
         return $this->belongsToMany(Ficha::class,'instrutor_fichas','instructor_id');
+    }
+    public function competencia(): HasMany
+    {
+        return $this->hasMany(Instructores::class,'competencia','instructor_id');
     }
 }
