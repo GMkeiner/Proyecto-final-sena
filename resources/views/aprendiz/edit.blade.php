@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-4 border border-1">
         <h2>Actualizar Aprendiz</h2>
 
         <form action="{{ route('aprendiz.update', $aprendiz->id) }}" method="post">

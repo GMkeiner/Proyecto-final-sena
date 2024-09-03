@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
-        <h2>Actalizar competencia</h2>
+    <div class="container py-4 border border-1">
+        <h2>Actualizar competencia</h2>
 
         <form action="{{ route('competencias.update',$competencia->id) }}" method="post">
             @method('PUT')

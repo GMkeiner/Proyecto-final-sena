@@ -2,7 +2,7 @@
 
 @section('content')
     <main>
-        <div class="container py-4">
+        <div class="container py-4 border border-1">
             <div class="row m-3">
                 <h2>Listado de instructores</h2>
                 <a href="{{ url('instructores/create') }}" class="btn btn-primary btn-sm col-2">Nuevo registro</a>

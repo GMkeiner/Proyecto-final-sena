@@ -23,7 +23,7 @@
                 <th scope="col">Competencia</th>
                 <th scope="col">Acciones</th>
             </thead>
-            <tbody>
+             <tbody>
                 <tr>
                     @foreach ($fichasPersonales->ficha as $fichas)
                         @foreach ($fichas->competencia as $competencias)
@@ -33,7 +33,7 @@
                             <td>{{ $fichas->noFicha }}</td>
                             <td>{{ $competencias->nombre }}</td>
                             <td><a
-                                    href="{{ route('notas.edit', ['fichas' => $fichas->id, 'competencia' => $competencias->id]) }}"><img
+                                    href="{{ route('notas.competencias.edit', ['fichas' => $fichas->id, 'competencia' => $competencias->id]) }}"><img
                                         width="48" height="48"
                                         src="https://img.icons8.com/fluency-systems-regular/48/preview-pane.png"
                                         alt="preview-pane" /></a>

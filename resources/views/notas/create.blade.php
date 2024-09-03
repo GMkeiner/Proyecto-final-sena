@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <img src="{{asset('assets/img/logo.png')}}" alt="Logo SENA" class="logo">
-    <h1>Formulario de Notas - SENA {{Auth::user()}}</h1>
+    <h1>Formulario de Notas - SENA </h1>
     <form action="{{route('notas.store')}}" method="post">
             @csrf
             <input type="hidden" name="id_ficha" value="{{$ficha}}">

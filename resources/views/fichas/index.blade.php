@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-4 border border-1">
         <div class="container-sm my-3">
             <h2>Listado de fichas</h2>
             <a href="{{ url('fichas/create') }}" class="btn btn-primary btn-sm">Nuevo registro</a>

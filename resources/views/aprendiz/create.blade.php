@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
+    <div class="container py-4 border border-1">
         <h2>Registrar Aprendiz</h2>
 
         <form action="{{ route('aprendiz.store') }}" method="post">
@@ -13,6 +13,9 @@
                         required>
                 </div>
             </div>
+            @error('documento')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="my-3 row">
                 <label for="Nombre" class="col-sm-2 col-form-label">Nombre del aprendiz:</label>
                 <div class="col-sm-5">
@@ -20,6 +23,9 @@
                         required>
                 </div>
             </div>
+            @error('nombre')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="my-3 row">
                 <label for="apellido" class="col-sm-2 col-form-label">Apellido del aprendiz:</label>
                 <div class="col-sm-5">
@@ -27,6 +33,9 @@
                         required>
                 </div>
             </div>
+            @error('apellido')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="my-3 row">
                 <label for="nombre" class="col-sm-2 col-form-label">Correo del aprendiz:</label>
                 <div class="col-sm-5">
@@ -34,14 +43,19 @@
                         required>
                 </div>
             </div>
+            @error('correo')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="my-3 row">
                 <label for="Telefono" class="col-sm-2 col-form-label">Telefono del aprendiz:</label>
                 <div class="col-sm-5">
                     <input type="number" class="form-control" name="telefono" id="telefono" value="{{ old('telefono') }}"
                         required>
                 </div>
-
             </div>
+            @error('telefono')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <div class="my-3 row">
                 <label for="ficha_id" class="col-sm-2 col-form-label">Fichas:</label>
                 <div class="col-sm-5">
@@ -53,8 +67,11 @@
                     </select>
                 </div>
             </div>
+            @error('ficha_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
             <a href="{{ route('aprendiz.index') }}" class="btn btn-secondary">Regresar</a>
-                <button type="sumit" class="btn btn-success">Guardar</button>
+            <button type="sumit" class="btn btn-success">Guardar</button>
         </form>
     </div>
 @endsection

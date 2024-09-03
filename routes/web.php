@@ -27,9 +27,10 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('/aprendiz', AprendizController::class);
     Route::resource('/instructores',InstructorController::class);
     Route::resource('/competencias',CompetenciasController::class);
-    Route::resource('/fichas',FichasController::class);
-    Route::resource('/notas',NotasController::class)->parameters(['notas'=>'fichas']);
     Route::patch('/fichas/{id}/instructores',[FichasController::class,'updateInstructor'])->name('ficha.instructores.new');
+    Route::resource('/fichas',FichasController::class);
+    Route::resource('notas',NotasController::class)->only(['index','store','create']);
+    Route::resource('notas.competencias',NotasController::class)->parameters(['notas'=>'fichas'])->except(['index','store','create']);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Auth::routes();

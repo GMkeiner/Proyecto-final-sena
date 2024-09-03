@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container p-4">
+    <div class="container p-4 border border-1">
         <h2>Registrar Competencia</h2>
         <form action="{{ route('competencias.store') }}" method="post">
             @csrf
