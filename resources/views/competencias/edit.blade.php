@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesUnico.css') }}">
     <title>Document</title>
 </head>
 <body>
@@ -20,9 +21,9 @@
                   <label for="nombre" class="col-sm-2 col-form-label">Nombre de la competencia:</label>
                   <div class="col-sm-5">
                       <input type="text" class="form-control"  name="nombre"  id="nombre" value="{{$competencia->nombre}}" required>
+                      <a href="{{ url('competencias') }}"  class="btn btn-secondary">Regresar</a>
+                      <button type="sumit" class="btn btn-success">Guardar</button>
                  </div>
-              <a href="{{ url('competencias') }}"  class="btn btn-secondary">Regresar</a>
-              <button type="sumit" class="btn btn-success">Guardar</button>
              </div>
     </form>
     </div>
