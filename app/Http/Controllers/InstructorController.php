@@ -24,7 +24,6 @@ class InstructorController extends Controller
      */
     public function create()
     {
-        //
         return view('instructores.create');
     }
 
@@ -38,7 +37,7 @@ class InstructorController extends Controller
             'documento' => 'required|max:225|min:8',
             'nombre' => 'required|max:225',
             'apellido' => 'required|max:225',
-            'correo' => 'required|max:225',
+            'correo' => 'required|max:225|unique:users,email',
             'telefono' => 'required|max:225',
         ]);
 
@@ -88,7 +87,7 @@ class InstructorController extends Controller
             'documento' => 'required|max:225',
             'nombre' => 'required|max:225',
             'apellido' => 'required|max:225',
-            'correo' => 'required|max:225',
+            'correo' => 'required|max:225|unique:users,email',
             'telefono' => 'required|max:225',
         ]);
 
@@ -102,7 +101,7 @@ class InstructorController extends Controller
         ]);
 
         if($instructor->wasChanged('nombre')){
-            User::find($instructor->user_id)->update([ 'name'=> $instructor->nombre]);
+            User::find($instructor->user_id)->update(['name'=> $instructor->nombre]);
         }
         return view('instructores.menssage',['msg'=>"Registro editado satisfactoriamente"]);
 

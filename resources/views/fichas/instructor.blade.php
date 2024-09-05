@@ -11,7 +11,7 @@
                     @csrf
                     <label for="instructor_id">Instructor:</label>
                     <select name="instructor_id" class="form-select" required>
-                        <option selected disabled>Seleccione</option>
+                        <option selected value="">Seleccione una opción ...</option>
                             @foreach ($instructores as $instructor)
                                 @if(!in_array($instructor->id,$fichas->instructor->pluck('id')->toArray()))
                                     <option value="{{$instructor->id}}">{{$instructor->nombre}} {{$instructor->apellido}}</option>

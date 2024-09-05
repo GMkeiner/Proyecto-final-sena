@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Aprendiz;
 use App\Models\Ficha;
 use Illuminate\Http\Request;
-use Kreait\Firebase\Contract\Database;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +14,6 @@ use Illuminate\Support\Facades\Hash;
  */
 class AprendizController extends Controller
 {
-    private $firebase;
     /**
      * Display a listing of the resource.
      */
@@ -35,7 +33,7 @@ class AprendizController extends Controller
     public function create()
     {
 
-        return view('aprendiz.create', ['ficha'=>ficha::all()]);
+        return view('aprendiz.create', ['ficha'=>Ficha::all()]);
 
     }
 
@@ -53,7 +51,7 @@ class AprendizController extends Controller
             'telefono'=>'required|max:225',
             'ficha_id'=>'required',
         ]);
-
+        // dd($request);
         $userAprendiz = User::create([
             'name' => $request->nombre,
             'email' => $request->correo,
@@ -62,7 +60,7 @@ class AprendizController extends Controller
         $userAprendiz->assignRole(3);
         $userAprendiz->save();
 
-        Aprendiz::create([
+        Aprendiz::insert([
             'documento' => $request->documento,
             'nombre' => $request->nombre,
             'apellido' => $request->apellido,
@@ -70,9 +68,9 @@ class AprendizController extends Controller
             'telefono' => $request->telefono,
             'ficha_id' => $request->ficha_id,
             'user_id' => $userAprendiz->id
-        ])->save();
+        ]);
 
-        return view("aprendiz.show", ['msg'=>'De forma gratificante se a agregado el aprendiz']);
+        return redirect()->route('aprendiz.index')->with('success', 'Aprendiz registrado exitosamente');
 
 
     }
@@ -98,18 +96,17 @@ class AprendizController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Aprendiz $aprendiz)
     {
         $request->validate([
             'documento'=>'required|max:225',
             'nombre'=>'required|max:225',
             'apellido'=>'required|max:225',
-            'correo'=>'required|max:225',
+            'correo'=>'required|max:225|unique:users,email',
             'telefono'=>'required|max:225',
             'ficha_id'=>'required',
         ]);
-
-        $aprendiz= Aprendiz::find($id);
+        // dd($aprendiz);
         $aprendiz->update([
             'documento' => $request->documento,
             'nombre' => $request->nombre,
@@ -122,12 +119,12 @@ class AprendizController extends Controller
             User::find($aprendiz->user_id)->update([ 'name'=> $aprendiz->nombre]);
         }
 
-        return view("aprendiz.show", ['msg'=>"Se a actualizado"]);
+        return redirect()->route('aprendiz.index')->with('success', 'Aprendiz actualizado exitosamente');
     }
 
-    public function destroy($id)
+    public function destroy(Aprendiz $aprendiz)
     {
-        Aprendiz::destroy($id);
-        return redirect('aprendiz');
+        $aprendiz->delete();
+        return redirect()->route('aprendiz.index')->with('danger', 'Aprendiz eliminado exitosamente');
     }
 }
