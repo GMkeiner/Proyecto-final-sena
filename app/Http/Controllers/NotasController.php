@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 // use App\Models\Nota;
 use App\Models\Ficha;
 use App\Models\Instructores;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class NotasController extends Controller
@@ -15,8 +15,15 @@ class NotasController extends Controller
      */
     public function index()
     {
-        $instructor = Instructores::where('user_id', '=', Auth::user()->id)->with(['ficha','competencia'])->first();
-        return view('notas.index', ['fichas' => $instructor->ficha, 'fichasPersonales' => $instructor]);
+        $instructor = Instructores::where('user_id', '=', Auth::user()->id)->with(['ficha.competencia','competencia'])->first();
+        foreach($instructor->ficha as $ficha){
+            foreach($ficha->competencia as $competencia){
+                if(in_array($competencia->nombre,$instructor->competencia->pluck('nombre')->toArray())){
+                    $notas[] = collect(['competencia'=>$competencia, 'ficha'=>$ficha->noFicha, 'ficha_id' => $ficha->id]);           
+                }
+            }
+        }
+        return view('notas.index', ['fichas' => $instructor->ficha, 'competencias'=> $notas ?? null]);
     }
 
     /**
