@@ -14,7 +14,7 @@
                 <div class="col-sm-3">
                     <label for="nombre" class="col-sm-3 form-label">Instructor:</label>
                     <select name="instructor_id" required class="form-select">
-                        <option selected disabled> Seleccione una opción ... </option>
+                        <option value="" selected> Seleccione una opción ... </option>
                         @foreach ($instructores as $instructor)
                             <option value="{{$instructor->id}}">{{ $instructor->nombre.' '.$instructor->apellido }}</option>
                         @endforeach

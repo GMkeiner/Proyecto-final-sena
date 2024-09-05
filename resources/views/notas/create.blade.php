@@ -6,11 +6,10 @@
     <h1>Formulario de Notas - SENA </h1>
     <form action="{{route('notas.store')}}" method="post">
             @csrf
-            <input type="hidden" name="id_ficha" value="{{$ficha}}">
-            {{-- <input type="hidden" name="instructor" value="{{Auth::user()->id}}"> --}}
-            <div class="row">
-                <label for="" class="form-label">Competencias</label>
-                <select name="competencia" required>
+            <input type="hidden"  name="id_ficha" value="{{$ficha}}">
+            <div class="form-row my-2">
+                <label for="" class="form-label">Competencia:</label>
+                <select name="competencia" required class="form-select">
                     <option selected value="">Seleccione</option>
                     @foreach ($competencias as $competencia)
                         <option value="{{$competencia->id}}">{{$competencia->nombre}}</option>
