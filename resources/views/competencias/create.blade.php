@@ -5,7 +5,7 @@
         <h2>Registrar Competencia</h2>
         <form action="{{ route('competencias.store') }}" method="post">
             @csrf
-            <div class="row md-2">
+            <div class="md-3 row">
                 <div class="col-sm-6">
                     <label for="nombre" class="col-sm-4 form-label">Nombre de la competencia:</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}"

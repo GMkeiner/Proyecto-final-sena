@@ -3,11 +3,10 @@
 @section('content')
     <div class="container py-4 border border-1">
         <h2>Actualizar competencia</h2>
-
         <form action="{{ route('competencias.update',$competencia->id) }}" method="post">
             @method('PUT')
             @csrf
-            <div class="row md-2">
+            <div class="md-3 row">
                 <div class="col-sm-6">
                     <label for="nombre" class="col-sm-4 form-label">Nombre de la competencia:</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="{{ $competencia->nombre }}"
@@ -32,5 +31,6 @@
                 </div>
             </div>
         </form>
+
     </div>
 @endsection

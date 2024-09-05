@@ -49,6 +49,5 @@
                 {{ $value }}
             </div>
         @endsession
-
     </main>
 @endsection

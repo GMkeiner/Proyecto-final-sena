@@ -65,6 +65,7 @@
                             <option value="{{ $fichas->id }}">{{ $fichas->noFicha }}</option>"
                         @endforeach
                     </select>
+
                 </div>
             </div>
             @error('ficha_id')
