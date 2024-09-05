@@ -15,6 +15,7 @@
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
     <link rel="stylesheet" href="{{asset('assets/css/styles1.css')}}">
     @role('Instructor')<link rel="stylesheet" href="{{asset('assets/css/stylesNotas.css')}}">@endrole
+    @role('Admin')<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/stylesUnico.css') }}">@endrole
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
