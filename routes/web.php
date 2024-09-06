@@ -6,6 +6,8 @@ use App\Http\Controllers\FichasController;
 use App\Http\Controllers\NotasController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\AsistenciasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('/fichas',FichasController::class);
     Route::resource('notas',NotasController::class)->only(['index','store','create']);
     Route::resource('notas.competencias',NotasController::class)->parameters(['notas'=>'fichas'])->except(['index','store','create']);
+    Route::resource('events', EventController::class);
+    Route::resource('/asistencias', AsistenciasController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Auth::routes();
