@@ -7,22 +7,22 @@
                 <h2>Listado de instructores</h2>
                 <a href="{{ url('instructores/create') }}" class="btn btn-primary btn-sm col-2">Nuevo registro</a>
             </div>
-            <table class="table table-light">
+            <table class="table table-hover table-bordered">
                 <thead class="thead-light">
-                    <tr>
-                        <th>#</th>
-                        <th>Documento</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Accion</th>
-                        <th>Accion</th>
+                    <tr class="text-center">
+                        <th class="table-success">#</th>
+                        <th class="table-success">Documento</th>
+                        <th class="table-success">Nombre</th>
+                        <th class="table-success">Apellido</th>
+                        <th class="table-success">Correo</th>
+                        <th class="table-success">Telefono</th>
+                        <th class="table-success">Accion</th>
+                        <th class="table-success">Accion</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($intructor as $instructores)
-                        <tr>
+                        <tr class="text-center">
                             <td>{{ $instructores->id }}</td>
                             <td>{{ $instructores->documento }}</td>
                             <td>{{ $instructores->nombre }}</td>

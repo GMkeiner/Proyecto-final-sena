@@ -7,22 +7,22 @@
             <a href="{{ url('fichas/create') }}" class="btn btn-primary btn-sm">Nuevo registro</a>
         </div>
 
-        <table class="table table-light">
+        <table class="table table-hover table-bordered">
             <thead class="thead-light">
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Num Fichas</th>
-                    <th scope="col">Instructores</th>
-                    <th scope="col">Accion</th>
-                    <th scope="col">Accion</th>
+                    <th scope="col" class="table-success text-center">#</th>
+                    <th scope="col" class="table-success text-center">Num Fichas</th>
+                    <th scope="col" class="table-success text-center">Instructores</th>
+                    <th scope="col" class="table-success text-center">Accion</th>
+                    <th scope="col" class="table-success text-center">Accion</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach ($ficha as $fichas)
                     <tr>
-                        <td>{{ $fichas->id }}</td>
-                        <td>{{ $fichas->noFicha }}</td>
-                        <td>
+                        <td class="text-center">{{ $fichas->id }}</td>
+                        <td class="text-center">{{ $fichas->noFicha }}</td>
+                        <td class="text-center">
                             @foreach ($fichas->instructor as $instructor)
                                 @if ($loop->last)
                                     {{ $instructor->nombre }} {{ $instructor->apellido }}.
@@ -31,16 +31,16 @@
                                 @endif
                             @endforeach
                         </td>
-                        <td>
-                            <a href="{{ url('fichas/' . $fichas->id . '/edit') }}" class="btn btn-warning btn-sm">Editar</a>
+                        <td class="text-center">
                             <form action="{{ url('fichas/' . $fichas->id) }}" method="post">
+                            <a href="{{ url('fichas/' . $fichas->id . '/edit') }}" class="btn btn-warning btn-sm ">Editar</a>
                                 {{ method_field('DELETE') }}
                                 @csrf
                                 <button type="submit"
                                     onclick="return confirm('¿Esta usted seguro de querer borrar estos datos?')"
                                     class="btn btn-danger btn-sm">Eliminar</button>
                             </form>
-                        <td><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                        <td class="text-center"><button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
                                 data-bs-target="#instructor{{ $fichas->id }}">
                                 Nuevo instructor
                             </button></td>

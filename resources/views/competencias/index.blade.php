@@ -7,17 +7,17 @@
                 <h2>Listado de Competencias</h2>
                 <a href="{{ route('competencias.create') }}" class="btn btn-primary btn-sm">Nuevo registro</a>
             </div>
-            <table class="table table-light">
+            <table class="table table-hover table-bordered">
                 <thead class="thead-light">
                     <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Instructor</th>
-                        <th>Accion</th>
-                        <th>Accion</th>
+                        <th class="table-success text-center">#</th>
+                        <th class="table-success text-center">Nombre</th>
+                        <th class="table-success text-center">Instructor</th>
+                        <th class="table-success text-center">Accion</th>
+                        <th class="table-success text-center">Accion</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach ($competencia as $competencias)
                         <tr>
                             <td>{{ $competencias->id }}</td>

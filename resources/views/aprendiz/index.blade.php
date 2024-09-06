@@ -8,21 +8,21 @@
                 <a href="{{ route('aprendiz.create') }}" class="btn btn-primary btn-sm col-2">Nuevo Aprendiz</a>
             </div>
 
-            <table class="table table-light">
-                <thead class="thead-light">
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light text-center">
                     <tr>
-                        <th>#</th>
-                        <th>Documento</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
-                        <th>Correo</th>
-                        <th>Telefono</th>
-                        <th>Ficha</th>
-                        <th>Accion</th>
-                        <th>Accion</th>
+                        <th class="table-success">#</th>
+                        <th class="table-success">Documento</th>
+                        <th class="table-success">Nombre</th>
+                        <th class="table-success">Apellido</th>
+                        <th class="table-success">Correo</th>
+                        <th class="table-success">Telefono</th>
+                        <th class="table-success">Ficha</th>
+                        <th class="table-success">Accion</th>
+                        <th class="table-success">Accion</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                     @foreach ($aprendiz as $aprendices)
                         <tr>
                             <td>{{ $aprendices->id }}</td>
@@ -40,7 +40,7 @@
                                     @csrf
                                     <button type="submit"
                                         onclick="return confirm('¿Esta usted seguro de querer borrar estos datos?')"
-                                        class="btn btn-danger btn-sn">Eliminar</button>
+                                        class="btn btn-danger btn-sn position-stiky">Eliminar</button>
                                 </form>
                             </td>
                         </tr>

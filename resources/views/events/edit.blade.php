@@ -33,14 +33,18 @@
             <div>
             {{-- <input type="text" name="event_dates[]" class="form-control mb-2" placeholder="Agregar más fechas">
             </div> --}}
-            <button type="button" id="add_date" class="btn btn-secondary mt-2">Agregar Otra Fecha</button>
+            <button type="button" id="add_date" class="btn btn-secondary mt-3 p-1 ">Agregar Otra Fecha</button>
+            <a href="{{ route('events.index') }}" class="btn btn-secondary mt-3 p-1">Regresar</a>
         </div>
         @error('event_dates')
             {{$message}}
         @enderror
 
-        <button type="submit" class="btn btn-primary">Actualizar Evento</button>
+        <button type="submit" class="btn btn-primary mt-3 w-25">Actualizar Evento</button>
+        
     </form>
+    
+    
 </div>
 
 <script>
