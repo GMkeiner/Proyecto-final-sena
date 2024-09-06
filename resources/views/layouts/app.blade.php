@@ -30,7 +30,8 @@
                 <ul class="navigation">
                     <li><a href="{{route('home')}}">Inicio</a></li>
                     @role('Admin')
-                    <li><a href="">Asistencias</a></li>
+                    <li><a href="{{route('asistencias.index')}}">Asistencias</a></li>
+                    <li><a href="{{route('events.index')}}">Eventos</a></li>
                     <li><a href="{{route('aprendiz.index')}}">Aprendices</a></li>
                     <li><a href="{{route('competencias.index')}}">Competencias</a></li>
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>
@@ -54,5 +55,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('scripts')
 </body>
 </html>
