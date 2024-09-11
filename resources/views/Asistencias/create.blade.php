@@ -10,16 +10,16 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Estudiante</th>
-                        <th>Evento</th>
-                        <th>Asistió</th>
-                        <th>No Asistió</th>
-                        <th>Excusa</th>
+                        <th class="table-success text-center">Estudiante</th>
+                        <th class="table-success text-center">Evento</th>
+                        <th class="table-success text-center">Asistió</th>
+                        <th class="table-success text-center">No Asistió</th>
+                        <th class="table-success text-center">Excusa</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($aprendices as $aprendiz)
-                        <tr>
+                        <tr class="text-center">
                             <input type="hidden" name="asistencias[{{ $aprendiz->id }}][id_aprendiz]" value="{{ $aprendiz->id }}">
 
                             <td>{{ $aprendiz->nombre }}</td>
@@ -33,11 +33,11 @@
                                 </select>
                             </td>
 
-                            <td>
+                            <td class="text-center">
                                 <input type="checkbox" name="asistencias[{{ $aprendiz->id }}][datos_asistencia][asistio]" value="1">
                             </td>
 
-                            <td>
+                            <td class="text-center">
                                 <input type="checkbox" name="asistencias[{{ $aprendiz->id }}][datos_asistencia][no_asistio]" value="1">
                             </td>
 
@@ -52,8 +52,10 @@
                     @endforeach
                 </tbody>
             </table>
-
-            <button type="submit" class="btn btn-primary">Registrar Asistencias</button>
+            <div class="d-flex align-items-start">
+                <button type="submit" class="btn btn-primary me-2">Registrar Asistencias</button>
+                <a href="{{ route('asistencias.index') }}" class="btn btn-secondary mt-0">Regresar</a>
+            </div>
         </form>
     </div>
 @endsection

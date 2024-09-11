@@ -8,16 +8,16 @@
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-    <table class="table">
-        <thead>
+    <table class="table table-hover table-bordered">
+        <thead class="text-center">
             <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Fechas del Evento</th>
-                <th>Acciones</th>
+                <th class="table-success">Nombre</th>
+                <th class="table-success">Descripción</th>
+                <th class="table-success">Fechas del Evento</th>
+                <th class="table-success">Acciones</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
             @foreach ($events as $event)
                 <tr>
                     <td>{{ $event->name }}</td>

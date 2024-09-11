@@ -25,10 +25,10 @@
             <div id="event_dates_container">
                 <input type="date" name="event_dates[]" class="form-control mb-2" required>
                 <!-- Agregar más campos de fecha aquí -->
+                
             </div>
             <button type="button" id="add_date" class="btn btn-secondary">Agregar Fecha</button>
         </div>
-
         <button type="submit" class="btn btn-primary">{{ isset($event) ? 'Actualizar' : 'Crear' }}</button>
     </form>
 </div>
@@ -77,9 +77,11 @@
                 <input type="date" name="event_dates[]" class="form-control mb-2" required>
             </div>
             <button type="button" id="add_date" class="btn btn-secondary">Agregar Fecha</button>
+            <a href="{{ route('events.index') }}" class="btn btn-secondary ">Regresar</a>
         </div>
 
-        <button type="submit" class="btn btn-primary">{{ isset($event) ? 'Actualizar' : 'Crear' }}</button>
+        <button type="submit" class="btn btn-primary mt-2 w-25">{{ isset($event) ? 'Actualizar' : 'Crear' }}</button>
+
     </form>
 </div>
 @endsection

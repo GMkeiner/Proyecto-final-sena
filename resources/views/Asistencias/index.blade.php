@@ -4,18 +4,18 @@
     <div class="container">
         <h1>Asistencias</h1>
         <a href="{{ route('asistencias.create') }}" class="btn btn-primary">Crear Asistencia</a>
-        <table class="table mt-3">
-            <thead>
+        <table class="table table-hover table-bordered">
+            <thead">
                 <tr>
-                    <th>Aprendiz</th>
-                    <th>Evento</th>
-                    <th>Asistió</th>
-                    <th>No Asistió</th>
-                    <th>Excusa</th>
-                    <th>Acciones</th>
+                    <th class="table-success text-center">Aprendiz</th>
+                    <th class="table-success text-center">Evento</th>
+                    <th class="table-success text-center">Asistió</th>
+                    <th class="table-success text-center">No Asistió</th>
+                    <th class="table-success text-center">Excusa</th>
+                    <th class="table-success text-center">Acciones</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
                 @foreach ($asistencias as $asistencia)
                     <tr>
                         <td>{{ $asistencia->aprendiz->nombre }}</td>
