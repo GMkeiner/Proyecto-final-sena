@@ -22,10 +22,10 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-3 mt-3">
-                    <a href="{{ route('competencias.index') }}" class="btn btn-secondary">Regresar</a>
-                    <button type="sumit" class="btn btn-success">Guardar</button>
-                </div>
+                {{-- <div class="col-3 mt-3"> --}}
+                    <a href="{{ route('competencias.index') }}" class="btn btn-secondary col-2 m-3">Regresar</a>
+                    <button type="sumit" class="btn btn-success col-2 m-3">Guardar</button>
+                {{-- </div> --}}
             </div>
         </form>
     </div>

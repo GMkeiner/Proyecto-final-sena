@@ -3,9 +3,9 @@
 @section('content')
     <div class="container">
         <h1>Asistencias</h1>
-        <a href="{{ route('asistencias.create') }}" class="btn btn-primary">Crear Asistencia</a>
+        <a href="{{ route('asistencias.create') }}" class="btn btn-primary col-2 my-2">Crear Asistencia</a>
         <table class="table table-hover table-bordered">
-            <thead">
+            <thead>
                 <tr>
                     <th class="table-success text-center">Aprendiz</th>
                     <th class="table-success text-center">Evento</th>
@@ -28,7 +28,7 @@
                             <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST" style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                                <button type="submit" class="btn btn-danger col-3">Eliminar</button>
                             </form>
                         </td>
                     </tr>

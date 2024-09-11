@@ -44,6 +44,6 @@
             </div>
             @endforeach
         
-        <button type="submit" class="btn btn-primary btn-sm col-2">Calcular Definitiva</button>
+        <button type="submit" class="btn btn-primary btn-sm col-2 my-2">Guardar</button>
     </form>
 @endsection

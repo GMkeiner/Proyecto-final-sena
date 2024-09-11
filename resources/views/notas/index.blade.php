@@ -17,38 +17,37 @@
                 <button type="submit" class="btn btn-success btn-sm col-3">Agregar notas</button>
             </div>
         </form>
-        <table class="table table-light">
+        <table class="table table-light table-bordered table-hover">
             <thead class="thead-light">
-                <th scope="col">Ficha</th>
-                <th scope="col">Competencia</th>
-                <th scope="col">Acciones</th>
+                <th scope="col" class="table-success text-center">Ficha</th>
+                <th scope="col" class="table-success text-center">Competencia</th>
+                <th scope="col" class="table-success text-center">Acciones</th>
             </thead>
             <tbody>
                 @if ($competencias != null)
                     @foreach ($competencias as $competencia)
                         <tr>
-                            <td>{{ $competencia->get('ficha') }}</td>
-                            <td>{{ $competencia->get('competencia')->nombre }}</td>
-                            <td><a
-                                href="{{ route('notas.competencias.edit', ['fichas' => $competencia->get('ficha_id'), 'competencia' => $competencia->get('competencia')->id]) }}"><img
-                                    width="48" height="48"
-                                    src="https://img.icons8.com/fluency-systems-regular/48/preview-pane.png"
-                                    alt="preview-pane" /></a></td>
+                            <td class="text-center">{{ $competencia->get('ficha') }}</td>
+                            <td class="text-center">{{ $competencia->get('competencia')->nombre }}</td>
+                            <td class="text-center"><a
+                                    href="{{ route('notas.competencias.edit', ['fichas' => $competencia->get('ficha_id'), 'competencia' => $competencia->get('competencia')->id]) }}"><img
+                                        width="48" height="48"
+                                        src="https://img.icons8.com/fluency-systems-regular/48/preview-pane.png"
+                                        alt="preview-pane" /></a></td>
                         </tr>
                     @endforeach
                 @endif
             </tbody>
-
         </table>
+        @session('success')
+            <div class="container bg-success bg-gradient text-light p-4">
+                {{ $value }}
+            </div>
+        @endsession
+        @session('danger')
+            <div class="container bg-danger bg-gradient text-light p-4">
+                {{ $value }}
+            </div>
+        @endsession
     </div>
-    @session('success')
-        <div class="container bg-success bg-gradient text-light p-4">
-            {{ $value }}
-        </div>
-    @endsession
-    @session('danger')
-        <div class="container bg-danger bg-gradient text-light p-4">
-            {{ $value }}
-        </div>
-    @endsession
 @endsection

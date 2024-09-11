@@ -37,7 +37,11 @@
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>
                     <li><a href="{{route('instructores.index')}}">Instructores</a></li>
                     @endrole
-                    @role('Instructor')<li><a href="{{route('notas.index')}}">Notas</a></li>@endrole
+                    @role('Instructor')
+                    <li><a href="{{route('events.index')}}">Eventos</a></li>
+                    <li><a href="{{route('asistencias.index')}}">Asistencias</a></li>
+                    <li><a href="{{route('notas.index')}}">Notas</a></li>
+                    @endrole
                     <li><a href="{{ route('logout') }}"
                     onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
