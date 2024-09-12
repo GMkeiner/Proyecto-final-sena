@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\Authenticate;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\AsistenciasController;
+use App\Http\Controllers\EncuestasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('notas.competencias',NotasController::class)->parameters(['notas'=>'fichas'])->except(['index','store','create']);
     Route::resource('events', EventController::class);
     Route::resource('/asistencias', AsistenciasController::class);
+    Route::resource('/encuesta', EncuestasController::class);
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Auth::routes();
