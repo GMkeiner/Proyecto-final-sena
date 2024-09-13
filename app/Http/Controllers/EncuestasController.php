@@ -31,6 +31,8 @@ class EncuestasController extends Controller
     public function store(Request $request)
     {
         //
+
+        
         $validated = $request->validate([
             'aprendiz_id' => 'required|exists:users,id', // Ensure this is validated properly
             'respuesta1' => 'required|integer|between:1,5',

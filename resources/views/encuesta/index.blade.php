@@ -18,11 +18,9 @@
                 <h1> ENCUESTA DE HABILIDADES | APRENDIZ </h1>
             </header>
         </div>
-
-        <!-- Asegúrate de usar 'POST' y el nombre correcto de la ruta -->
+        
         <form action="{{ route('encuesta.store') }}" method="POST">
             @csrf
-            <!-- Campo oculto para el 'aprendiz_id' -->
             <input type="hidden" name="aprendiz_id" value="{{ auth()->user()->id }}">
 
             <section class="sub-titulo">
@@ -47,10 +45,8 @@
                                     <span class="rating-circles">
                                         <input type="radio" id="rating1-1" name="respuesta1" value="1" required>
                                         <label for="rating1-1"></label>
-
                                         <input type="radio" id="rating1-2" name="respuesta1" value="2">
                                         <label for="rating1-2"></label>
-                                        
                                         <input type="radio" id="rating1-3" name="respuesta1" value="3">
                                         <label for="rating1-3"></label>
                                         <input type="radio" id="rating1-4" name="respuesta1" value="4">
@@ -240,6 +236,15 @@
             </section>
         </form>        
     </div>
+<script>
+    Swal.fire({
+    position: "center", 
+    icon: "success",
+    title: "Encuesta registrada exitosamente",
+    showConfirmButton: true,
+    timer: 1500
+});
+</script>
 </body>
 </html>
 

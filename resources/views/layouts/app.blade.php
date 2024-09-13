@@ -9,7 +9,9 @@
 
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Sena_Colombia_logo.svg/640px-Sena_Colombia_logo.svg.png">
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    <!--Sweep alert-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
