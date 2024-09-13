@@ -37,6 +37,7 @@ Route::middleware(Authenticate::class)->group(function(){
     Route::resource('events', EventController::class);
     Route::resource('/asistencias', AsistenciasController::class);
     Route::resource('/encuesta', EncuestasController::class);
+    Route::post('/encuesta/store', [EncuestasController::class, 'store'])->name('encuesta.store');
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 });
 Auth::routes();

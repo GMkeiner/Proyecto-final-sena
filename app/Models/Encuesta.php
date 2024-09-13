@@ -11,6 +11,7 @@ class Encuesta extends Model
     use HasFactory;
 
     protected $fillable = [
+        'aprendiz_id',  
         'respuesta1',
         'respuesta2',
         'respuesta3',
@@ -18,7 +19,6 @@ class Encuesta extends Model
         'respuesta5',
         'respuesta6',
         'respuesta7',
-        'aprendiz_id'
     ];
 
     public function aprendiz(): BelongsTo{
