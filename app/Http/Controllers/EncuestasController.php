@@ -34,7 +34,7 @@ class EncuestasController extends Controller
 
         
         $validated = $request->validate([
-            'aprendiz_id' => 'required|exists:users,id', // Ensure this is validated properly
+            'aprendiz_id' => 'required|exists:users,id', // Asegúrese de que esto esté validado correctamente
             'respuesta1' => 'required|integer|between:1,5',
             'respuesta2' => 'required|integer|between:1,5',
             'respuesta3' => 'required|integer|between:1,5',
