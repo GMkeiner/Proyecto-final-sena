@@ -36,6 +36,7 @@
                     <li><a href="{{route('competencias.index')}}">Competencias</a></li>
                     <li><a href="{{route('fichas.index')}}">Fichas</a></li>
                     <li><a href="{{route('instructores.index')}}">Instructores</a></li>
+                    <li><a href="{{route('encuesta.index')}}">Encuesta</a></li>
                     @endrole
                     @role('Instructor')
                     <li><a href="{{route('events.index')}}">Eventos</a></li>

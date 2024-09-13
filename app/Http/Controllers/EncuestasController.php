@@ -13,6 +13,8 @@ class EncuestasController extends Controller
     public function index()
     {
         //
+        $encuesta = Encuesta::all();
+        return view('encuesta.index', compact('encuesta'));
     }
 
     /**
