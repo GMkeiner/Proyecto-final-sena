@@ -236,15 +236,17 @@
             </section>
         </form>        
     </div>
-<script>
-    Swal.fire({
-    position: "center", 
-    icon: "success",
-    title: "Encuesta registrada exitosamente",
-    showConfirmButton: true,
-    timer: 1500
-});
-</script>
+    @if (session('alert'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            Swal.fire({
+                icon: 'success',
+                title: 'Encuesta guardada exitasemente',
+                confirmButtonText: 'Aceptar'
+            });
+        });
+    </script>
+@endif
 </body>
 </html>
 

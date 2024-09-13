@@ -48,7 +48,7 @@ class EncuestasController extends Controller
         Encuesta::create($validated);
 
         // Redirigir con un mensaje de éxito
-        return redirect()->route('encuesta.index')->with('success', 'Encuesta guardada con éxito');
+        return redirect()->route('encuesta.index')->with('alert', 'Encuesta guardada con éxito');
     }
 
     /**
