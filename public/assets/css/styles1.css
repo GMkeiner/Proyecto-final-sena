@@ -10,7 +10,8 @@
 } */
 
 body{
-    overflow: hidden;
+    /*Lo tuve que quitar para ver todo el calendario, activalo si lo necesitas :) */
+    /* overflow: hidden; */
 }
 
 .main-header{
