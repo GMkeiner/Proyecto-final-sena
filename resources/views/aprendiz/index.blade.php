@@ -47,16 +47,16 @@
                     @endforeach
                 </tbody>
             </table>
+            @session('success')
+                <div class="container bg-success bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
+            @session('danger')
+                <div class="container bg-danger bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
         </div>
-        @session('success')
-            <div class="container bg-success bg-gradient text-light p-4">
-                {{ $value }}
-            </div>
-        @endsession
-        @session('danger')
-            <div class="container bg-danger bg-gradient text-light p-4">
-                {{ $value }}
-            </div>
-        @endsession
     </main>
 @endsection
