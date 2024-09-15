@@ -31,6 +31,24 @@ class EncuestasController extends Controller
     public function store(Request $request)
     {
         //
+
+        
+        $validated = $request->validate([
+            'aprendiz_id' => 'required|exists:users,id', // Asegúrese de que esto esté validado correctamente
+            'respuesta1' => 'required|integer|between:1,5',
+            'respuesta2' => 'required|integer|between:1,5',
+            'respuesta3' => 'required|integer|between:1,5',
+            'respuesta4' => 'required|integer|between:1,5',
+            'respuesta5' => 'required|integer|between:1,5',
+            'respuesta6' => 'required|integer|between:1,5',
+            'respuesta7' => 'required|integer|between:1,5',
+        ]);
+
+        // Guardar los datos en la base de datos
+        Encuesta::create($validated);
+
+        // Redirigir con un mensaje de éxito
+        return redirect()->route('encuesta.index')->with('alert', 'Encuesta guardada con éxito');
     }
 
     /**
