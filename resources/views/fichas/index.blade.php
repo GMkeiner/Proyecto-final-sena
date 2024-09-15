@@ -33,7 +33,8 @@
                         </td>
                         <td class="text-center">
                             <form action="{{ url('fichas/' . $fichas->id) }}" method="post">
-                            <a href="{{ url('fichas/' . $fichas->id . '/edit') }}" class="btn btn-warning btn-sm ">Editar</a>
+                                <a href="{{ url('fichas/' . $fichas->id . '/edit') }}"
+                                    class="btn btn-warning btn-sm ">Editar</a>
                                 {{ method_field('DELETE') }}
                                 @csrf
                                 <button type="submit"
@@ -50,15 +51,16 @@
                 @endforeach
             </tbody>
         </table>
+        @session('success')
+            <div class="container bg-success bg-gradient text-light p-4">
+                {{ $value }}
+            </div>
+        @endsession
+        @session('danger')
+            <div class="container bg-danger bg-gradient text-light p-4">
+                {{ $value }}
+            </div>
+        @endsession
     </div>
-    @session('success')
-        <div class="container bg-success bg-gradient text-light p-4">
-            {{ $value }}
-        </div>
-    @endsession
-    @session('danger')
-        <div class="container bg-danger bg-gradient text-light p-4">
-            {{ $value }}
-        </div>
-    @endsession
+
 @endsection

@@ -36,13 +36,15 @@
                     </div>
                 </div>
             @endforeach
-            <a type="button" class="btn btn-secondary btn-sm col-2 mt-2" href="{{route('notas.index')}}">Regresar</a>
+            <a type="button" class="btn btn-secondary btn-sm col-1 mt-2" href="{{ route('notas.index') }}">Regresar</a>
             <button type="submit" class="btn btn-primary btn-sm col-2 mt-2">Actualizar notas</button>
-            <button type="submit" class="btn btn-danger btn-sm col-2 mt-2" form="delete_notas">Eliminar notas</button>
+            <button type="submit" class="btn btn-danger btn-sm col-2 mt-2"
+                onclick="event.preventDefault(); if(window.confirm('Seguro que quiere borrar estas notas?')){document.getElementById('delete_notas').submit();}">Eliminar
+                notas</button>
         </form>
-        <form action="{{route('notas.competencias.destroy',[$ficha,$competencia])}}" method="post" id="delete_notas">
-        @csrf
-        @method('DELETE')
+        <form action="{{ route('notas.competencias.destroy', [$ficha, $competencia]) }}" method="post" id="delete_notas">
+            @csrf
+            @method('DELETE')
         </form>
     </div>
 @endsection

@@ -25,7 +25,7 @@
                             <td>{{ $aprendiz->nombre }}</td>
 
                             <td>
-                                <select name="asistencias[{{ $aprendiz->id }}][id_event]" class="form-control">
+                                <select name="asistencias[{{ $aprendiz->id }}][id_event]" class="form-control" required>
                                     <option value="">Elija un evento</option>
                                     @foreach($events as $event)
                                         <option value="{{ $event->id }}">{{ $event->name }}</option>
@@ -45,15 +45,15 @@
                                 <input type="text" name="asistencias[{{ $aprendiz->id }}][datos_asistencia][excusa]" class="form-control" placeholder="Ingrese excusa">
                             </td>
 
-                            <td>
+                            {{-- <td> --}}
                                 <!-- Sección de acciones, si es necesario -->
-                            </td>
+                            {{-- </td> --}}
                         </tr>
                     @endforeach
                 </tbody>
             </table>
             <div class="d-flex align-items-start">
-                <button type="submit" class="btn btn-primary me-2">Registrar Asistencias</button>
+                <button type="submit" class="btn btn-primary me-2 col-2">Registrar Asistencias</button>
                 <a href="{{ route('asistencias.index') }}" class="btn btn-secondary mt-0">Regresar</a>
             </div>
         </form>

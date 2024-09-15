@@ -55,7 +55,7 @@
                 </tbody>
             </table>
             <div class="d-flex align-items-start">
-                <button type="submit" class="btn btn-primary me-2">Actualizar Asistencias</button>
+                <button type="submit" class="btn btn-warning me-2 col-2">Actualizar Asistencias</button>
                 <a href="{{ route('asistencias.index') }}" class="btn btn-secondary mt-0">Regresar</a>
             </div>
         </form>

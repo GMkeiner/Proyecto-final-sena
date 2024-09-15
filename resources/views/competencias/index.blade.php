@@ -23,10 +23,10 @@
                             <td>{{ $competencias->id }}</td>
                             <td>{{ $competencias->nombre }}</td>
                             <td>{{ $competencias->instructor->nombre . ' ' . $competencias->instructor->apellido }}</td>
-                            <td><a href="{{ route('competencias.edit',$competencias->id) }}"
+                            <td><a href="{{ route('competencias.edit', $competencias->id) }}"
                                     class="btn btn-warning btn-sm">Editar</a></td>
                             <td>
-                                <form action="{{ route('competencias.destroy',$competencias->id) }}" method="post">
+                                <form action="{{ route('competencias.destroy', $competencias->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
@@ -38,16 +38,16 @@
                     @endforeach
                 </tbody>
             </table>
+            @session('success')
+                <div class="container bg-success bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
+            @session('danger')
+                <div class="container bg-danger bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
         </div>
-        @session('success')
-            <div class="container bg-success bg-gradient text-light p-4">
-                {{ $value }}
-            </div>
-        @endsession
-        @session('danger')
-            <div class="container bg-danger bg-gradient text-light p-4">
-                {{ $value }}
-            </div>
-        @endsession
     </main>
 @endsection
