@@ -32,7 +32,10 @@ class EncuestasController extends Controller
      */
     public function store(Request $request)
     {
-        // Validaciones para que la encuesta se envie
+
+        // Validaciones para la encuesta
+        // no tocar el codigo
+
         $validated = $request->validate([
             'aprendiz_id' => 'required|exists:aprendizs,user_id',
             'respuesta1' => 'required|integer|between:1,5',
