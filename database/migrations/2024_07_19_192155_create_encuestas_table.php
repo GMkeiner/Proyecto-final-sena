@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('respuesta5',10);
             $table->string('respuesta6',10);
             $table->string('respuesta7',10);
-            $table->foreign('aprendiz_id')->references('id')->on('aprendizs');
+            $table->foreign('aprendiz_id')->references('id')->on('aprendizs')->onDelete('cascade');
             $table->timestamps();
         });
     }

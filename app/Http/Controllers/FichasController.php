@@ -15,10 +15,10 @@ class FichasController extends Controller
     public function index()
     {
         //
-        $fichas=Ficha::with(['instructor','competencia'])->get();
-        $instructores = Instructores::all(['id','nombre','apellido']);
-        
-        return view('fichas.index',['ficha'=>$fichas,'instructores'=>$instructores]);
+        $fichas = Ficha::with(['instructor'])->get();
+        $instructores = Instructores::all(['id', 'nombre', 'apellido']);
+
+        return view('fichas.index', ['ficha' => $fichas, 'instructores' => $instructores]);
     }
 
     /**
@@ -27,7 +27,7 @@ class FichasController extends Controller
     public function create()
     {
         $competencias = Competencia::all();
-        return view('fichas.create',['instructores'=>Instructores::all(),'competencias'=>$competencias]);
+        return view('fichas.create', ['instructores' => Instructores::all(), 'competencias' => $competencias]);
     }
 
     /**
@@ -36,16 +36,13 @@ class FichasController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'noFicha'=> 'required|max:255',
-            'instructor_id' => 'required|integer',
-            'id_competencia' => 'required|integer|min:1'
+            'noFicha' => 'required|max:255',
+            'instructor_id' => 'required|integer|exists:instructors,id',
         ]);
-
-        $ficha = Ficha::create(['noFicha'=>$request->noFicha]);
+        $ficha = Ficha::create(['noFicha' => $request->noFicha]);
         $ficha->instructor()->attach($request->instructor_id);
-        $ficha->competencia()->attach($request->id_competencia);
 
-        return view("fichas.message",['msg'=>"Con total perfeccion se ha agregado una ficha"]);
+        return redirect()->route('fichas.index')->with('success', 'Ficha creada exitosamente');
     }
 
     /**
@@ -54,55 +51,51 @@ class FichasController extends Controller
     public function show(ficha $ficha)
     {
         //
-       
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Ficha $ficha)
     {
-        //
-        $ficha=Ficha::find($id);
-        return view('fichas.edit', ['ficha'=>$ficha]);
+        return view('fichas.edit', ['ficha' => $ficha]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, Ficha $ficha)
     {
-        //
+
+
         $request->validate([
-        'noFicha'=>'required|max:255',
+            'noFicha' => 'required|max:255',
         ]);
+        $ficha->update(['noFicha' => $request->noFicha]);
 
-        $ficha= Ficha::find($id);
-        $ficha->update(['noFicha'=>$request->noFicha]);
-
-        return view("fichas.message", ['msg'=>"Se ha registrado la actualizacion"]);
+        return redirect()->route('fichas.index')->with('success', 'Ficha actualizada exitosamente.');
     }
 
-    public function updateInstructor(Request $request,$id){
+    public function updateInstructor(Request $request, $id)
+    {
         $request->validate([
             'instructor_id' => 'required|integer'
         ]);
         $ficha = Ficha::find($id);
         $ficha->instructor()->attach($request->instructor_id);
-        return redirect('fichas');
+        return redirect()->route('fichas.index')->with('success', 'Instructor vinculado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Ficha $ficha)
     {
-        //
-        $ficha=Ficha::find($id);
         $ficha->instructor()->detach();
         // Para cuando se pida borrar las notas
-        // $ficha->competencia()->detach();
+        $ficha->competencia()->detach();
         $ficha->delete();
-        return redirect('fichas');
+        return redirect()->route('fichas.index')->with('danger', 'Ficha eliminada exitosamente.');
     }
 }

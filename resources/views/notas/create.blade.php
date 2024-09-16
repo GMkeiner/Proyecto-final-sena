@@ -3,16 +3,15 @@
 @section('content')
 <div class="container">
     <img src="{{asset('assets/img/logo.png')}}" alt="Logo SENA" class="logo">
-    <h1>Formulario de Notas - SENA</h1>
+    <h1>Formulario de Notas - SENA </h1>
     <form action="{{route('notas.store')}}" method="post">
             @csrf
-            <input type="hidden" name="id_ficha" value="{{$ficha}}">
-            <input type="hidden" name="instructor" value="{{Auth::user()->id}}">
-            <div class="row">
-                <label for="" class="form-label">Competencias</label>
-                <select name="competencia" required>
-                    <option selected disabled>Seleccione</option>
-                    @foreach ($competencias->competencia as $competencia)
+            <input type="hidden"  name="id_ficha" value="{{$ficha}}">
+            <div class="form-row my-2">
+                <label for="" class="form-label">Competencia:</label>
+                <select name="competencia" required class="form-select">
+                    <option selected value="">Seleccione</option>
+                    @foreach ($competencias as $competencia)
                         <option value="{{$competencia->id}}">{{$competencia->nombre}}</option>
                     @endforeach
                 </select>
@@ -45,6 +44,6 @@
             </div>
             @endforeach
         
-        <button type="submit" class="btn btn-primary btn-sm col-2">Calcular Definitiva</button>
+        <button type="submit" class="btn btn-primary btn-sm col-2 my-2">Guardar</button>
     </form>
 @endsection

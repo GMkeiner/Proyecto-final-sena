@@ -2,21 +2,23 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Asistencias extends Model
 {
-    use HasFactory;
-    protected $fillable=[
-        'noAsistencias',
-        'noInasistencias',
-        'noExcusas',
-        'comentario',
-        'aprendiz_id',
+    protected $fillable = ['id_aprendiz', 'id_event', 'datos_asistencia'];
+
+    protected $casts = [
+        'datos_asistencia' => 'array',
     ];
 
-    public function aprendiz(){
-        return $this->belongsTo(aprendiz::class);
+    public function aprendiz()
+    {
+        return $this->belongsTo(Aprendiz::class, 'id_aprendiz');
+    }
+
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'id_event');
     }
 }

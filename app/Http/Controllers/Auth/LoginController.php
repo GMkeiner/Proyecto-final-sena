@@ -13,6 +13,9 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+    public function showLoginForm(){
+        return view('auth.login');
+    }
     public function login(Request $request): RedirectResponse
     {
         // dd($request->session(),$request);
@@ -22,9 +25,9 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            // $request->session()->invalidate();
+
             $request->session()->regenerate();
-            // $request->session()->regenerateToken();
+
             return redirect()->intended('home');
         }
 

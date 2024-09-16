@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\Pivot;
-use Illuminate\Database\Eloquent\Casts\AsArrayObject;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 class Nota extends Pivot
 {
     use HasFactory;
@@ -15,15 +15,11 @@ class Nota extends Pivot
      */
     public $incrementing = true;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    protected function notas(): Attribute
     {
-        return [
-            'notas' => AsArrayObject::class,
-        ];
+        return Attribute::make(
+            get: fn (mixed $value) => json_decode($value),
+            set: fn (mixed $value) => json_encode($value),
+        );
     }
 }

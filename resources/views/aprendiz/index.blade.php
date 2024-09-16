@@ -12,6 +12,7 @@
                 <a href="{{ route('aprendiz.create') }}" class="btn btn-primary btn-sm col-2">Nuevo Aprendiz</a>
             </div>
 
+<<<<<<< HEAD
             <table class="table table-light">
                 <thead class="thead-light">
                     <tr>
@@ -54,6 +55,23 @@
             </table>
         </div> --}}
                 <tbody>
+=======
+            <table class="table table-hover table-bordered">
+                <thead class="thead-light text-center">
+                    <tr>
+                        <th class="table-success">#</th>
+                        <th class="table-success">Documento</th>
+                        <th class="table-success">Nombre</th>
+                        <th class="table-success">Apellido</th>
+                        <th class="table-success">Correo</th>
+                        <th class="table-success">Telefono</th>
+                        <th class="table-success">Ficha</th>
+                        <th class="table-success">Accion</th>
+                        <th class="table-success">Accion</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+>>>>>>> main
                     @foreach ($aprendiz as $aprendices)
                         <tr>
                             <td>{{ $aprendices->id }}</td>
@@ -71,13 +89,18 @@
                                     @csrf
                                     <button type="submit"
                                         onclick="return confirm('¿Esta usted seguro de querer borrar estos datos?')"
+<<<<<<< HEAD
                                         class="btn btn-danger btn-sn">Eliminar</button>
+=======
+                                        class="btn btn-danger btn-sn position-stiky">Eliminar</button>
+>>>>>>> main
                                 </form>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+<<<<<<< HEAD
         </div>
         @session('success')
             <div class="container bg-success bg-gradient text-light p-4">
@@ -118,3 +141,18 @@
     </script>
     @endpush --}}
 @endsection
+=======
+            @session('success')
+                <div class="container bg-success bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
+            @session('danger')
+                <div class="container bg-danger bg-gradient text-light p-4">
+                    {{ $value }}
+                </div>
+            @endsession
+        </div>
+    </main>
+@endsection
+>>>>>>> main

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\competencia;
+use App\Models\Instructores;
 use Illuminate\Http\Request;
 
 class CompetenciasController extends Controller
@@ -12,8 +13,7 @@ class CompetenciasController extends Controller
      */
     public function index()
     {
-        //
-        $competencia= competencia::all();
+        $competencia= competencia::with('instructor')->get();
         return view('competencias.index', ['competencia'=>$competencia]);
     }
 
@@ -23,7 +23,7 @@ class CompetenciasController extends Controller
     public function create()
     {
         //
-        return view('competencias.create',['competencia'=>competencia::all()]);
+        return view('competencias.create',['instructores'=>Instructores::all()]);
 
     }
 
@@ -32,16 +32,17 @@ class CompetenciasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
         $request->validate([
             'nombre'=>'required|max:255',
+            'instructor_id'=>'required|integer|exists:instructors,id',
+        ]);
+        Competencia::insert([
+            'nombre' => $request->nombre,
+            'instructor_id' => $request->instructor_id
         ]);
 
-        $competencia= new competencia();
-        $competencia->nombre=$request->input('nombre');
-        $competencia->save();
-
-        return view("competencias.message",['msg'=>"Se ha registrado la competencia de forma exitosa"]);
+        return redirect()->route('competencias.index')->with('success','competencia creada exitosamente');
     }
 
     /**
@@ -55,40 +56,33 @@ class CompetenciasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Competencia $competencia)
     {
-        //
-        $competencia=competencia::find($id);
-        return view('competencias.edit', ['competencia'=>$competencia]);
-
-
+        return view('competencias.edit', ['competencia'=>$competencia,'instructores'=>Instructores::all()]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(request $request,$id)
+    public function update(request $request, Competencia $competencia)
     {
-        //
         $request->validate([
             'nombre'=>'required|max:255',
+            'instructor_id'=>'required|integer|exists:instructors,id',
         ]);
-
-        $competencia= competencia::find($id);
-        $competencia->nombre=$request->input('nombre');
-        $competencia->save();
-
-        return view("competencias.message",['msg'=>"Se ha actualizado la competencia de forma exitosa"]);
-
+        $competencia->update([
+            'nombre' => $request->nombre,
+            'instructor_id' => $request->instructor_id
+        ]);
+        return redirect()->route('competencias.index')->with('success','competencia actualizada exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy( Competencia $competencia)
     {
-        //
-        competencia::destroy($id);
-        return redirect('competencias');
+        $competencia->delete();
+        return redirect()->route('competencias.index')->with('danger','competencia eliminada exitosamente');
     }
 }
