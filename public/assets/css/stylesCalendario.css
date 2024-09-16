@@ -20,6 +20,10 @@
   border-radius: 50px;
 }
 
+body{
+  background-color: rgb(rgb(211, 211, 211), rgb(73, 73, 73), rgb(68, 68, 69));
+}
+
 .container {
   position: relative;
   width: 1200px;
