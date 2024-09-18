@@ -1,10 +1,11 @@
-@extends('layouts.app') 
+@extends('layouts.app')
 
 @section('content')
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('assets/css/stylesCalendario.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/stylesCalendario.css') }}">
+
     <body>
-    <!-- <h1>Calendario de Eventos</h1> -->
+        <!-- <h1>Calendario de Eventos</h1> -->
         <div class="container">
             <div class="left">
                 <div class="calendar">
@@ -43,31 +44,83 @@
                         <div class="title">Añadir evento</div>
                         <i class="fas fa-times close"></i>
                     </div>
-                    <div class="add-event-body">
-                        <div class="add-event-input">
-                            <input type="text" placeholder="Nombre del evento" class="event-name" />
+                    <form action="{{ route('events.store') }}" method="post">
+                        @csrf
+                        <div class="add-event-body">
+                            <div class="add-event-input">
+                                <label for="nombre">Nombre de la clase</label>
+                                <input type="text" placeholder="Nombre de la clase" class="event-name" name="nombre"
+                                    required />
+                            </div>
+                            <div class="add-event-input">
+                                <label for="ficha_id">Numero de ficha</label>
+                                <select name="ficha_id" required class="form-select">
+                                    <option value="" selected> Seleccione uno...</option>
+                                    @foreach ($fichas as $ficha)
+                                        <option value="{{ $ficha->id }}">{{ $ficha->noFicha }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="add-event-input">
+                                <label for="fecha_inicio">Fecha inicial</label>
+                                <input type="date" name="fecha_inicio" required>
+                            </div>
+                            <div id="check-form">
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Monday"
+                                        id="Monday">
+                                    <label for="Monday" class="form-check-label">Lunes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Tuesday"
+                                        id="Tuesday">
+                                    <label for="Tuesday" class="form-check-label">Martes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Wednesday" id="Wednesday">
+                                    <label for="Wednesday" class="form-check-label">Miercoles</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Thursday" id="Thursday">
+                                    <label for="Thursday" class="form-check-label">Jueves</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Friday" id="Friday">
+                                    <label for="Friday" class="form-check-label">Viernes</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Saturday" id="Saturday">
+                                    <label for="Saturday" class="form-check-label">Sabado</label>
+                                </div>
+                            </div>
+                            <div class="add-event-input">
+                                <input type="time" name="hora_inicio" required min="06:30" max="18:00">
+                                <input type="time" name="hora_final" required min="07:00" max="21:00">
+                            </div>
+                            {{-- <div class="add-event-input"></div> --}}
+                            {{-- <div class="add-event-input">
+                                <input type="text" placeholder="Desde" class="event-time-from" />
+                            </div>
+                            <div class="add-event-input">
+                                <input type="text" placeholder="Hasta" class="event-time-to" />
+                            </div> --}}
                         </div>
-                        <div class="add-event-input">
-                            <input type="text" placeholder="Desde" class="event-time-from" />
+                        <div class="add-event-footer">
+                            <button type="submit" class="add-event-btn">Crear</button>
                         </div>
-                        <div class="add-event-input">
-                            <input type="text" placeholder="Hasta" class="event-time-to" />
-                        </div>
-                    </div>
-                    <div class="add-event-footer">
-                        <button class="add-event-btn">Añadir</button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <button class="add-event">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
-    </div>
+        </div>
     @section('scripts')
-            <script src="{{ asset('assets/js/calendary.js') }}"></script>
+        <script src="{{ asset('assets/js/calendary.js') }}"></script>
     @endsection
 </body>
+
 </html>
 
 @endsection
