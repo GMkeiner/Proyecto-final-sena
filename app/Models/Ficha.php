@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Competencia;
 use App\Models\Aprendiz;
 use App\Models\Nota;
-use App\Models\Asistencias;
+use App\Models\Event;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Ficha extends Model
@@ -29,7 +29,7 @@ class Ficha extends Model
     {
         return $this->belongsToMany(Competencia::class,'notas','ficha_id','competencia_id')->as('notas')->withPivot('notas')->using(Nota::class);
     }
-    public function asistencia(): HasMany{
-        return $this->hasMany(Asistencias::class);
+    public function event(): HasMany{
+        return $this->hasMany(Event::class);
     }
 }

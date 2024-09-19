@@ -7,6 +7,19 @@
         <form action="{{ route('asistencias.store') }}" method="POST">
             @csrf
 
+            <div class="container">
+                <label for="id_ficha">Ficha</label>
+                <select name="id_ficha" id="id_ficha" required>
+                    <option value="" selected> Seleccione una ficha...</option>
+                    @foreach ($fichas as $ficha)
+                        <option value="{{$ficha->id}}">{{$ficha->noFicha}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="container">
+
+            </div>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -18,7 +31,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($aprendices as $aprendiz)
+                    {{-- @foreach($aprendices as $aprendiz)
                         <tr class="text-center">
                             <input type="hidden" name="asistencias[{{ $aprendiz->id }}][id_aprendiz]" value="{{ $aprendiz->id }}">
 
@@ -45,11 +58,8 @@
                                 <input type="text" name="asistencias[{{ $aprendiz->id }}][datos_asistencia][excusa]" class="form-control" placeholder="Ingrese excusa">
                             </td>
 
-                            {{-- <td> --}}
-                                <!-- Sección de acciones, si es necesario -->
-                            {{-- </td> --}}
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
             <div class="d-flex align-items-start">
@@ -58,4 +68,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/asistencia.js') }}"></script>
 @endsection

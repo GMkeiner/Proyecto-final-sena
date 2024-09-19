@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asistencias;
 use App\Models\Aprendiz;
 use App\Models\Event;
+use App\Models\Ficha;
 use Illuminate\Http\Request;
 
 class AsistenciasController extends Controller
@@ -17,9 +18,8 @@ class AsistenciasController extends Controller
 
     public function create()
     {
-        $aprendices = Aprendiz::all();
-        $events = Event::all(); // Carga todos los eventos
-        return view('asistencias.create', compact('aprendices', 'events'));
+        $ficha = Ficha::all(['id','noFicha']);
+        return view('asistencias.create',['fichas'=>$ficha]);
     }
 
     
