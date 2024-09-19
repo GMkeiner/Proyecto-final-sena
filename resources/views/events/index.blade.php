@@ -53,7 +53,7 @@
                                     required />
                             </div>
                             <div class="add-event-input">
-                                <label for="ficha_id">Numero de ficha</label>
+                                <label for="ficha_id">Numero de la ficha</label>
                                 <select name="ficha_id" required class="form-select">
                                     <option value="" selected> Seleccione uno...</option>
                                     @foreach ($fichas as $ficha)
@@ -66,33 +66,32 @@
                                 <input type="date" name="fecha_inicio" required>
                             </div>
                             <div id="check-form">
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Monday"
-                                        id="Monday">
+                                <div class="form-check">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Monday" id="Monday">
                                     <label for="Monday" class="form-check-label">Lunes</label>
                                 </div>
-                                <div class="form-check form-check-inline">
-                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Tuesday"
-                                        id="Tuesday">
+                                <div class="form-check">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="Tuesday" id="Tuesday">
                                     <label for="Tuesday" class="form-check-label">Martes</label>
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <div class="form-check">
                                     <input type="checkbox" name="dias[]" class="form-check-input" value="Wednesday" id="Wednesday">
-                                    <label for="Wednesday" class="form-check-label">Miercoles</label>
+                                    <label for="Wednesday" class="form-check-label">Miércoles</label>
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <div class="form-check">
                                     <input type="checkbox" name="dias[]" class="form-check-input" value="Thursday" id="Thursday">
                                     <label for="Thursday" class="form-check-label">Jueves</label>
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <div class="form-check">
                                     <input type="checkbox" name="dias[]" class="form-check-input" value="Friday" id="Friday">
                                     <label for="Friday" class="form-check-label">Viernes</label>
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <div class="form-check">
                                     <input type="checkbox" name="dias[]" class="form-check-input" value="Saturday" id="Saturday">
-                                    <label for="Saturday" class="form-check-label">Sabado</label>
+                                    <label for="Saturday" class="form-check-label">Sábado</label>
                                 </div>
                             </div>
+
                             <div class="add-event-input">
                                 <input type="time" name="hora_inicio" required min="06:30" max="18:00">
                                 <input type="time" name="hora_final" required min="07:00" max="21:00">
