@@ -118,6 +118,16 @@
         </div>
     @section('scripts')
         <script src="{{ asset('assets/js/calendary.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @session('success')
+        <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ $value }}' ,
+                    confirmButtonText: 'Aceptar'
+                });
+        </script>
+        @endsession
     @endsection
 </body>
 
