@@ -12,8 +12,8 @@ class AsistenciasController extends Controller
 {
     public function index()
     {
-        $asistencias = Asistencias::with(['aprendiz', 'event'])->get();
-        return view('asistencias.index', compact('asistencias'));
+        $asistencias = Asistencias::with(['ficha.aprendices'])->get();
+        return view('asistencias.index', ['asistencias'=>$asistencias]);
     }
 
     public function create()
@@ -34,27 +34,37 @@ public function edit($id)
 
         public function store(Request $request)
 {
+    // dd($request);
     $request->validate([
+        'id_ficha' => 'required|integer|exists:fichas,id',
+        'mes' => 'required|integer|between:1,11',
+        'nombre' => 'required|string|max:200',
+        'dia' => 'required|integer|between:1,31',
+        'hora_inicial' => 'required|string|max:7',
+        'hora_final' => 'required|string|max:7',
         'asistencias.*.id_aprendiz' => 'required|exists:aprendizs,id',
-        'asistencias.*.id_event' => 'required|exists:events,id',
         'asistencias.*.datos_asistencia' => 'required|array',
         'asistencias.*.datos_asistencia.asistio' => 'boolean',
         'asistencias.*.datos_asistencia.no_asistio' => 'boolean',
         'asistencias.*.datos_asistencia.excusa' => 'nullable|string',
     ]);
 
-    foreach ($request->input('asistencias') as $asistenciaData) {
+    foreach ($request->asistencias as $asistenciaData) {
         // dd($asistenciaData);
-        Asistencias::updateOrCreate(
-            [
-                'id_aprendiz' => $asistenciaData['id_aprendiz'],
-                'id_event' => $asistenciaData['id_event']
-            ],
-            [
-                'datos_asistencia' => $asistenciaData['datos_asistencia'],
-            ]
-        );
+        if(array_key_exists('no_asistio',$asistenciaData['datos_asistencia'])){
+            $no_asistieron[] = $asistenciaData;
+        }else{
+            $asistieron[] = $asistenciaData;
+        }
     }
+    // dd($no_asistieron, $asistieron);
+    Asistencias::Create([
+        'ficha_id' => $request->id_ficha,
+        'asistieron' => $asistieron,
+        'no_asistieron' => $no_asistieron,
+        'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
+    ]);
+    
 
     return redirect()->route('asistencias.index')->with('success', 'Asistencias registradas exitosamente.');
 }

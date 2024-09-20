@@ -15,9 +15,44 @@
                 </tr>
             </thead>
             <tbody class="text-center">
-                @foreach ($asistencias as $asistencia)
+                @foreach($asistencias as $asistencia)
                     <tr>
-                        {{-- <td>{{ $asistencia->aprendiz->nombre }}</td>
+                        <td>{{ $asistencia->ficha->noFicha }}</td>
+                        <td> <ul>
+                            <li><b>Nombre:</b> {{$asistencia->evento[0]}}</li>
+                            <li><b>Mes:</b> {{ $asistencia->evento[1] }}</li>
+                            <li><b>Dia:</b> {{ $asistencia->evento[2] }}</li>
+                            <li><b>Hora inicial:</b> {{ $asistencia->evento[3] }}</li>
+                            <li><b>Hora final:</b> {{ $asistencia->evento[4] }}</li>
+                        </ul></td>
+                        <td> @foreach($asistencia->asistieron as $aprendiz )
+                            <!-- {{$aprendiz["id_aprendiz"]}} -->
+                            {{$asistencia->ficha->aprendices->where('id','=',$aprendiz["id_aprendiz"])->first()->nombre }}  
+                            {{$asistencia->ficha->aprendices->where('id','=',$aprendiz["id_aprendiz"])->first()->apellido }}
+                            @if($loop->last)
+                                .
+                            @else
+                                ,
+                            @endif
+                        @endforeach
+                    </td>
+                    <td>
+                        @foreach($asistencia->no_asistieron as $aprendiz )
+                            <!-- {{$aprendiz["id_aprendiz"]}} -->
+                            {{$asistencia->ficha->aprendices->where('id','=',$aprendiz["id_aprendiz"])->first()->nombre }}  
+                            {{$asistencia->ficha->aprendices->where('id','=',$aprendiz["id_aprendiz"])->first()->apellido }}
+                        @endforeach
+                        @if($loop->last)
+                            .
+                        @else
+                            ,
+                        @endif
+                    </td>
+                    </tr>
+                @endforeach
+                {{-- <!-- @foreach ($asistencias as $asistencia)
+                    <tr>
+                         
                         <td>{{ $asistencia->event->name}}</td>
                         <td>{{ isset($asistencia->datos_asistencia['asistio']) && $asistencia->datos_asistencia['asistio'] ? 'Sí' : 'No' }}</td>
                         <td>{{ isset($asistencia->datos_asistencia['no_asistio']) && $asistencia->datos_asistencia['no_asistio'] ? 'Sí' : 'No' }}</td>
@@ -28,10 +63,23 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger col-3">Eliminar</button>
                             </form>
-                        </td> --}}
+                        </td> 
                     </tr>
-                @endforeach
+                @endforeach -->--}}
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        @session('success')
+        <script>
+                Swal.fire({
+                    icon: 'success',
+                    title: '{{ $value }}' ,
+                    confirmButtonText: 'Aceptar'
+                });
+        </script>
+        @endsession
 @endsection

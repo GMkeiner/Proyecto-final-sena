@@ -20,6 +20,12 @@ ficha.addEventListener('change', async (Event) => {
                 select.name = "mes";
                 select.id = "mes";
                 select.required = true;
+                let input_hora_inicial = document.createElement("input");
+                let input_hora_final = document.createElement("input");
+                input_hora_inicial.name = "hora_inicial";
+                input_hora_final.name = "hora_final";
+                input_hora_inicial.type = "hidden";
+                input_hora_final.type = "hidden";
                 // console.log(Object.keys(element["mes1"]),Object.keys(element["mes2"]),Object.keys(element["mes3"]));
                 let meses = [].concat(Object.keys(element["mes1"]), Object.keys(element["mes2"]), Object.keys(element["mes3"]));
                 let mesesUnicos = [... new Set(meses)];
@@ -82,6 +88,8 @@ ficha.addEventListener('change', async (Event) => {
                         option_unic.innerHTML = Object.keys(clasesOriginal)[0];
                         select2.append(option_unic);
                         container.append(select2);
+                        input_hora_inicial.value = element["hora"][Object.keys(clasesOriginal)[0]][0];
+                        input_hora_final.value = element["hora"][Object.keys(clasesOriginal)[0]][1];
                         for (let dia of clasesOriginal[Object.keys(clasesOriginal)[0]]) {
                             let option_dia = document.createElement('option');
                             option_dia.value = dia;
@@ -118,13 +126,17 @@ ficha.addEventListener('change', async (Event) => {
                             select2.append(option_clases);
                             container.append(select2);
                         }
+                        input_hora_inicial.value = '';
+                        input_hora_final.value = '';
                         select2.addEventListener('change', (Event) => {
-                            let clase_actual = Event.target.value;
+                            const clase_actual = Event.target.value;
                             remove2 = document.getElementById("dia");
                             if (remove2) {
                                 let hola = container.removeChild(remove2);
                                 // console.log(hola);
                             }
+                            input_hora_inicial.value = element["hora"][clase_actual][0];
+                            input_hora_final.value = element["hora"][clase_actual][1];
                             // console.log(clasesOriginal[clase_actual]);
                             select3.innerHTML = '';
                             for (let dia of clasesOriginal[clase_actual]) {
@@ -151,6 +163,8 @@ ficha.addEventListener('change', async (Event) => {
                 label_mes.htmlFor = "mes";
                 label_mes.innerHTML = "Mes: ";
                 label_mes.className = "col-form-label";
+                container.append(input_hora_inicial);
+                container.append(input_hora_final);
                 container.append(label_mes);
                 container.append(select);
             });
@@ -180,6 +194,7 @@ ficha.addEventListener('change', async (Event) => {
                 input3.className = "form-control";
                 input1.name = `asistencias[${aprendice["id"]}][datos_asistencia][asistio]`;
                 input2.name = `asistencias[${aprendice["id"]}][datos_asistencia][no_asistio]`;
+                input3.name = `asistencias[${aprendice["id"]}][datos_asistencia][excusa]`;
                 celda1.innerHTML = aprendice["id"];
                 celda2.innerHTML = aprendice["nombre"] +' '+ aprendice["apellido"];
                 celda3.className = "text-center";
