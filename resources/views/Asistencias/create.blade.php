@@ -7,18 +7,32 @@
         <form action="{{ route('asistencias.store') }}" method="POST">
             @csrf
 
+            <div class="container m-2">
+                <label for="id_ficha" class="col-form-label">Ficha</label>
+                <select name="id_ficha" id="id_ficha" class=" w-50 form-select" required>
+                    <option value="" selected> Seleccione una ficha...</option>
+                    @foreach ($fichas as $ficha)
+                        <option value="{{$ficha->id}}">{{$ficha->noFicha}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div id="container" class='container m-3'>
+
+            </div>
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th class="table-success text-center">Id</th>
                         <th class="table-success text-center">Estudiante</th>
-                        <th class="table-success text-center">Evento</th>
+                        {{-- <th class="table-success text-center">Evento</th> --}}
                         <th class="table-success text-center">Asistió</th>
                         <th class="table-success text-center">No Asistió</th>
                         <th class="table-success text-center">Excusa</th>
                     </tr>
                 </thead>
-                <tbody>
-                    @foreach($aprendices as $aprendiz)
+                <tbody id="tabla">
+                    {{-- @foreach($aprendices as $aprendiz)
                         <tr class="text-center">
                             <input type="hidden" name="asistencias[{{ $aprendiz->id }}][id_aprendiz]" value="{{ $aprendiz->id }}">
 
@@ -45,11 +59,8 @@
                                 <input type="text" name="asistencias[{{ $aprendiz->id }}][datos_asistencia][excusa]" class="form-control" placeholder="Ingrese excusa">
                             </td>
 
-                            {{-- <td> --}}
-                                <!-- Sección de acciones, si es necesario -->
-                            {{-- </td> --}}
                         </tr>
-                    @endforeach
+                    @endforeach --}}
                 </tbody>
             </table>
             <div class="d-flex align-items-start">
@@ -58,4 +69,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/asistencia.js') }}"></script>
 @endsection

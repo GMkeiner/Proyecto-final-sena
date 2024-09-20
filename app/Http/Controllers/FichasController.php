@@ -48,10 +48,11 @@ class FichasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ficha $ficha)
+    public function show(Ficha $ficha)
     {
-        //
 
+        // dd($ficha->event);
+        return \json_encode(['eventos' => $ficha->event, 'aprendices' => $ficha->aprendices]);
     }
 
     /**

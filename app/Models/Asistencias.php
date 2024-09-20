@@ -3,22 +3,21 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Asistencias extends Model
 {
-    protected $fillable = ['id_aprendiz', 'id_event', 'datos_asistencia'];
+    protected $fillable = ['ficha_id', 'asistieron', 'no_asistieron', 'evento'];
 
-    protected $casts = [
-        'datos_asistencia' => 'array',
-    ];
-
-    public function aprendiz()
-    {
-        return $this->belongsTo(Aprendiz::class, 'id_aprendiz');
+    public function ficha(): BelongsTo{
+        return $this->belongsTo(Ficha::class);
     }
-
-    public function event()
+    
+    protected function casts(): array
     {
-        return $this->belongsTo(Event::class, 'id_event');
+        return [
+            'asistieron' => 'array',
+            'no_asistieron' => 'array',
+            'evento' => 'array',
+        ];
     }
 }
