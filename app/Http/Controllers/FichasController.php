@@ -52,7 +52,7 @@ class FichasController extends Controller
     {
 
         // dd($ficha->event);
-        return $ficha->event;
+        return \json_encode(['eventos' => $ficha->event, 'aprendices' => $ficha->aprendices]);
     }
 
     /**

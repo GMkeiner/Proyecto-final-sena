@@ -7,16 +7,16 @@
         <form action="{{ route('asistencias.store') }}" method="POST">
             @csrf
 
-            <div class="container">
-                <label for="id_ficha">Ficha</label>
-                <select name="id_ficha" id="id_ficha" required>
+            <div class="container m-2">
+                <label for="id_ficha" class="col-form-label">Ficha</label>
+                <select name="id_ficha" id="id_ficha" class=" w-50 form-select" required>
                     <option value="" selected> Seleccione una ficha...</option>
                     @foreach ($fichas as $ficha)
                         <option value="{{$ficha->id}}">{{$ficha->noFicha}}</option>
                     @endforeach
                 </select>
             </div>
-            <div id="container">
+            <div id="container" class='container m-3'>
 
             </div>
 
@@ -24,7 +24,7 @@
                 <thead>
                     <tr>
                         <th class="table-success text-center">Estudiante</th>
-                        <th class="table-success text-center">Evento</th>
+                        {{-- <th class="table-success text-center">Evento</th> --}}
                         <th class="table-success text-center">Asistió</th>
                         <th class="table-success text-center">No Asistió</th>
                         <th class="table-success text-center">Excusa</th>
