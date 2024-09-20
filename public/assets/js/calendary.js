@@ -1,3 +1,4 @@
+// no se concreto los eventos por lo tanto no muestra los datos en el calendario
 const calendar = document.querySelector(".calendar"),
   date = document.querySelector(".date"),
   daysContainer = document.querySelector(".days"),
