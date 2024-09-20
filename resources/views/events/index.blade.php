@@ -19,23 +19,42 @@
 
     </script>
     <title>FullCalendar Tutorial</title>
-    
+
     <div style="max-width: 1000px; margin: auto" id='calendar'></div>
         <div class="right">
             <div class="events"></div>                
             </div>
         </div>
-        <form action="{{ route('events.store') }}" method="post">
+        <div class="row">
+        <div class="col d-flex justify-content-end">
+                <div class="mx-auto p-4">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#eventModal">
+                        Crear Evento
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title ms-auto text-center d-flex" id="eventModalLabel">Crear Evento</h5>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('events.store') }}" method="post" class="form">
                     @csrf
                     <div class="add-event-body">
                         <div class="add-event-input">
                             <label for="nombre">Nombre de la clase</label>
-                            <input type="text" placeholder="Nombre de la clase" class="event-name" name="nombre" required />
+                            <input type="text" placeholder="Nombre de la clase" class="form-control" name="nombre" required />
                         </div>
 
                         <div class="add-event-input">
-                            <label for="ficha_id">Numero de la ficha</label>
-                            <select name="ficha_id" required class="form-select">
+                            <label for="ficha_id">Número de la ficha</label>
+                            <select name="ficha_id" required class="form-control">
                                 <option value="" selected>Seleccione uno...</option>
                                 @foreach ($fichas as $ficha)
                                     <option value="{{ $ficha->id }}">{{ $ficha->noFicha }}</option>
@@ -45,47 +64,39 @@
 
                         <div class="add-event-input">
                             <label for="fecha_inicio">Fecha inicial</label>
-                            <input type="date" name="fecha_inicio" required>
+                            <input type="date" name="fecha_inicio" class="form-control" required>
                         </div>
 
-                        <div id="check-form">
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Monday" id="Monday">
-                                <label for="Monday" class="form-check-label">Lunes</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Tuesday" id="Tuesday">
-                                <label for="Tuesday" class="form-check-label">Martes</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Wednesday" id="Wednesday">
-                                <label for="Wednesday" class="form-check-label">Miércoles</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Thursday" id="Thursday">
-                                <label for="Thursday" class="form-check-label">Jueves</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Friday" id="Friday">
-                                <label for="Friday" class="form-check-label">Viernes</label>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="dias[]" class="form-check-input" value="Saturday" id="Saturday">
-                                <label for="Saturday" class="form-check-label">Sábado</label>
-                            </div>
+                        <div id="check-form" class="mb-3">
+                            @foreach (['Monday' => 'Lunes', 'Tuesday' => 'Martes', 'Wednesday' => 'Miércoles', 'Thursday' => 'Jueves', 'Friday' => 'Viernes', 'Saturday' => 'Sábado'] as $value => $label)
+                                <div class="form-check">
+                                    <input type="checkbox" name="dias[]" class="form-check-input" value="{{ $value }}" id="{{ $value }}">
+                                    <label for="{{ $value }}" class="form-check-label">{{ $label }}</label>
+                                </div>
+                            @endforeach
                         </div>
 
                         <div class="add-event-input">
-                            <input type="time" name="hora_inicio" required min="06:30" max="18:00">
-                            <input type="time" name="hora_final" required min="07:00" max="21:00">
+                            <label for="hora_inicio">Hora inicial</label>
+                            <input type="time" name="hora_inicio" class="form-control" required min="06:30" max="18:00">
+                        </div>
+                        
+                        <div class="add-event-input">
+                            <label for="hora_final">Hora final...</label>
+                            <input type="time" name="hora_final" class="form-control" required min="07:00" max="21:00">
                         </div>
                     </div>
-
-                    <div class="add-event-footer">
-                        <button type="submit" class="add-event-btn">Crear</button>
+                    <div class="add-event-footer mt-3">
+                        <button type="submit" class="btn btn-success">Crear</button>
                     </div>
                 </form>
+            </div>
+        </div>
     </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 @endsection
 
 @section('scripts')
