@@ -156,7 +156,46 @@ ficha.addEventListener('change', async (Event) => {
             });
         }
         function aprendices(aprendices){
-
+            let tabla = document.getElementById("tabla");
+            for (let aprendice of aprendices) {
+                let fila = document.createElement("tr");
+                let celda1 = document.createElement("td");
+                let celda2 = document.createElement("td");
+                let celda3 = document.createElement("td");
+                let celda4 = document.createElement("td");
+                let celda5 = document.createElement("td");
+                let input0 = document.createElement("input");
+                let input1 = document.createElement("input");
+                let input2 = document.createElement("input");
+                let input3 = document.createElement("input");
+                input0.type = "hidden";
+                input0.value = `${aprendice["id"]}`;
+                input0.name = `asistencias[${aprendice["id"]}][id_aprendiz]`;
+                input1.type = "checkbox";
+                input2.type = "checkbox";
+                input1.value = 1;
+                input2.value = 1;
+                input3.type = "text";
+                input3.placeholder = "Ingresar excusa";
+                input3.className = "form-control";
+                input1.name = `asistencias[${aprendice["id"]}][datos_asistencia][asistio]`;
+                input2.name = `asistencias[${aprendice["id"]}][datos_asistencia][no_asistio]`;
+                celda1.innerHTML = aprendice["id"];
+                celda2.innerHTML = aprendice["nombre"] +' '+ aprendice["apellido"];
+                celda3.className = "text-center";
+                celda4.className = "text-center";
+                celda3.append(input1);
+                celda4.append(input2);
+                celda5.append(input3);
+                fila.append(input0);
+                fila.append(celda1);
+                fila.append(celda2);
+                fila.append(celda3);
+                fila.append(celda4);
+                fila.append(celda5);
+                fila.className = "text-center";
+                tabla.append(fila);
+            }
         }
         eventos(json["eventos"]);
         aprendices(json["aprendices"]);

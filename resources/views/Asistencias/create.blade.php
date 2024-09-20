@@ -23,6 +23,7 @@
             <table class="table table-bordered">
                 <thead>
                     <tr>
+                        <th class="table-success text-center">Id</th>
                         <th class="table-success text-center">Estudiante</th>
                         {{-- <th class="table-success text-center">Evento</th> --}}
                         <th class="table-success text-center">Asistió</th>
@@ -30,7 +31,7 @@
                         <th class="table-success text-center">Excusa</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="tabla">
                     {{-- @foreach($aprendices as $aprendiz)
                         <tr class="text-center">
                             <input type="hidden" name="asistencias[{{ $aprendiz->id }}][id_aprendiz]" value="{{ $aprendiz->id }}">
