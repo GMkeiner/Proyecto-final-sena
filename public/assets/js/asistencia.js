@@ -2,8 +2,6 @@ const ficha = document.getElementById('id_ficha');
 
 ficha.addEventListener('change', async (Event) => {
     let container = document.getElementById('container');
-    let clases_group = [];
-    console.log(Event.target.value, document.baseURI.replace('asistencias/create', 'ficha/'.concat(Event.target.value)));
     try {
         const response = await fetch(document.baseURI.replace('asistencias/create', 'fichas/'.concat(Event.target.value)),
             { method: "GET", headers: { "Content-Type": "application/json" } });
@@ -11,10 +9,19 @@ ficha.addEventListener('change', async (Event) => {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        console.log(json);
         function eventos(eventos){
-            // let eventos = json['eventos'];
-            // console.log(eventos);
+            if(container.querySelector('select#mes')){
+                container.removeChild(container.querySelector('select#mes'));
+                container.removeChild(container.querySelector('label[for="mes"]'));
+            }
+            if(container.querySelector('select#nombre')){
+                container.removeChild(container.querySelector('select#nombre'));
+                container.removeChild(container.querySelector('label[for="nombre"]'));
+            }
+            if(container.querySelector('select#dia')){
+                container.removeChild(container.querySelector('select#dia'));
+                container.removeChild(container.querySelector('label[for="dia"]'));
+            }
             eventos.forEach(element => {
                 let select = document.createElement("select");
                 select.name = "mes";
@@ -26,11 +33,9 @@ ficha.addEventListener('change', async (Event) => {
                 input_hora_final.name = "hora_final";
                 input_hora_inicial.type = "hidden";
                 input_hora_final.type = "hidden";
-                // console.log(Object.keys(element["mes1"]),Object.keys(element["mes2"]),Object.keys(element["mes3"]));
                 let meses = [].concat(Object.keys(element["mes1"]), Object.keys(element["mes2"]), Object.keys(element["mes3"]));
                 let mesesUnicos = [... new Set(meses)];
                 let mesesOrdenados = mesesUnicos.sort((a, b) => { return a - b })
-                // console.log(mesesOrdenados);
                 for (let mes of mesesOrdenados) {
                     let option = document.createElement("option");
                     option.innerHTML = mes;
@@ -45,11 +50,9 @@ ficha.addEventListener('change', async (Event) => {
                     for (let mes of mesesOriginal) {
                         let month = Object.keys(mes);
                         if (month.includes(value)) {
-                            // console.log(mes[value]);
                             clasesOriginal = mes[value];
                         }
                     }
-                    // console.log(Object.keys(clasesOriginal));
                     let select2 = document.createElement('select');
                     select2.name = "nombre";
                     select2.id = "nombre";
@@ -171,6 +174,7 @@ ficha.addEventListener('change', async (Event) => {
         }
         function aprendices(aprendices){
             let tabla = document.getElementById("tabla");
+            tabla.innerHTML = '';
             for (let aprendice of aprendices) {
                 let fila = document.createElement("tr");
                 let celda1 = document.createElement("td");
