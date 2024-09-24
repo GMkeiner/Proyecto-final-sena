@@ -11,6 +11,7 @@
                     <th class="table-success text-center">Evento</th>
                     <th class="table-success text-center">Asistieron</th>
                     <th class="table-success text-center">No Asistieron</th>
+                    <th class="table-success text-center">Excusa</th>
                     <th class="table-success text-center">Acciones</th>
                 </tr>
             </thead>
@@ -50,11 +51,32 @@
                             @endforeach
                         </td>
                         <td>
+                            @foreach ($asistencia->asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                :
+                                {{ $aprendiz['datos_asistencia']['excusa'] == null ? 'N/A' : $aprendiz['datos_asistencia']['excusa'] }}
+                                , <br>
+                            @endforeach
+                            @foreach ($asistencia->no_asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                :
+                                {{ $aprendiz['datos_asistencia']['excusa'] == null ? 'N/A' : $aprendiz['datos_asistencia']['excusa'] }}
+                                @if ($loop->last)
+                                    .
+                                @else
+                                    , <br>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
                             <a href="{{ route('asistencias.edit', $asistencia->id) }}" class="btn btn-warning">Editar</a>
-                            <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST" style="display:inline;">
+                            <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST"
+                                style="display:inline;">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger col-4">Eliminar</button>
+                                <button type="submit" class="btn btn-danger col-5">Eliminar</button>
                             </form>
                         </td>
                     </tr>

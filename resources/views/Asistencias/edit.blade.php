@@ -20,14 +20,16 @@
                 </select>
             </div>
             <div id="container" class='container m-3'>
+                <input type="hidden" name="hora_inicial" value="{{$asistencia->evento[3]}}">
+                <input type="hidden" name="hora_final" value="{{$asistencia->evento[4]}}">
                 <label for="mes" class="col-form-label">Mes:</label>
                 <select name="mes" id="mes" class="form-select w-50" required>
                     @foreach ($meses as $mes)
-                        <option value="$mes" @if ($mes == $asistencia->evento[1]) @selected(true) @endif>
+                        <option value="{{$mes}}" @if ($mes == $asistencia->evento[1]) @selected(true) @endif>
                             {{ $mes }}</option>
                     @endforeach
                 </select>
-                <label for="nombre" id="nombre" class="col-form-label">Clase:</label>
+                <label for="nombre" id="nombre_label" class="col-form-label">Clase:</label>
                 <select name="nombre" id="nombre" class="form-select w-50" required>
                     @foreach ($clases as $nombre)
                         <option value="{{ $nombre }}"
@@ -35,7 +37,7 @@
                         </option>
                     @endforeach
                 </select>
-                <label for="dia" id="dia" class="col-form-label">Dia:</label>
+                <label for="dia" id="dia_label" class="col-form-label">Dia:</label>
                 <select name="dia" id="dia" class="form-select w-50" required>
                     @foreach ($dias as $dia)
                         <option value="{{ $dia }}"
@@ -61,13 +63,13 @@
                             <input type="hidden" name="asistencias[{{$aprendiz->id}}][id_aprendiz]" value="{{$aprendiz->id}}">
                             <td>{{ $aprendiz->id }}</td>
                             <td>{{ $aprendiz->nombre }} {{ $aprendiz->apellido }}</td>
-                            <td class="text-center"><input type="checkbox" name="asistencias[{{$aprendiz->id}}][id_aprendiz][asistio]" @foreach($asistencia->asistieron as $asis)
+                            <td class="text-center"><input type="checkbox" name="asistencias[{{$aprendiz->id}}][datos_asistencia][asistio]" @foreach($asistencia->asistieron as $asis)
                                 @if (array_search($aprendiz->id,$asis)) @checked(true) @php $excusa=$asis["datos_asistencia"]["excusa"] @endphp @endif
                             @endforeach value="1"></td>
-                            <td class="text-center"><input type="checkbox" name="asistencias[{{$aprendiz->id}}][id_aprendiz][no_asistio]" @foreach($asistencia->no_asistieron as $asis)
+                            <td class="text-center"><input type="checkbox" name="asistencias[{{$aprendiz->id}}][datos_asistencia][no_asistio]" @foreach($asistencia->no_asistieron as $asis)
                                 @if (array_search($aprendiz->id,$asis)) @checked(true) @php $excusa=$asis["datos_asistencia"]["excusa"] @endphp @endif
                             @endforeach value="1"></td>
-                            <td><input type="text" placeholder="Ingrese su excusa" value="{{$excusa}}" class="form-control"></td>
+                            <td><input type="text" placeholder="Ingrese su excusa" name="asistencias[{{$aprendiz->id}}][datos_asistencia][excusa]" value="{{$excusa}}" class="form-control"></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -78,4 +80,8 @@
             </div>
         </form>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/js/asistencia_edit.js') }}"></script>
 @endsection

@@ -80,22 +80,36 @@ class AsistenciasController extends Controller
 
     public function update(Request $request, Asistencias $asistencia)
     {
+        // dd($request);
         $request->validate([
+            'id_ficha' => 'required|integer|exists:fichas,id',
+            'mes' => 'required|integer|between:1,11',
+            'nombre' => 'required|string|max:200',
+            'dia' => 'required|integer|between:1,31',
+            'hora_inicial' => 'required|string|max:7',
+            'hora_final' => 'required|string|max:7',
             'asistencias.*.id_aprendiz' => 'required|exists:aprendizs,id',
-            'asistencias.*.id_event' => 'required|exists:events,id',
             'asistencias.*.datos_asistencia' => 'required|array',
             'asistencias.*.datos_asistencia.asistio' => 'boolean',
             'asistencias.*.datos_asistencia.no_asistio' => 'boolean',
             'asistencias.*.datos_asistencia.excusa' => 'nullable|string',
         ]);
 
-        foreach ($request->input('asistencias') as $asistenciaData) {
-            $asistencia->update([
-                'id_aprendiz' => $asistenciaData['id_aprendiz'],
-                'id_event' => $asistenciaData['id_event'],
-                'datos_asistencia' => $asistenciaData['datos_asistencia'],
-            ]);
+        foreach ($request->asistencias as $asistenciaData) {
+            // dd($asistenciaData);
+            if (array_key_exists('no_asistio', $asistenciaData['datos_asistencia'])) {
+                $no_asistieron[] = $asistenciaData;
+            } else {
+                $asistieron[] = $asistenciaData;
+            }
         }
+
+        $asistencia->update([
+            'ficha_id' => $request->id_ficha,
+            'asistieron' => $asistieron,
+            'no_asistieron' => $no_asistieron,
+            'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
+        ]);
 
         return redirect()->route('asistencias.index')->with('success', 'Asistencias actualizadas exitosamente.');
     }
