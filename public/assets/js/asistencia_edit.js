@@ -1,27 +1,180 @@
+const mes = document.getElementById("mes");
+// const clase = document.getElementById("nombre");
 const ficha = document.getElementById('id_ficha');
+const regular = document.baseURI.replace(/asistencias\/[0-9]+\/edit/, 'fichas/'.concat(document.getElementById('id_ficha').value));
+// console.log(regular);
+try {
+    async function peticion() {
 
-ficha.addEventListener('change', async (Event) => {
-    let container = document.getElementById('container');
-    try {
-        const response = await fetch(document.baseURI.replace('asistencias/create', 'fichas/'.concat(Event.target.value)),
+        const response = await fetch(document.baseURI.replace(/asistencias\/[0-9]+\/edit/, 'fichas/'.concat(ficha.value)),
             { method: "GET", headers: { "Content-Type": "application/json" } });
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        function eventos(eventos){
-            if(container.querySelector('select#mes')){
-                container.removeChild(container.querySelector('select#mes'));
-                container.removeChild(container.querySelector('label[for="mes"]'));
+        let container = document.getElementById("container");
+        let input_hora_inicial = container.querySelector("input[name='hora_inicial']");
+        let input_hora_final = container.querySelector("input[name='hora_final']");
+        let nombre = container.querySelector("select#nombre");
+        if (nombre.childElementCount > 1) {
+            nombre.addEventListener('change', clase)
+        }
+        function clase(event){
+            const clase_actual = event.target.value;
+                // remove2 = document.getElementById("dia");
+                // if (remove2) {
+                //     container.removeChild(remove2);
+                //     // console.log(hola);
+                // }
+                let mesesOriginal = [].concat(json["eventos"][0]["mes1"], json["eventos"][0]["mes2"], json["eventos"][0]["mes3"]);
+                // console.log(json["eventos"]);
+                let clasesOriginal;
+                for (let mes_0 of mesesOriginal) {
+                    let month = Object.keys(mes_0);
+                    // console.log(mes_0,mes.value);
+                    if (month.includes(mes.value)) {
+                        clasesOriginal = mes_0[mes.value];
+                    }
+                }
+                input_hora_inicial.value = json["eventos"][0]["hora"][clase_actual][0];
+                input_hora_final.value = json["eventos"][0]["hora"][clase_actual][1];
+                let select3 = container.querySelector('select#dia');
+                console.log(select3)
+                if(select3){
+                  select3.innerHTML = '';  
+                }
+                // console.log(clasesOriginal)
+                for (let dia of clasesOriginal[clase_actual]) {
+                    let option_dia = document.createElement('option');
+                    option_dia.value = dia;
+                    option_dia.innerHTML = dia;
+                    select3.append(option_dia);
+                }
+        }
+        
+        mes.addEventListener('change', (Event) => {
+            const mes_value = Event.target.value;
+            container.removeChild(container.querySelector('label[for="dia"]'));
+            container.removeChild(container.querySelector('select#dia'));
+
+
+            nombre.innerHTML = '';
+
+            function events(eventos) {
+                eventos.forEach(element => {
+                    let mesesOriginal = [].concat(element["mes1"], element["mes2"], element["mes3"]);
+                    let clasesOriginal;
+                    for (let mes of mesesOriginal) {
+                        let month = Object.keys(mes);
+                        if (month.includes(mes_value)) {
+                            clasesOriginal = mes[mes_value];
+                        }
+                    }
+                    let select3 = document.createElement('select');
+                    select3.name = "dia";
+                    select3.id = "dia";
+                    select3.required = true;
+                    select3.className = "form-select";
+                    select3.classList.add("w-50");
+                    if (Object.keys(clasesOriginal).length === 1) {
+                        nombre.removeEventListener('change',clase);
+                        let option_unic = document.createElement('option');
+                        option_unic.value = Object.keys(clasesOriginal)[0];
+                        option_unic.innerHTML = Object.keys(clasesOriginal)[0];
+                        nombre.append(option_unic);
+                        input_hora_inicial.value = element["hora"][Object.keys(clasesOriginal)[0]][0];
+                        input_hora_final.value = element["hora"][Object.keys(clasesOriginal)[0]][1];
+                        for (let dia of clasesOriginal[Object.keys(clasesOriginal)[0]]) {
+                            let option_dia = document.createElement('option');
+                            option_dia.value = dia;
+                            option_dia.innerHTML = dia;
+                            select3.append(option_dia);
+                        }
+                        if (!document.getElementById('dia_label')) {
+                            let label_dia = document.createElement('label');
+                            label_dia.htmlFor = "dia";
+                            label_dia.innerHTML = "Dia: ";
+                            label_dia.className = "col-form-label";
+                            label_dia.id = 'dia_label';
+                            container.append(label_dia);
+                        }
+                        container.append(select3);
+                    } else {
+                        nombre.removeEventListener('change',clase);
+                        input_hora_inicial.value = '';
+                        input_hora_final.value = '';
+                        for (let clases of Object.keys(clasesOriginal)) {
+                            let option_clases = document.createElement('option');
+                            option_clases.value = clases;
+                            option_clases.innerHTML = clases;
+                            nombre.append(option_clases);
+                            // container.append(select2);
+                        }
+                        nombre.addEventListener('change', (Event) => {
+                            const clase_actual = Event.target.value;
+                            remove2 = document.getElementById("dia");
+                            if (remove2) {
+                                container.removeChild(remove2);
+                                // console.log(hola);
+                            }
+                            input_hora_inicial.value = element["hora"][clase_actual][0];
+                            input_hora_final.value = element["hora"][clase_actual][1];
+                            select3.innerHTML = '';
+                            for (let dia of clasesOriginal[clase_actual]) {
+                                let option_dia = document.createElement('option');
+                                option_dia.value = dia;
+                                option_dia.innerHTML = dia;
+                                select3.append(option_dia);
+                            }
+                            if (!document.getElementById('dia_label')) {
+                                let label_dia = document.createElement('label');
+                                label_dia.htmlFor = "dia";
+                                label_dia.innerHTML = "Dia: ";
+                                label_dia.className = "col-form-label";
+                                label_dia.id = 'dia_label';
+                                container.append(label_dia);
+                            }
+                            container.append(select3);
+                        })
+                    }
+                });
             }
-            if(container.querySelector('select#nombre')){
-                container.removeChild(container.querySelector('select#nombre'));
-                container.removeChild(container.querySelector('label[for="nombre"]'));
-            }
-            if(container.querySelector('select#dia')){
-                container.removeChild(container.querySelector('select#dia'));
-                container.removeChild(container.querySelector('label[for="dia"]'));
-            }
+
+            events(json["eventos"])
+        })
+        // console.log(clase.childElementCount);
+        
+
+
+    }
+
+    peticion();
+} catch (error) {
+    console.error(error)
+}
+let container = document.getElementById("container");
+ficha.addEventListener('change', async (Event) => {
+    try {
+        const response = await fetch(document.baseURI.replace(/asistencias\/[0-9]+\/edit/, 'fichas/'.concat(Event.target.value)),
+            { method: "GET", headers: { "Content-Type": "application/json" } });
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const json = await response.json();
+        function eventos(eventos) {
+            // if (container.querySelector('select#mes')) {
+            //     container.removeChild(container.querySelector('select#mes'));
+            //     container.removeChild(container.querySelector('label[for="mes"]'));
+            // }
+            // if (container.querySelector('select#nombre')) {
+            //     container.removeChild(container.querySelector('select#nombre'));
+            //     container.removeChild(container.querySelector('label[for="nombre"]'));
+            // }
+            // if (container.querySelector('select#dia')) {
+            //     container.removeChild(container.querySelector('select#dia'));
+            //     container.removeChild(container.querySelector('label[for="dia"]'));
+            // }
+            container.innerHTML = '';
             eventos.forEach(element => {
                 let select = document.createElement("select");
                 select.name = "mes";
@@ -172,52 +325,7 @@ ficha.addEventListener('change', async (Event) => {
                 container.append(select);
             });
         }
-        function aprendices(aprendices){
-            let tabla = document.getElementById("tabla");
-            tabla.innerHTML = '';
-            for (let aprendice of aprendices) {
-                let fila = document.createElement("tr");
-                let celda1 = document.createElement("td");
-                let celda2 = document.createElement("td");
-                let celda3 = document.createElement("td");
-                let celda4 = document.createElement("td");
-                let celda5 = document.createElement("td");
-                let input0 = document.createElement("input");
-                let input1 = document.createElement("input");
-                let input2 = document.createElement("input");
-                let input3 = document.createElement("input");
-                input0.type = "hidden";
-                input0.value = `${aprendice["id"]}`;
-                input0.name = `asistencias[${aprendice["id"]}][id_aprendiz]`;
-                input1.type = "checkbox";
-                input2.type = "checkbox";
-                input1.value = 1;
-                input2.value = 1;
-                input3.type = "text";
-                input3.placeholder = "Ingresar excusa";
-                input3.className = "form-control";
-                input1.name = `asistencias[${aprendice["id"]}][datos_asistencia][asistio]`;
-                input2.name = `asistencias[${aprendice["id"]}][datos_asistencia][no_asistio]`;
-                input3.name = `asistencias[${aprendice["id"]}][datos_asistencia][excusa]`;
-                celda1.innerHTML = aprendice["id"];
-                celda2.innerHTML = aprendice["nombre"] +' '+ aprendice["apellido"];
-                celda3.className = "text-center";
-                celda4.className = "text-center";
-                celda3.append(input1);
-                celda4.append(input2);
-                celda5.append(input3);
-                fila.append(input0);
-                fila.append(celda1);
-                fila.append(celda2);
-                fila.append(celda3);
-                fila.append(celda4);
-                fila.append(celda5);
-                fila.className = "text-center";
-                tabla.append(fila);
-            }
-        }
         eventos(json["eventos"]);
-        aprendices(json["aprendices"]);
     } catch (error) {
         console.error(error);
     }

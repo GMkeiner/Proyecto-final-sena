@@ -11,13 +11,79 @@
                     <th class="table-success text-center">Evento</th>
                     <th class="table-success text-center">Asistieron</th>
                     <th class="table-success text-center">No Asistieron</th>
+                    <th class="table-success text-center">Excusa</th>
                     <th class="table-success text-center">Acciones</th>
                 </tr>
             </thead>
             <tbody class="text-center">
                 @foreach ($asistencias as $asistencia)
                     <tr>
-                        {{-- <td>{{ $asistencia->aprendiz->nombre }}</td>
+                        <td>{{ $asistencia->ficha->noFicha }}</td>
+                        <td>
+                            <ul>
+                                <li><b>Nombre:</b> {{ $asistencia->evento[0] }}</li>
+                                <li><b>Mes:</b> {{ $asistencia->evento[1] }}</li>
+                                <li><b>Dia:</b> {{ $asistencia->evento[2] }}</li>
+                                <li><b>Hora inicial:</b> {{ $asistencia->evento[3] }}</li>
+                                <li><b>Hora final:</b> {{ $asistencia->evento[4] }}</li>
+                            </ul>
+                        </td>
+                        <td>
+                            @foreach ($asistencia->asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                @if ($loop->last)
+                                    .
+                                @else
+                                    ,
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($asistencia->no_asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                @if ($loop->last)
+                                    .
+                                @else
+                                    ,
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($asistencia->asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                :
+                                {{ $aprendiz['datos_asistencia']['excusa'] == null ? 'N/A' : $aprendiz['datos_asistencia']['excusa'] }}
+                                , <br>
+                            @endforeach
+                            @foreach ($asistencia->no_asistieron as $aprendiz)
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->nombre }}
+                                {{ $asistencia->ficha->aprendices->where('id', '=', $aprendiz['id_aprendiz'])->first()->apellido }}
+                                :
+                                {{ $aprendiz['datos_asistencia']['excusa'] == null ? 'N/A' : $aprendiz['datos_asistencia']['excusa'] }}
+                                @if ($loop->last)
+                                    .
+                                @else
+                                    , <br>
+                                @endif
+                            @endforeach
+                        </td>
+                        <td>
+                            <a href="{{ route('asistencias.edit', $asistencia->id) }}" class="btn btn-warning">Editar</a>
+                            <form action="{{ route('asistencias.destroy', $asistencia->id) }}" method="POST"
+                                style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger col-5">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                {{-- <!-- @foreach ($asistencias as $asistencia)
+                    <tr>
+                         
                         <td>{{ $asistencia->event->name}}</td>
                         <td>{{ isset($asistencia->datos_asistencia['asistio']) && $asistencia->datos_asistencia['asistio'] ? 'Sí' : 'No' }}</td>
                         <td>{{ isset($asistencia->datos_asistencia['no_asistio']) && $asistencia->datos_asistencia['no_asistio'] ? 'Sí' : 'No' }}</td>
@@ -28,10 +94,23 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger col-3">Eliminar</button>
                             </form>
-                        </td> --}}
+                        </td> 
                     </tr>
-                @endforeach
+                @endforeach --> --}}
             </tbody>
         </table>
     </div>
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @session('success')
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '{{ $value }}',
+                confirmButtonText: 'Aceptar'
+            });
+        </script>
+    @endsession
 @endsection
