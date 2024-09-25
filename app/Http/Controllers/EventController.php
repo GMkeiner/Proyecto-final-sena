@@ -7,12 +7,25 @@ use App\Models\Ficha;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
-
+use DateTime;
 class EventController extends Controller
 {
 
+    public function fechas_inicial($mes,$dia,$h_incial)
+    {
+        $fecha_inicio = Carbon::create(2024,array_key_first($mes), $dia, $h_incial->format('H'), $h_incial->format('i'));
+        $start = $fecha_inicio->format('Y-m-d H:i');
+        return $start;
+    }
+    public function fechas_final($mes,$dia,$h_final)
+    {
+        $fecha_fin = Carbon::create(2024, array_key_first($mes), $dia, $h_final->format('H'), $h_final->format('i'));
+        $end = $fecha_fin->format('Y-m-d H:i');
+        return $end;
+    }
     public function index()
 {
+
     // $events = Event::with('dates')->get();
     // foreach ($events as $event) {
     //     foreach ($event->dates as $date) {
@@ -21,7 +34,63 @@ class EventController extends Controller
     //     }
     // }
     $fichas = Ficha::all();
-    return view('events.index', ['fichas'=>$fichas]);
+    $all_events=Event::all();
+    $events=[];
+    // dd($all_events);
+    foreach ($all_events as $event) {
+        //se consigue los dias que toca para cada mes
+
+
+        $valores_mes1 = $event->mes1[array_key_first($event->mes1)][array_key_first($event->mes1[array_key_first($event->mes1)])];
+        $valores_mes2 = $event->mes2[array_key_first($event->mes2)][array_key_first($event->mes2[array_key_first($event->mes2)])];
+        $valores_mes3 = $event->mes3[array_key_first($event->mes3)][array_key_first($event->mes3[array_key_first($event->mes3)])];
+
+        // dd($valores_mes1,
+        // $valores_mes2,
+        // $valores_mes3);
+
+         //se consigue la horas
+        $hora = $event->hora[array_key_first($event->hora)];
+        $hora_inicio = intval($hora[0]);
+        $hora_final = intval($hora[1]);
+        $dia1= $valores_mes1[0];
+        $hora_inicial = DateTime::createFromFormat('H:i', $hora[0]);
+        $hora_final = DateTime::createFromFormat('H:i', $hora[1]);
+        // Formatear la fecha en el formato que necesitas
+
+        $ficha = Ficha::find($event->ficha_id);
+        $nombre_materia=$event->mes1[array_key_first($event->mes1)];
+        $materia=array_key_first($nombre_materia);
+        foreach ($valores_mes1 as $v1) {
+            $start = $this->fechas_inicial($event->mes1, $v1, $hora_inicial);
+            $end = $this->fechas_final($event->mes1, $v1, $hora_final);
+            $events[]=[
+                'title'=>$materia.' F:'.(string) $ficha->noFicha,
+                'start'=>$start,
+                'end'=>$end
+            ];
+
+        }
+        foreach ($valores_mes2 as $v2) {
+            $start = $this->fechas_inicial($event->mes2, $v2, $hora_inicial);
+            $end = $this->fechas_final($event->mes2, $v2, $hora_final);
+            $events[]=[
+                'title'=>$materia.' F:'.(string) $ficha->noFicha,
+                'start'=>$start,
+                'end'=>$end
+            ];
+        }
+        foreach ($valores_mes3 as $v3) {
+            $start = $this->fechas_inicial($event->mes3, $v3, $hora_inicial);
+            $end = $this->fechas_final($event->mes3, $v3, $hora_final);
+            $events[]=[
+                'title'=>$materia.' F:'.(string) $ficha->noFicha,
+                'start'=>$start,
+                'end'=>$end
+            ];
+        }
+    }
+    return view('events.index', ['fichas'=>$fichas],compact('events'));
 }
 
 
@@ -74,7 +143,7 @@ public function store(Request $request)
     }
     if(count($meses) < 3){
         return redirect()->route('events.index')->with('success', 'Perdon, pero la fecha introducida causa conflictos con el servido /n por favor introdusca una diferente');
-    }    
+    }
     $mes1= array_keys($meses)[0];
     $mes2= array_keys($meses)[1];
     $mes3= array_keys($meses)[2];
@@ -140,7 +209,7 @@ public function store(Request $request)
     // dd($evento->mes1,$evento->mes2,$evento->mes3);
     $evento->save();
     return redirect()->route('events.index')->with('success', 'El evento '.$request->nombre.' fue guardado con exito');
-    
+
     // $event = Event::create([
     //     'name' => $request->name,
     //     'description' => $request->description,

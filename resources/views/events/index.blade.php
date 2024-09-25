@@ -6,23 +6,23 @@
 
     <div class="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
-    <script>
-      
-      document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
-        });
-        calendar.render();
-      });
 
-    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var calendarEl = document.getElementById('calendar');
+          var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            events: @json($events) // Use the correct variable name here
+          });
+          calendar.render();
+        });
+      </script>
+
     <title>FullCalendar Tutorial</title>
 
     <div style="max-width: 1000px; margin: auto" id='calendar'></div>
         <div class="right">
-            <div class="events"></div>                
+            <div class="events"></div>
             </div>
         </div>
         <div class="row">
@@ -80,7 +80,7 @@
                             <label for="hora_inicio">Hora inicial</label>
                             <input type="time" name="hora_inicio" class="form-control" required min="06:30" max="18:00">
                         </div>
-                        
+
                         <div class="add-event-input">
                             <label for="hora_final">Hora final...</label>
                             <input type="time" name="hora_final" class="form-control" required min="07:00" max="21:00">
@@ -94,14 +94,14 @@
         </div>
     </div>
 </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('assets/js/calendary.js') }}"></script>
-      <script src="{{ asset('assets/js/calendary.js') }}"></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js'></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @session('success')
         <script>
