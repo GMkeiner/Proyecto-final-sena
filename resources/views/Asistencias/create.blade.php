@@ -16,9 +16,7 @@
                     @endforeach
                 </select>
             </div>
-            <div id="container" class='container m-3'>
-
-            </div>
+            <div id="container" class='container m-3'></div>
 
             <table class="table table-bordered">
                 <thead>
