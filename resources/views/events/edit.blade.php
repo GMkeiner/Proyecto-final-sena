@@ -4,11 +4,11 @@
 @section('content')
 <div class="container">
     <h1>Editar Evento</h1>
-    
+
     <form action="{{ route('events.update', $event) }}" method="POST">
         @csrf
         @method('PUT')
-        
+
         <div class="form-group">
             <label for="name">Nombre</label>
             <input type="text" id="name" name="name" class="form-control" value="{{ old('name', $event->name) }}" required>
@@ -41,10 +41,10 @@
         @enderror
 
         <button type="submit" class="btn btn-primary mt-3 w-25">Actualizar Evento</button>
-        
+
     </form>
-    
-    
+
+
 </div>
 
 <script>

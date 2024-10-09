@@ -1,0 +1,735 @@
+[33mcommit d5812f8e3c36c6343dbcd44aed9348b3a1fe31a8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mluis[m[33m)[m
+Merge: 2d00e28 dce3a71
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Wed Sep 25 01:08:32 2024 -0500
+
+    Resolved merge conflict in .env.example
+
+[33mcommit 2d00e28e93b3a21ac51c2667865e51f74fa25434[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Wed Sep 25 01:02:16 2024 -0500
+
+    Muestra de materias de todas las fichas en admin calendario
+
+[33mcommit dce3a7161250b135188f694e5c2fbf2d7aa5a1ac[m[33m ([m[1;31morigin/luis[m[33m)[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Tue Sep 24 12:55:39 2024 -0500
+
+    Asistencias funciona completamente
+
+[33mcommit bb82342dca98640fc89a521e7dda9f09e6189a62[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Mon Sep 23 16:22:31 2024 -0500
+
+    Avances en asistencias, update deshabilitado por ahora
+    
+    y env.example recuperado.
+
+[33mcommit 6c6796f9e7f715d3465429ccce34d1e83f8cdc67[m
+Merge: 4f75ecf 41c73ab
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Mon Sep 23 14:04:23 2024 -0500
+
+    Poniendome al dia con el main
+    
+    (Y recolocar de nuevo el env.example).
+
+[33mcommit 41c73ab620bae4afb6574caa61371c16e0bdbf49[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 20 16:23:20 2024 -0500
+
+    Formulario de eventos arreglado
+
+[33mcommit 4f75ecfce80233e39749fb672dc74d1872905ac9[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Sep 20 14:16:03 2024 -0500
+
+    Ajuste final para la create_asistencia
+
+[33mcommit 16eb9c5fb7b2739d02e2187f34964b5c976b18f0[m
+Author: sneyder <sneydermunoz1997@gmail.com>
+Date:   Fri Sep 20 12:03:08 2024 -0500
+
+    Calendario con full calendar
+
+[33mcommit 442b728b72f9e99244c91e10ce60d7d65c4227fb[m
+Author: xrafatest <xrafa794@gmail.com>
+Date:   Fri Sep 20 12:02:06 2024 -0500
+
+    Asistencias guardadas y mostradas
+
+[33mcommit 2b2757e698d76efa21f63e76e9bc9bd51709065d[m
+Merge: c2125a6 744d8a0
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Fri Sep 20 10:46:13 2024 -0500
+
+    Merge pull request #30 from GMkeiner/luis
+    
+    Asistencia y eventos
+
+[33mcommit 744d8a011c9de4b66761e96e742caaaade5e8c20[m
+Author: xrafatest <xrafa794@gmail.com>
+Date:   Fri Sep 20 10:44:13 2024 -0500
+
+    Avances en asistencia.js y rumbo al controlador
+
+[33mcommit 215931a77bca96744663ab28bdd25a42ae957aa3[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 19 22:10:08 2024 -0500
+
+    Avances en el js para asistencias
+    
+    A punto de guardar.
+
+[33mcommit c923c1f3c50186c28040854c45396d52bf1a3c8f[m
+Merge: 8b832d0 03106a6
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 19 17:14:10 2024 -0500
+
+    Merge branch 'luis' of https://github.com/GMkeiner/Proyecto-final-sena into luis
+
+[33mcommit 8b832d07951bd73a9e39aa7f9e63a3c90d8d3289[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 19 17:13:40 2024 -0500
+
+    Guardado rapido
+    
+    Aun falta muchas cosas.
+
+[33mcommit 03106a6e0c01fe8f6cd592f4ecb12518b3fff21c[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Thu Sep 19 17:10:09 2024 -0500
+
+    Diseño formulario de calendario
+
+[33mcommit fa2d52aa512854607f658e4e098a1f220a92d32f[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Thu Sep 19 16:51:58 2024 -0500
+
+    Diseño formulario de calendario
+
+[33mcommit 374b3201f81df040814074084c0ca1423d7b6524[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Thu Sep 19 16:49:56 2024 -0500
+
+    Diseño formulario de calendario
+
+[33mcommit 1ff90c401ba3f4eccb98c6c5de423037dcb65bf7[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 19 12:35:50 2024 -0500
+
+    Guardado de evento listo.
+    
+    ¿Pero a que precio? 😥
+
+[33mcommit 92cda5c7afab97de6dd694c4e8507b4c1c6783e5[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Wed Sep 18 17:40:00 2024 -0500
+
+    Avances en guardado de trimestres en eventos
+    
+    Pero hay que cambiar la tabla event.
+
+[33mcommit c2125a6c60f65dc2d637604303d3ea8ae99f30d7[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Tue Sep 17 13:25:53 2024 -0500
+
+    Problema de encuestas resuelto
+
+[33mcommit c4bccdb88e15c7aa4849822a05d3718147f3b43f[m
+Merge: 20b741a 00c1e03
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Mon Sep 16 16:51:28 2024 -0500
+
+    Merge branch 'luis' of https://github.com/GMkeiner/Proyecto-final-sena into luis
+
+[33mcommit 20b741aa24a426092a531ce4469a13ef1822c4bd[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Mon Sep 16 16:51:01 2024 -0500
+
+    Ajustes en modelos y tablas de Evento y Asistencia
+    
+    Para que reciban los nuevos datos de la pagina.
+
+[33mcommit 00ac1510e0091dc3610bfc4b266014e3522e7541[m
+Merge: 0e1dd9e 00c1e03
+Author: Keiner_#code <127789870+GMkeiner@users.noreply.github.com>
+Date:   Mon Sep 16 16:18:01 2024 -0500
+
+    Merge pull request #29 from GMkeiner/luis
+    
+    Luis
+
+[33mcommit 00c1e030154235924b59aa0d75f1b96ee266e501[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Mon Sep 16 16:17:20 2024 -0500
+
+    Conexion a PWA
+
+[33mcommit 9fd5bd53e783bf8d0ea924505400b3a48819a9fa[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Mon Sep 16 15:48:17 2024 -0500
+
+    borrador de archivo prueba
+
+[33mcommit 0e1dd9ed510c252672eeafc26f023234fda99d50[m
+Merge: 814c2d5 0e24651
+Author: Keiner_#code <127789870+GMkeiner@users.noreply.github.com>
+Date:   Mon Sep 16 15:09:16 2024 -0500
+
+    Merge pull request #28 from GMkeiner/luis
+    
+    Calendario agregado a eventos.
+
+[33mcommit 0e246511d09b7bef89e3878ec16affe4073b7811[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Mon Sep 16 15:01:55 2024 -0500
+
+    Se agrego el calendario solo falta que se envie a la BD y falta tambien las asistencias
+
+[33mcommit dd98c7b77b3b75d7b3004135fd3e05f45de77bca[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Sun Sep 15 17:55:17 2024 -0500
+
+    Calendario agregado a eventos.
+    
+    Por arreglar.
+
+[33mcommit 814c2d56a4ba245cb451c5398fa6976b6d68e6bd[m
+Merge: 064154f b09e1bf
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Sun Sep 15 17:24:21 2024 -0500
+
+    Problema en encuestas resuelto
+    
+    Y ajustes varios
+
+[33mcommit b09e1bf007684c4470e87a0e07721698ae4e8fc9[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Sun Sep 15 17:14:28 2024 -0500
+
+    Problema en encuestas resuelto.
+
+[33mcommit c0f08e5b1cdb1f160f25a22f12373e4f0296e8b1[m
+Merge: 9ecc621 064154f
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Sun Sep 15 15:40:09 2024 -0500
+
+    Merge pull request #26 from GMkeiner/main
+    
+    sweet alert
+
+[33mcommit 064154fad88d15414e47beda18557dc38e9e3957[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 17:30:55 2024 -0500
+
+    Se Agrego el sweep alert a la vista de encuesta
+
+[33mcommit f6aa6fa689cd01231fd666b6ec9b432dcd1b502f[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 16:28:01 2024 -0500
+
+    Trabajar en la BD porque el campo aprendiz_id se repite
+
+[33mcommit 8d78fa816ea9eec53c977cf626c9a03aea760644[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 16:24:03 2024 -0500
+
+    Trabajar en la BD porque el campo aprendiz_id se repite
+
+[33mcommit de173cecb50b6730e724cd93d17fa20c7e3e909d[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 15:14:01 2024 -0500
+
+    Se hiso la conexion a la base de datos de la vista encuestas
+
+[33mcommit 9ecc621bf098aacef5aebf42a146b70c42cdf483[m
+Merge: 074c8b9 70b8107
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Sep 13 14:08:37 2024 -0500
+
+    Merge branch 'main' into luis
+
+[33mcommit 70b81074e4f199d2729527d18c1babf0df771004[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 14:07:26 2024 -0500
+
+    Se arreglo el error de asitencias
+
+[33mcommit 074c8b971758049fd71060305a1698cdf83d8e80[m
+Merge: bd9cb93 1bacaf9
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Sep 13 14:03:36 2024 -0500
+
+    Merge branch 'main' into luis
+
+[33mcommit 1bacaf9d6fa964736aa16e80e7832da50b080868[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 13 14:02:31 2024 -0500
+
+    .env agregado
+
+[33mcommit bd9cb936cd9852825dff837d0e371630f6dc55c3[m
+Merge: bab582b 4098cb7
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Sep 13 13:56:39 2024 -0500
+
+    Merge branch 'main' into luis
+
+[33mcommit 4098cb73cd8394cfa6bca89b312960d91ad6f779[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Thu Sep 12 16:53:40 2024 -0500
+
+    Se implemento la encuesta ahora falta que funcione y se guarden los datos en la BD
+
+[33mcommit bab582bf1497d8ceed82bad15a4af20dc9bdbf67[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Wed Sep 11 17:00:59 2024 -0500
+
+    Ajustes varios
+
+[33mcommit 3a2c08a6617d2ef2211006e35ea00a5685f5395a[m
+Merge: 4ef70fc 42bc15c
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Wed Sep 11 14:01:31 2024 -0500
+
+    Merge pull request #24 from GMkeiner/main
+    
+    Detalles terminados
+
+[33mcommit 42bc15c299c56cde12267bf2c355a0d30a588dbf[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Sep 6 14:03:47 2024 -0500
+
+    Detalles terminados
+
+[33mcommit 4ef70fc345afd2f43e69913d7aa267b29d30dae8[m
+Merge: f2e3594 ba4a0c2
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Fri Sep 6 10:58:11 2024 -0500
+
+    Merge pull request #21 from GMkeiner/main
+    
+    Integracion de asistencia.
+
+[33mcommit ba4a0c2c539f94fa8afc0577f5820f8a1db8730c[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Sep 6 10:52:24 2024 -0500
+
+    Integración de CRUD asistencias (con fechas)
+    
+    Hecho por Santiago Jose Villalobos Guerra.
+
+[33mcommit 9877973a7a9d1a6fdff148075e9491e280a3aaea[m
+Merge: 216d8a6 f2e3594
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Sep 5 11:32:38 2024 -0500
+
+    Merge pull request #20 from GMkeiner/luis
+    
+    Ajustes en Login y Notas.index
+
+[33mcommit f2e3594b1311bf649e188dec2184d699e401442d[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 5 11:29:52 2024 -0500
+
+    Ajustes en notas y Login
+    
+    y base de datos (ligero).
+
+[33mcommit 861ce12574980119f1c846d671a3f6d5ec1e1c12[m
+Merge: 380da21 216d8a6
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Sep 5 09:23:11 2024 -0500
+
+    Al dia con el Main
+    
+    .env.example restaurado (otra vez).
+
+[33mcommit 216d8a6e03ff153b98e15681b7c9af1891cdcb78[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Sep 5 09:16:06 2024 -0500
+
+    Recuperando lo que se perdió en el merge
+
+[33mcommit 8ce314d4f69faf67743257a86626bef7276befb1[m
+Merge: 4231ec7 380da21
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Sep 5 09:11:36 2024 -0500
+
+    Merge pull request #18 from GMkeiner/luis
+    
+    Ajustes en Aprendiz, Ficha, Nota y el diseño.
+
+[33mcommit 380da21f46f5979388156a11f8cb88e0cb6d6e4e[m
+Merge: ddb5463 4231ec7
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Sep 5 09:09:53 2024 -0500
+
+    Merge branch 'main' into luis
+
+[33mcommit 4231ec73c1d30f1ea4c48d651eafd9b7b16f3cbb[m
+Merge: 25f1ef8 a764936
+Author: Keiner_#code <127789870+GMkeiner@users.noreply.github.com>
+Date:   Wed Sep 4 16:08:52 2024 -0500
+
+    Merge pull request #17 from GMkeiner/keiner
+    
+    Nuevos ajustes en el diseño
+
+[33mcommit a764936c69324ac110b144d209c3fc36d35560d2[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Wed Sep 4 16:01:07 2024 -0500
+
+    Nuevos ajustes en el diseño
+
+[33mcommit ddb5463f8cfabc4b12b882a7168bdeeaed03309e[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Tue Sep 3 15:35:08 2024 -0500
+
+    Ajustes a CRUD Notas y un poco del diseño.
+
+[33mcommit bf4aed7aa1729aafb75da2b88aa3540e0c956525[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Aug 30 16:35:41 2024 -0500
+
+    Ajustes en CRUD Aprendiz, Fichas y Notas
+    
+    La ultima esta sin acabar
+
+[33mcommit fff832c2d14907cc4f4184dd7dd4400c6e329211[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Aug 30 12:16:22 2024 -0500
+
+    Ajustes en CRUD competencias
+    
+    y Instructores, todo en camino a ajustar las notas.
+
+[33mcommit 25f1ef85b36b7ba532c6fcb51daff8a1f3ae5813[m
+Merge: 43eed4b 8cb2d5b
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Aug 29 17:09:32 2024 -0500
+
+    Merge pull request #16 from GMkeiner/luis
+    
+    Vista y funciones de las notas listas.
+
+[33mcommit 8cb2d5b17e0443a5f646e99c35e472070b35d791[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Aug 29 17:05:03 2024 -0500
+
+    Ajustes en distintas partes del código
+    
+    Login, Instructores y Notas
+
+[33mcommit ebcb3c1517d3044d160b49fdb4dd5066fb27fe0c[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Aug 22 16:49:27 2024 -0500
+
+    Login funcional
+    
+    y ajustes en el crud de notas(incompleto ...creo)
+
+[33mcommit 370ee4e7cd6d616dd7527bdd6a819643a72d6ec7[m
+Merge: 8ab1e88 43eed4b
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Aug 22 13:52:16 2024 -0500
+
+    Merge pull request #15 from GMkeiner/main
+    
+    Actualizacion del login con nuevo diseño.
+
+[33mcommit 8ab1e880b3903794e50b68da372d4669550bef45[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Wed Aug 21 16:57:39 2024 -0500
+
+    CRUD notas-competencias(parte3)
+    
+    Completado, pero puede mejorar.
+
+[33mcommit b6e1926a011156fa2332e0c1a1d8aeb6ecea716d[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Aug 16 17:08:48 2024 -0500
+
+    CRUD notas-competencias(parte2)
+    
+    Ya guarda en la base de datos. Trabajando en poder mostrarlas.
+
+[33mcommit 43eed4be203c151781d21f685f7ca45feb51c516[m
+Merge: fdf5cb2 305d9c9
+Author: Keiner_10 <127789870+GMkeiner@users.noreply.github.com>
+Date:   Fri Aug 16 16:29:22 2024 -0500
+
+    Merge pull request #14 from GMkeiner/keiner
+    
+    Se implemento el login en el proyecto
+
+[33mcommit 305d9c9b73e91b5de79011cb0e65eadf6cbfad30[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Fri Aug 16 16:23:48 2024 -0500
+
+    Se implemento el login en el proyecto
+
+[33mcommit 2021105459939ffaf0ae48b16a6be207e35cc157[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Aug 15 17:17:26 2024 -0500
+
+    CRUD notas-competencias(parte 1)
+    
+    Tabla lista, en espera del front.
+
+[33mcommit fdf5cb2a144e47b3136268841630c7790951c185[m
+Merge: ae9d512 35bd873
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Fri Aug 2 17:12:02 2024 -0500
+
+    Merge pull request #13 from GMkeiner/luis
+    
+    Solucion en fichas lista, sin mas problemas con el pivote(creo).
+
+[33mcommit 35bd873d0d06d0a6715ca570dc295b952a6e6a03[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Aug 2 17:10:00 2024 -0500
+
+    Solucion a error en vista fichas.index
+
+[33mcommit 30e4464a289b37bbf6f787d1baf9943b78bde30b[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Aug 2 16:18:33 2024 -0500
+
+    intentos en index fichas
+
+[33mcommit ae9d5125e00d48db7a642f6045c26831f6664de3[m
+Merge: d7d83d3 bce23dc
+Author: JuanGuzmendoza <135450510+JuanGuzmendoza@users.noreply.github.com>
+Date:   Thu Aug 1 22:27:39 2024 -0500
+
+    Merge pull request #12 from GMkeiner/Guzman
+    
+    Crud Ficha ya usa tabla pivote
+
+[33mcommit bce23dc5c6b1824059aa1b3990f8069cffa34bbe[m[33m ([m[1;31morigin/Guzman[m[33m)[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Aug 1 17:16:38 2024 -0500
+
+    Crud Ficha ya usa tabla pivote
+    
+    Hay que seguir en el índex para editar y eliminar la tabla pivote.
+
+[33mcommit d7d83d3348e4e4ed615d50972ea78d21c6ae7192[m
+Merge: 55a527e 061a285
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Wed Jul 31 16:54:35 2024 -0500
+
+    Merge pull request #10 from GMkeiner/luis
+    
+    Ajustes en los Cruds aprendiz e instructor
+
+[33mcommit 061a285c7ec2c8349e26c0ae737e02a035f11054[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Wed Jul 31 16:51:08 2024 -0500
+
+    Ajustes en CRUD aprendiz e instructor
+    
+    para actualizaciones con User.
+
+[33mcommit 062590113defc5dfc82da93c522d726442a456a8[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Wed Jul 31 14:59:19 2024 -0500
+
+    CRUD Instructor preparado
+    
+    Y pequeñas cosas extras
+
+[33mcommit 55a527e60b625e37d57b6d4cef0e6e12f872816b[m
+Merge: 293df4b ec71ef7
+Author: JuanGuzmendoza <135450510+JuanGuzmendoza@users.noreply.github.com>
+Date:   Sun Jul 28 22:18:11 2024 -0500
+
+    Merge pull request #9 from GMkeiner/luis
+    
+    Cambio de diseño de los crud y implementacion de los mismos en el menu lateral
+
+[33mcommit ec71ef70dc1ead1fd5659c5e1edeb2bb7c2b6eed[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sun Jul 28 22:14:54 2024 -0500
+
+    Cambio de diseño de los crud y implementacion de los mismos en el menu lateral
+
+[33mcommit 293df4b231b8d8992dfe46ea09431ad03f9bbe76[m
+Merge: 542add2 a8a4fd7
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Sun Jul 28 15:32:26 2024 -0500
+
+    Merge pull request #8 from GMkeiner/luis
+    
+    relacion de usuarios con aprendices y avances en CRUD administrador
+
+[33mcommit a8a4fd7e3b7ce7c336cd98e3047e37119561f8ef[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 17:00:48 2024 -0500
+
+    relacion de usuarios con aprendices y avances en CRUD administrador
+
+[33mcommit 542add2a74aa09510aa30978d0e1a983c949a7fe[m
+Merge: bf08b86 ff8de08
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Jul 25 16:08:46 2024 -0500
+
+    Merge pull request #7 from GMkeiner/luis
+    
+    refactorizacion de las migraciones y relaciones de los modelos
+
+[33mcommit ff8de08563d848c915b1b8b36839be7522053b2b[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 16:05:58 2024 -0500
+
+    refactorizacion de las migraciones y relaciones de los modelos y mejora en la vista
+
+[33mcommit bf08b86c53df13dab05047631a5da61bd0e5e73b[m
+Merge: 8d07e4e 6fc2523
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Jul 25 14:58:23 2024 -0500
+
+    Merge pull request #6 from GMkeiner/luis
+    
+    .env.example añadido
+
+[33mcommit 6fc2523a7ca2b91a7e2b3789c670c05154c9952d[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 14:57:15 2024 -0500
+
+    .env.example añadido
+
+[33mcommit 8d07e4efc60577f4a23544c39a98b14b40f29fc9[m
+Merge: 2fa30cd 26d23f2
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Jul 25 14:55:09 2024 -0500
+
+    Merge pull request #5 from GMkeiner/luis
+    
+    Rutas, vistas y controladores preparados.
+
+[33mcommit 26d23f2be5ef5899cbce70bbf9df562caecfa02e[m
+Merge: a45a439 2fa30cd
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Jul 25 14:54:35 2024 -0500
+
+    Merge branch 'main' into luis
+
+[33mcommit a45a439adf4a76d4a85bb38cc44def1b722fc887[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 14:47:09 2024 -0500
+
+    controladores preparados
+
+[33mcommit 58f2dcebdf2d05c9b5588546e15b5120f2189e0a[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 14:44:34 2024 -0500
+
+    rutas y vistas preparadas
+
+[33mcommit 2fa30cdfc738e98618035770789b65114eb2f680[m
+Merge: f431823 386ce0f
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Thu Jul 25 14:40:30 2024 -0500
+
+    Merge pull request #4 from GMkeiner/luis
+    
+    cambios en la database (pero no sera el ultimo aqui)
+
+[33mcommit 386ce0f388eedee491d9ae2987f91d37243c26c6[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Thu Jul 25 14:37:49 2024 -0500
+
+    cambios en la database
+
+[33mcommit f431823390c4eb8a4782765f9557a68e9ab83a3a[m
+Merge: 17822f3 f722f2e
+Author: ldavid23 <127422959+ldavid23@users.noreply.github.com>
+Date:   Mon Jul 22 12:18:00 2024 -0500
+
+    Merge pull request #3 from GMkeiner/luis
+    
+    Base de datos lista
+
+[33mcommit f722f2ee3c7847bb74277d2ef618f8ab2b8b1a35[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Mon Jul 22 12:16:42 2024 -0500
+
+    Base de datos lista
+    
+    Cambiar notas mas tarde
+
+[33mcommit 17822f346bc24d0f7205bfac81a4bb274056525e[m
+Merge: f0d675f 30a155d
+Author: Keiner_10 <127789870+GMkeiner@users.noreply.github.com>
+Date:   Mon Jul 22 11:15:11 2024 -0500
+
+    Merge pull request #2 from GMkeiner/Guzman
+    
+    Guzman
+
+[33mcommit 30a155db3508b05dd43e59df566fc8ff3fcaa0ba[m
+Merge: 3523ce1 f02d3c3
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Mon Jul 22 00:07:50 2024 -0500
+
+    Guardar con firebase
+
+[33mcommit 3523ce1751b6c16c5e85c5872714f63b355696d6[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Mon Jul 22 00:02:55 2024 -0500
+
+    Guardar Crud de firebase
+
+[33mcommit f02d3c3fa59a67208d9c91dfb9d10198588da14f[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sat Jul 20 18:00:00 2024 -0500
+
+    conexion con firebase
+
+[33mcommit 6581191912a2b5c4d41e6d6f2ca24a7e0bcf6d8d[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sat Jul 20 17:57:25 2024 -0500
+
+    conexion con firebase
+
+[33mcommit f71481c0c450894963c8af76a3aae38097ff8c90[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sat Jul 20 17:36:44 2024 -0500
+
+    Remove firebase.json and add to .gitignore
+
+[33mcommit d54f235d6c201f5cb323323a544fe627324076a7[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sat Jul 20 17:19:11 2024 -0500
+
+    Conexion a firebase
+
+[33mcommit 8175ed5775b844b3698e9c99407f81c66abe2af9[m
+Author: JuanGuzmendoza <juanguzman10102005@gmail.com>
+Date:   Sat Jul 20 17:08:46 2024 -0500
+
+    Conexion con proyecto de firebase
+
+[33mcommit f0d675f81fccd0aed39cc1164d811971dbc888d8[m
+Merge: 075a20d e703fc3
+Author: Keiner_10 <127789870+GMkeiner@users.noreply.github.com>
+Date:   Sat Jul 20 12:10:07 2024 -0500
+
+    Merge pull request #1 from GMkeiner/luis
+    
+    roles y permisos creados
+
+[33mcommit e703fc321776ea43d03a09399098c1519246c33e[m
+Author: ldavid23 <ldavidjb05@gmail.com>
+Date:   Fri Jul 19 16:23:16 2024 -0500
+
+    roles y permisos creados
+
+[33mcommit 075a20d40a9e62a70e851f91e1a40cf393705794[m
+Author: Gmkeiner <munozpallareskeinerjose@gmail.com>
+Date:   Thu Jul 18 16:37:05 2024 -0500
+
+    Se empezara pronto
