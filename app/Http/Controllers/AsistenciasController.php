@@ -68,8 +68,8 @@ class AsistenciasController extends Controller
         // dd($no_asistieron, $asistieron);
         Asistencias::Create([
             'ficha_id' => $request->id_ficha,
-            'asistieron' => $asistieron,
-            'no_asistieron' => $no_asistieron,
+            'asistieron' => $asistieron ?? " ",
+            'no_asistieron' => $no_asistieron ?? " ",
             'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
         ]);
 
