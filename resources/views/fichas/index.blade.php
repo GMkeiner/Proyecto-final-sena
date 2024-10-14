@@ -4,7 +4,7 @@
     <div class="container py-4 border border-1">
         <div class="container-sm my-3">
             <h2>Listado de fichas</h2>
-            <a href="{{ url('fichas/create') }}" class="btn btn-primary btn-sm">Nuevo registro</a>
+            <a href="{{ url('fichas/create') }}" class="btn btn-primary btn-sm">Nueva Ficha</a>
         </div>
 
         <table class="table table-hover table-bordered">

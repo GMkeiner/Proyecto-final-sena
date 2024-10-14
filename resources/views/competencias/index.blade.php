@@ -5,7 +5,7 @@
         <div class="container py-4 border border-1">
             <div class="container-sm my-3">
                 <h2>Listado de Competencias</h2>
-                <a href="{{ route('competencias.create') }}" class="btn btn-primary btn-sm">Nuevo registro</a>
+                <a href="{{ route('competencias.create') }}" class="btn btn-primary btn-sm">Nueva competencia</a>
             </div>
             <table class="table table-hover table-bordered">
                 <thead class="thead-light">

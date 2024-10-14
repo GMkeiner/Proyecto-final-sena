@@ -66,12 +66,23 @@ class AsistenciasController extends Controller
             }
         }
         // dd($no_asistieron, $asistieron);
+
+        // Codigo de luis
+        // Asistencias::Create([
+        //     'ficha_id' => $request->id_ficha,
+        //     'asistieron' => $asistieron ?? " ",
+        //     'no_asistieron' => $no_asistieron ?? " ",
+        //     'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
+        // ]);
+
+        // CODIGO ANONIMO IGUAL AL DE LUIS PERO CON ALGUNAS COSAS ADICIONALES
         Asistencias::Create([
             'ficha_id' => $request->id_ficha,
-            'asistieron' => $asistieron ?? " ",
-            'no_asistieron' => $no_asistieron ?? " ",
+            'asistieron' => $asistieron ?? [], // Cambiado de " " a []
+            'no_asistieron' => $no_asistieron ?? [], // Cambiado de " " a []
             'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
         ]);
+
 
 
         return redirect()->route('asistencias.index')->with('success', 'Asistencias registradas exitosamente.');
@@ -104,12 +115,22 @@ class AsistenciasController extends Controller
             }
         }
 
+        // Codigo de luis
+        // $asistencia->update([
+        //     'ficha_id' => $request->id_ficha,
+        //     'asistieron' => $asistieron,
+        //     'no_asistieron' => $no_asistieron,
+        //     'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
+        // ]);
+
+        // CODIGO ANONIMO IGUAL AL DE LUIS PERO CON ALGUNAS COSAS ADICIONALES
         $asistencia->update([
             'ficha_id' => $request->id_ficha,
             'asistieron' => $asistieron,
             'no_asistieron' => $no_asistieron,
             'evento' => [$request->nombre, $request->mes, $request->dia, $request->hora_inicial, $request->hora_final],
         ]);
+
 
         return redirect()->route('asistencias.index')->with('success', 'Asistencias actualizadas exitosamente.');
     }

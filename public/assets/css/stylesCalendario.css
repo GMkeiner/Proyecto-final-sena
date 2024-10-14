@@ -6,7 +6,7 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  overflow: hidden;
+  /* overflow: hidden; */ /* Scroll vertical a derecha visible */
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -21,6 +21,7 @@
 }
 
 body{
+  overflow-x: hidden; /* Oculto overflow horizontal*/
   background-color: rgb(rgb(211, 211, 211), rgb(73, 73, 73), rgb(68, 68, 69));
 }
 

@@ -7,7 +7,7 @@
 }
 
 body { 
-    overflow-y: scroll;
+    overflow-x: hidden;
     background: rgb(86, 185, 77);
 }
 
@@ -111,14 +111,18 @@ input[type="radio"] {
 }
 
 /* Responsive Styles */
+
 @media (max-width: 1024px) {
     .inter {
         padding: 20px;
     }
 
     .content h1 {
+        display: flex;
+        position: relative;
+        align-items: center;
         font-size: 1.4em;
-        margin-left: 0; /* Ajustar margen para pantallas más pequeñas */
+        margin-left: -5rem; 
     }
 
     button {
