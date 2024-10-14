@@ -6,6 +6,9 @@ use App\Models\competencia;
 use App\Models\Instructores;
 use Illuminate\Http\Request;
 
+// YA TODO FUNCIONA AL 100%
+
+
 class CompetenciasController extends Controller
 {
     /**

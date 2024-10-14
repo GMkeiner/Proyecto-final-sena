@@ -8,6 +8,8 @@ use App\Models\Event;
 use App\Models\Ficha;
 use Illuminate\Http\Request;
 
+// YA TODO FUNCIONA AL 100%
+
 class AsistenciasController extends Controller
 {
     public function index()

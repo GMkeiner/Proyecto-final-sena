@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
+// YA TODO FUNCIONA AL 100%
+
 class InstructorController extends Controller
 {
     /**

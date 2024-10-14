@@ -10,6 +10,8 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DateTime;
 
+// YA TODO FUNCIONA AL 100%
+
 class EventController extends Controller
 {
 

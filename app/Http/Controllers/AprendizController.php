@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
+// YA TODO FUNCIONA AL 100%
+
 /**
  * Class AprendizController
  * @package App\Http\Controllers

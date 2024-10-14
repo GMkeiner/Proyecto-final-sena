@@ -7,6 +7,8 @@ use App\Models\Encuesta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// YA TODO FUNCIONA AL 100%
+
 class EncuestasController extends Controller
 {
     /**

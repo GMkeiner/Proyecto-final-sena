@@ -7,6 +7,8 @@ use App\Models\Instructores;
 use App\Models\Competencia;
 use Illuminate\Http\Request;
 
+// YA TODO FUNCIONA AL 100%
+
 class FichasController extends Controller
 {
     /**
