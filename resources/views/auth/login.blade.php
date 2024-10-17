@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/a2dd6045c4.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/styles.css') }}">
     <link rel="icon" href="{{asset('assets/images/logo_sena.png')}}">
     <title>ADSO-9</title>
@@ -19,11 +19,11 @@
                     @csrf
                     <h2 class="title">Iniciar sesión</h2>
                     <div class="input-field">
-                        <i class="fa-solid fa-user"></i>
+                        <i class='bx bxs-user' ></i>
                         <input type="text" placeholder="Username" name="email" required/>
                     </div>
                     <div class="input-field">
-                        <i class="fas fa-lock"></i>
+                        <i class='bx bxs-lock-alt'></i>
                         <input type="password" placeholder="Password" name="password" required/>
                     </div>
                     <input type="submit" value="Iniciar sesión" class="btn solid" />
