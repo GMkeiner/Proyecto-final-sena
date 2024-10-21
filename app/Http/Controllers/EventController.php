@@ -15,15 +15,15 @@ use DateTime;
 class EventController extends Controller
 {
 
-    public function fechas_inicial($mes, $dia, $h_incial)
+    public function fechas_inicial($mes, $dia, $h_incial,$año)
     {
-        $fecha_inicio = Carbon::create(2024, array_key_first($mes), $dia, $h_incial->format('H'), $h_incial->format('i'));
+        $fecha_inicio = Carbon::create($año, array_key_first($mes), $dia, $h_incial->format('H'), $h_incial->format('i'));
         $start = $fecha_inicio->format('Y-m-d H:i');
         return $start;
     }
-    public function fechas_final($mes, $dia, $h_final)
+    public function fechas_final($mes, $dia, $h_final,$año)
     {
-        $fecha_fin = Carbon::create(2024, array_key_first($mes), $dia, $h_final->format('H'), $h_final->format('i'));
+        $fecha_fin = Carbon::create($año, array_key_first($mes), $dia, $h_final->format('H'), $h_final->format('i'));
         $end = $fecha_fin->format('Y-m-d H:i');
         return $end;
     }
@@ -45,14 +45,25 @@ class EventController extends Controller
             $m1 = $event->mes1[array_key_first($event->mes1)];
             $m2 = $event->mes2[array_key_first($event->mes2)];
             $m3 = $event->mes3[array_key_first($event->mes3)];
+
+            $mes_hoy = date('n');
+            $año=2024;
+            if (array_key_first($event->mes3)>=$mes_hoy){
+                $año=2024;
+            }else{
+                $año++;
+            }
+
+            
+            // dd($año,array_key_first($event->mes1),array_key_first($event->mes2),array_key_first($event->mes3));
             // dd( $event->hora[$materias[$i]],$materias[$i],$m1[$materias[$i]],$m2[$materias[$i]],$m3[$materias[$i]]);
             foreach ($materias as $materia) {
                 $hora = $event->hora[$materia];
                 $hora_inicial = DateTime::createFromFormat('H:i', $hora[0]);
                 $hora_final = DateTime::createFromFormat('H:i', $hora[1]);
                 foreach ($m1[$materia] as $v1) {
-                    $start = $this->fechas_inicial($event->mes1, $v1, $hora_inicial);
-                    $end = $this->fechas_final($event->mes1, $v1, $hora_final);
+                    $start = $this->fechas_inicial($event->mes1, $v1, $hora_inicial,$año);
+                    $end = $this->fechas_final($event->mes1, $v1, $hora_final,$año);
                     $events[] = [
                         'title' => $materia . ' F:' . (string) $ficha->noFicha,
                         'start' => $start,
@@ -60,8 +71,8 @@ class EventController extends Controller
                     ];
                 }
                 foreach ($m2[$materia] as $v2) {
-                    $start = $this->fechas_inicial($event->mes2, $v2, $hora_inicial);
-                    $end = $this->fechas_final($event->mes2, $v2, $hora_final);
+                    $start = $this->fechas_inicial($event->mes2, $v2, $hora_inicial,$año);
+                    $end = $this->fechas_final($event->mes2, $v2, $hora_final,$año);
                     $events[] = [
                         'title' => $materia . ' F:' . (string) $ficha->noFicha,
                         'start' => $start,
@@ -69,8 +80,8 @@ class EventController extends Controller
                     ];
                 }
                 foreach ($m3[$materia] as $v3) {
-                    $start = $this->fechas_inicial($event->mes3, $v3, $hora_inicial);
-                    $end = $this->fechas_final($event->mes3, $v3, $hora_final);
+                    $start = $this->fechas_inicial($event->mes3, $v3, $hora_inicial,$año);
+                    $end = $this->fechas_final($event->mes3, $v3, $hora_final,$año);
                     $events[] = [
                         'title' => $materia . ' F:' . (string) $ficha->noFicha,
                         'start' => $start,
@@ -116,6 +127,7 @@ class EventController extends Controller
         $fecha_final = Carbon::parse($request->fecha_inicio)->addMonths(3);
         $trimestre = new CarbonPeriod($fecha_inicial, '1 day', $fecha_final);
         $meses = [];
+
         foreach ($trimestre as $date) {
             if ($date->month == 12) {
                 break;
