@@ -3,8 +3,8 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
+
+            {{-- <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
@@ -26,8 +26,9 @@
                     <h1>Eres un instructor</h1>
                     @endrole
                 </div>
-            </div>      
-        </div>
+            </div>       --}}
+            <iframe width="100%" height="1000" src="https://app.powerbi.com/view?r=eyJrIjoiYmUwMGVmZWUtNGM4NC00ZTQ5LWIyNzMtZTVjMmY3MmJhNTQzIiwidCI6ImNiYzJjMzgxLTJmMmUtNGQ5My05MWQxLTUwNmM5MzE2YWNlNyIsImMiOjR9&pageName=d7930b4b023a15557dd0" frameborder="0" allowFullScreen="true"></iframe>
+  
     </div>
 </div>
 @endsection
