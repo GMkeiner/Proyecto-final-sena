@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DateTime;
 
-// YA TODO FUNCIONA AL 100%
+// YA TODO FUNCIONA AL 100% pero hubo solo una novedad.
 
 class EventController extends Controller
 {
@@ -33,11 +33,18 @@ class EventController extends Controller
         $all_events = Event::all();
         $events = [];
 
+
         foreach ($all_events as $event) {
+            $claves = array_keys($event->mes1);
+
+           
+
+
             $materias = [];
             foreach ($event->mes1[array_key_first($event->mes1)] as $name => $subArray) {
                 $materias[] = $name;
             }
+            // dd($materias);
             $ficha = Ficha::find($event->ficha_id);
             $nombre_materia = $event->mes1[array_key_first($event->mes1)];
             $materia = array_key_first($nombre_materia);
@@ -45,6 +52,8 @@ class EventController extends Controller
             $m1 = $event->mes1[array_key_first($event->mes1)];
             $m2 = $event->mes2[array_key_first($event->mes2)];
             $m3 = $event->mes3[array_key_first($event->mes3)];
+
+            
             $año=$event->año;
             // $mes_hoy = date('n');
             // $año=2024;
