@@ -13,10 +13,10 @@ class CreateEventsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('ficha_id');
             $table->json('mes1')->nullable();
-            $table->json('mes2')->nullable(); 
+            $table->json('mes2')->nullable();
             $table->json('mes3')->nullable();
             $table->json('hora')->nullable();
-
+            $table->integer('año')->nullable();
             $table->foreign('ficha_id')->references('id')->on('fichas')->onDelete('cascade');
             $table->timestamps();
         });

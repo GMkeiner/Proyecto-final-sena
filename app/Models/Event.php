@@ -11,12 +11,12 @@ use App\Models\Ficha;
 // app/Models/Event.php
 class Event extends Model
 {
-    protected $fillable = ['ficha_id', 'mes1', 'mes2', 'mes3', 'hora'];
+    protected $fillable = ['ficha_id', 'mes1', 'mes2', 'mes3', 'hora','año'];
 
     public function ficha(): HasOne{
         return $this->hasOne(Ficha::class);
     }
-    
+
     protected function mes1(): Attribute{
         return Attribute::make(
             get: fn (mixed $value) => json_decode($value,true),

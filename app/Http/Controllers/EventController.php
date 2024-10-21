@@ -45,16 +45,16 @@ class EventController extends Controller
             $m1 = $event->mes1[array_key_first($event->mes1)];
             $m2 = $event->mes2[array_key_first($event->mes2)];
             $m3 = $event->mes3[array_key_first($event->mes3)];
+            $año=$event->año;
+            // $mes_hoy = date('n');
+            // $año=2024;
+            // if (array_key_first($event->mes3)>=$mes_hoy){
+            //     $año=2024;
+            // }else{
+            //     $año++;
+            // }
 
-            $mes_hoy = date('n');
-            $año=2024;
-            if (array_key_first($event->mes3)>=$mes_hoy){
-                $año=2024;
-            }else{
-                $año++;
-            }
 
-            
             // dd($año,array_key_first($event->mes1),array_key_first($event->mes2),array_key_first($event->mes3));
             // dd( $event->hora[$materias[$i]],$materias[$i],$m1[$materias[$i]],$m2[$materias[$i]],$m3[$materias[$i]]);
             foreach ($materias as $materia) {
@@ -124,6 +124,8 @@ class EventController extends Controller
         ]);
         //creacion de fechas por trimestre
         $fecha_inicial = Carbon::parse($request->fecha_inicio);
+        $año = $fecha_inicial->year;
+
         $fecha_final = Carbon::parse($request->fecha_inicio)->addMonths(3);
         $trimestre = new CarbonPeriod($fecha_inicial, '1 day', $fecha_final);
         $meses = [];
@@ -157,7 +159,8 @@ class EventController extends Controller
                 'mes1' => [$mes1 => [$request->nombre => $meses[$mes1]]],
                 'mes2' => [$mes2 => [$request->nombre => $meses[$mes2]]],
                 'mes3' => [$mes3 => [$request->nombre => $meses[$mes3]]],
-                'hora' => [$request->nombre => [$request->hora_inicio, $request->hora_final]]
+                'hora' => [$request->nombre => [$request->hora_inicio, $request->hora_final]],
+                'año'=>$año
             ]);
             return redirect()->route('events.index')->with('success', 'El evento ' . $request->nombre . ' fue guardado con exito');
         }
