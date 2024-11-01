@@ -7,11 +7,11 @@
             @csrf
             <div class="md-3 row">
                 <div class="col-sm-6">
-                    <label for="nombre" class="col-sm-4 form-label">Nombre de la competencia:</label>
+                    <label for="nombre" class="col-sm-5 form-label">Nombre de la competencia:</label>
                     <input type="text" class="form-control" name="nombre" id="nombre" value="{{ old('nombre') }}"
                         required>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-5 mt-0">
                     <label for="nombre" class="col-sm-3 form-label">Instructor:</label>
                     <select name="instructor_id" required class="form-select">
                         <option value="" selected> Seleccione una opción ... </option>
